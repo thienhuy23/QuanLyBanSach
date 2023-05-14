@@ -9,4 +9,8 @@ public class HomeController {
 	public String home() {
 		return "index";
 	}
+	@RequestMapping("/register")
+	public String register() {
+		return "commons/Register";
+	}
 }
