@@ -20,12 +20,15 @@ public class BookController {
 	
 	@GetMapping({"/",""})
 	public String getBook(@RequestParam("bookId") int bookId,Model model) {
-		System.out.println(bookId);
 		Optional<Book> book = bookService.findById(bookId);
 		if(!book.isPresent()) {
 			return "redirect:/error";
 		}
-		model.addAttribute("book", book);
+		model.addAttribute("book", book.get());
 		return "page/book";
+	}
+	@GetMapping("/error")
+	public String error() {
+		return "page/error";
 	}
 }
