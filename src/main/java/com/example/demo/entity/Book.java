@@ -29,7 +29,7 @@ public class Book {
 	@Column
 	int published_year;
 	@Column
-	int numberPage;
+	int number_page;
 	@Column
 	String describe;
 }

@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class Java5AsmApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Java5AsmApplication.class, args);
+			SpringApplication.run(Java5AsmApplication.class, args);
 	}
 
 }
