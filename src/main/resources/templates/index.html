@@ -17,7 +17,6 @@
 
     <!-- Slick slider source CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-
     <!-- Angular JS  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"
         integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=="
@@ -29,8 +28,8 @@
 
 <body>
     <div th:replace="~{commons/navbar :: .navbar}"></div>
-     <div th:replace="~{commons/footer :: footer}"></div>
- 
+    <div th:insert="~{page/book_detail :: #book-detail}"></div>
+    <div th:replace="~{commons/footer :: footer}"></div> 
 </body>
 
 </html>
