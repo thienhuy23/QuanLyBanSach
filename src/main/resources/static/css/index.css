@@ -300,3 +300,20 @@
         width: 40%; /* Need a specific value to work */
         border-radius: 20px;
         }
+        
+.social-sharing li {
+        height: 35px;
+        width: 35px;
+        display: inline-block;
+        border: 1px solid #666666;
+        border-radius: 50%;
+        margin: 0 5px 0 0;
+        text-align: center;
+    }
+    .social-sharing li a{
+  text-align: center;
+        
+    }
+    .facebook, .twitter, .pinterest {
+    padding: 10px;
+}
