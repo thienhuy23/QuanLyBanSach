@@ -1,8 +1,9 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Noto+Sans:wght@500&display=swap');
 * {
     margin: 0;
     padding: 0;
-    font-family: 'DM Sans';
+    font-family: 'Cabin', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 .navbar-nav .nav-item {
