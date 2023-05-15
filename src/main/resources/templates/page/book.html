@@ -1,10 +1,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <div th:replace="~{commons/head ::  head}"></div>
-<body>
+<link rel="stylesheet" th:href="@{/css/book.css}">
+<body style="background-color: rgb(228, 228, 228)">
     <div th:replace="~{commons/navbar :: .navbar}"></div>
-    <div class="container">
-		<h1>detail page</h1>
-		<h3>[[${book.name}]]</h3>
+    <div class="container-fluid mb-5" >
+		<div class="card d-block mx-auto w-75 mt-5" style="height:500px">
+            <div class="card-body" style="height: 100%;">
+                <div class="row" style="height: 90%;">
+                    <div class="col-5">
+                        <div class="d-flex flex-row" style="height: 90%;">
+                            <div style="width: 100px;" class="flex-column">
+                                <img th:each="img:${book.images}" class="img-fluid rounded img-sm" th:src="@{${img.url}}" alt="">
+                            </div>
+                            <div class="flex-grow-1">
+                                <img class="img-fluid" th:src="@{${book.images[0].url}}" alt="">
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row justify-content-around mt-2">
+                            <button class="btn btn-outline-danger " style="width: 45%;">Thêm vào giỏ hàng</button>
+                            <button class="btn btn-danger " style="width: 45%;">Mua hàng</button>
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        info
+                    </div>
+                </div>
+            </div>
+        </div>
 	</div>
     <div th:replace="~{commons/footer :: footer}"></div> 
 </body>
