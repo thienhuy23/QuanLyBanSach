@@ -25,6 +25,7 @@ public class BookController {
 			return "redirect:/error";
 		}
 		model.addAttribute("book", book.get());
+		model.addAttribute("listBook",bookService.findListExpect(bookId));
 		return "page/book";
 	}
 	@GetMapping("/error")
