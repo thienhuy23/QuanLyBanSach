@@ -7,6 +7,95 @@
 	<div th:replace="~{commons/navbar :: .navbar}"></div>
 	<main>
 		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img th:src="@{/images/bg_img.png}" class="d-block" alt="...">
+				<!--<div class="carousel-caption">
+					<div class="container">
+						<div class="row m-5">
+							<div class=" mb-12 col-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 text-center ">
+								<ol>
+									<li class="list-inline-item "><a class="text-decoration-none text-light text-end"
+											href="#"><span><i
+													class="bi bi-house-door-fill fs-3 text-dark"></i></span></a></li>
+									<li class="list-inline-item"><a class="text-decoration-none text-light text-end"
+											href="#"><span class="text-end textlight text-dark fs-5"><i
+													class="bi bi-chevron-double-right fw-bold"></i> Account</span></a>
+									</li>
+									<li class="list-inline-item"><a class="text-decoration-none text-light text-end"
+											href="#"><span class="text-end text-dark  fs-5">Login</span></a></li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</div>-->
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 bg-light pt-5">
+					<div class="card border-0 rounded-0">
+						<div class="card-header pt-1 border-0 rounded-0 text-light fs-5 fw-bold is-outline-pink">Account
+						</div>
+						<div class="card-body rounded-0 pt-3 is-outline-gray">
+							<div class="pt-1"><a href="" class="text-decoration-none text-dark">Login</a></div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">Register</a></div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">Forgotten Password</a>
+							</div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">My Account</a></div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">Address Book</a></div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">Wish List</a></div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">Order History</a></div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">Downloads</a></div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">Subscriptions</a></div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">Reward Points</a></div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">Returns</a></div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">Transactions</a></div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">Newsletter</a></div>
+						</div>
+					</div>
+					<div class="card border-0 rounded-0 pt-5 pb-5">
+						<div class="card-header pt-1 border-0 rounded-0 text-light fs-5 fw-bold is-outline-pink">
+							Information</div>
+						<div class="card-body rounded-0 pt-3 is-outline-gray">
+							<div class="pt-1"><a href="" class="text-decoration-none text-dark">Terms & Conditions</a>
+							</div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">Delivery Information</a>
+							</div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">Forgotten Password</a>
+							</div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">About Us</a></div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">Privacy Policy</a></div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">Contact Us</a></div>
+							<div class="pt-3"><a href="" class="text-decoration-none text-dark">Site Map</a></div>
+						</div>
+					</div>
+				</div>
+				<div class="pt-5 mb-12 col-12 col-md-9 col-lg-9 col-xl-9 col-xxl-9">
+					<div class="card">
+						<div class=" pb-2 fs-4 p-4 fw-bold">Returning Customer</div>
+						<div class="fw-bold pt-1  pb-1 p-4">I am a returning customer</div>
+						<form class="row g-3" action="" method="">
+							<div class=" p-5 pt-3 pb-1">
+								<label for="inputAddress" class="form-label fw-bold">E-Mail Address</label>
+								<input type="email" name="name" class="form-control rounded-0 border-secondary" id="inputAddress"
+									placeholder="E-Mail Address">
+							</div>
+							<div class=" p-5 pt-1 pb-1">
+								<label for="inputAddress2" class="form-label fw-bold">Password</label>
+								<input type="password" name="password" class="form-control rounded-0 border-secondary" id="inputAddress2"
+									placeholder="Password">
+								<a href="#" class="text-decoration-none text-dark">Forgotten Password ?</a>
+							</div>
+							<div class=" p-5 pt-1 pb-3">
+								<button type="submit" class="btn border-0 fs-5 rounded-0 text-light is-outline-pink"
+									style="width: 120px;">Login</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
             <div class="carousel-item active">
                 <img th:src="@{/images/bg_img.png}" class="d-block" alt="...">
                 <div class="carousel-caption">
