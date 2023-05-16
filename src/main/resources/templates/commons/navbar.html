@@ -1,7 +1,7 @@
 <div th:fragments="navbar">
-	<div class="navbar" style="display: block;">
+	<div class="navbar d-block">
 		<div>
-			<div class="container-fluid pt-1 is-outline-pink">
+			<div class="container-fluid pt-1" style="background-color: rgb(191, 164, 164)">
 				<nav id="top">
 					<div class="container">
 						<div class="row pt-3 pb-3 pe-3">
@@ -14,40 +14,38 @@
 								</div>
 							</div>
 							<div class="mb-6 col-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 text-end">
-								<div class="pull-left">
-									<form action="" method="post" enctype="multipart/form-data" id="form-currency">
-										<div class="dropdown btn-group">
-											<a href="#" data-bs-toggle="dropdown"
-												class="dropdown-toggle btn-link text-dark text-decoration-none"
-												aria-expanded="false">
-												<span class="drop-text">Language</span>
-												<!-- <span class="symbol">Option</span> -->
-												<i class="fa fa-angle-down"></i>
-											</a>
-											<ul class="dropdown-menu currency-dropdown dropdown-menu-right mt-2">
-												<li><a href="" class="dropdown-item">English</a></li>
-												<li><a href="" class="dropdown-item">Viet nam</a></li>
-												<li><a href="" class="dropdown-item">China</a></li>
-											</ul>
-										</div>
-										<input type="hidden" name="code" value="" />
-										<input type="hidden" name="redirect" value="" />
-									</form>
+								<div>
+									<div class="dropdown btn-group">
+										<a href="#" data-bs-toggle="dropdown"
+											class="dropdown-toggle btn-link text-dark text-decoration-none"
+											aria-expanded="false">
+											<span class="drop-text">Ngôn ngữ</span>
+											<!-- <span class="symbol">Option</span> -->
+
+										</a>
+										<ul class="dropdown-menu currency-dropdown dropdown-menu-right mt-2">
+											<li><a href="" class="dropdown-item">Tiếng Anh</a></li>
+											<li><a href="" class="dropdown-item">Tiếng Việt</a></li>
+										</ul>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</nav>
 			</div>
+		</div>
+		<div>
 			<div>
 				<div class="container pt-4">
 					<div class="row header-inner align-items-center">
 						<div class="text-left col-lg-4 col-xl-4 col-xxl-4 header-left">
 							<div class="input-group mb-3 mt-3 " style="width:300px;">
-								<input type="text" class="form-control rounded-0 is-outline-gray"
-									 placeholder="Search..."
+								<input type="text" class="form-control rounded-0"
+									style="background-color: rgb(223, 223, 223);" placeholder="Search..."
 									aria-label="Search..." aria-describedby="button-addon2">
-								<button class="btn btn-outline-secondary rounded-0 border-0 is-outline-pink" type="button" id="button-addon2"><i
+								<button class="btn btn-outline-secondary rounded-0 border-0 "
+									style="background-color: rgb(191, 164, 164);" type="button" id="button-addon2"><i
 										class="bi bi-search text-light"></i></button>
 							</div>
 						</div>
@@ -89,6 +87,7 @@
 			</div>
 			<hr style="border-top: 3px dashed  rgb(120, 80, 80)" />
 
+
 			<div class="header-menu text-center">
 				<nav class="navbar navbar-expand-lg navbar-light bg-light">
 					<div class="container-fluid">
@@ -101,37 +100,52 @@
 						<div class="collapse navbar-collapse" id="navbarNavDropdown">
 							<ul class="navbar-nav m-auto mb-2 mb-lg-0 ">
 								<li class="nav-item">
-									<a class="nav-link text-dark" href="#">Home</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-dark" href="#">Shop</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-dark" href="#">Categories</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-dark" href="#">Product</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-dark" href="#">Pages</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link text-dark" href="#">Brand</a>
+									<a class="nav-link text-dark" href="#">Trang chủ</a>
 								</li>
 								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink"
-										role="button" data-bs-toggle="dropdown" aria-expanded="false">
-										Dropdown link
-									</a>
-									<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-										<li><a class="dropdown-item text-dark" href="#">Action</a></li>
-										<li><a class="dropdown-item text-dark" href="#">Another action</a></li>
-										<li><a class="dropdown-item text-dark" href="#">Something else here</a></li>
-									</ul>
+									<div class="dropdown-center">
+										<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+											aria-expanded="false">
+											Thể loại
+										</a>
+										<ul class="dropdown-menu">
+											<li><a href="#" class="dropdown-item">Văn học</a></li>
+											<li><a href="#" class="dropdown-item">Kinh tế</a></li>
+											<li><a href="#" class="dropdown-item">Thiếu nhi</a></li>
+											<li><a href="#" class="dropdown-item">Giáo khoa - tham khảo</a></li>
+											<li><a href="#" class="dropdown-item">Tiểu sử - hồi ký</a></li>
+											<li><a href="#" class="dropdown-item">Kỹ năng</a></li>
+										</ul>
+									</div>
 								</li>
-								<li class="nav-item">
-									<a class="nav-link text-dark" href="#">Blog</a>
+								<li class="nav-item dropdown">
+									<div class="dropdown-center">
+										<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+											aria-expanded="false">
+											Sản Phẩm
+										</a>
+										<ul class="dropdown-menu">
+											<li><a href="#" class="dropdown-item">Sản phẩm phổ biến</a></li>
+											<li><a href="#" class="dropdown-item">Sản phẩm bán chạy</a></li>
+											<li><a href="#" class="dropdown-item">Sản phẩm mới nhất</a></li>
+										</ul>
+									</div>
 								</li>
+
+								<li class="nav-item dropdown">
+									<div class="dropdown-center">
+										<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+											aria-expanded="false">
+											Liên Hệ
+										</a>
+										<ul class="dropdown-menu">
+											<li><a href="#" class="dropdown-item">Về chúng tôi</a></li>
+											<li><a href="#" class="dropdown-item">Thông tin liên hệ</a></li>
+										</ul>
+									</div>
+								</li>
+
+
 							</ul>
 						</div>
 					</div>
@@ -139,4 +153,5 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>

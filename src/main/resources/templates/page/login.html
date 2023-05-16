@@ -96,6 +96,72 @@
 			</div>
 		</div>
 	</main>
+            <div class="carousel-item active">
+                <img th:src="@{/images/bg_img.png}" class="d-block" alt="...">
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="row m-5">
+                            <div class=" mb-12 col-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 text-center ">
+                                <ol>
+                                    <li class="list-inline-item "><a class="text-decoration-none text-light text-end"
+                                            href="#"><span><i
+                                                    class="bi bi-house-door-fill fs-3 text-dark"></i></span></a></li>
+                                    <li class="list-inline-item"><a class="text-decoration-none text-light text-end"
+                                            href="#"><span class="text-end textlight text-dark fs-5"><i
+                                                    class="bi bi-chevron-double-right fw-bold"></i> Account</span></a>
+                                    </li>
+                                    <li class="list-inline-item"><a class="text-decoration-none text-light text-end"
+                                            href="#"><span class="text-end text-dark  fs-5"><i
+                                                    class="bi bi-chevron-double-right "></i>Login</span></a></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+				<div class="col-lg-2 bg-light pt-5">
+                <div th:replace="~{commons/card ::  .card}"></div>
+                 </div>
+                <div class="pt-5 mb-12 col-12 col-md-6 col-lg-5 col-xl-5 col-xxl-5">
+                    <div class="card">
+                        <div class=" pb-2 fs-4 p-4 fw-bold">New Customer</div>
+                        <div class="fw-bold pt-1 pb-1 p-4">Register Account</div>
+                        <div class="p-4 pt-2 pb-2">By creating an account you will be able to shop faster, be up to date
+                            on an order's status, and keep track of the orders you have previously made.</div>
+                        <div class="p-4 pt-2 pb-3">
+                            <a href="#" class=" btn btn-primary border-0 fs-5 rounded-0 is-outline-pink"
+                                style="width: 150px;">Continue</a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="pt-5 mb-12 col-12 col-md-6 col-lg-5 col-xl-5 col-xxl-5">
+                    <div class="card">
+                        <div class=" pb-2 fs-4 p-4 fw-bold">Returning Customer</div>
+                        <div class="fw-bold pt-1  pb-1 p-4">I am a returning customer</div>
+                        <form class="row g-3">
+                            <div class=" p-5 pt-3 pb-1">
+                                <label for="inputAddress" class="form-label fw-bold">E-Mail Address</label>
+                                <input type="text" class="form-control rounded-0 border-secondary" id="inputAddress" placeholder="E-Mail Address">
+                            </div>
+                            <div class=" p-5 pt-1 pb-1">
+                                <label for="inputAddress2" class="form-label fw-bold">Password</label>
+                                <input type="text" class="form-control rounded-0 border-secondary" id="inputAddress2"
+                                    placeholder="Password">
+                                <p>Forgotten Password ?</p>
+                            </div>
+                            <div class=" p-5 pt-1 pb-3">
+                                <button type="submit" class="btn border-0 fs-5 rounded-0 text-light" style="width: 120px; background-color: rgb(191, 164, 164);">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 	<div th:replace="~{commons/footer :: footer}"></div>
 
 </body>+
