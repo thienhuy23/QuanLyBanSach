@@ -17,7 +17,7 @@ public class BookService {
 	BookRepository bookRepo;
 	
 	public Optional<Book> findById(int bookId) {
-		return bookRepo.findById(bookId);
+		return bookRepo.findById(bookId); // 1 object Book
 	}
 	public List<Book> findAll(){
 		return bookRepo.findAll();
