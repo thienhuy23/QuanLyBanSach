@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -40,4 +41,12 @@ public class Book {
 	
 	@OneToMany(mappedBy = "book",fetch=FetchType.LAZY)
 	List<Image> images;
+	
+	@ManyToOne
+	@JoinColumn(name = "author_id")
+	Author author;
+	
+	@ManyToOne
+	@JoinColumn(name = "supplier_id")
+	Supplier supplier;
 }
