@@ -6,10 +6,47 @@
 	<div th:replace="~{commons/navbar :: .navbar}"></div>
 	<div class="container-fluid mb-5">
 		<div class="">
-				<img th:src="@{/images/bg_img.png}" class="img-fluid" alt="...">
+			<img th:src="@{/images/bg_img.png}" class="img-fluid" alt="...">
 		</div>
-		<div class="card d-block mx-auto w-75 mt-5">
-			<div class="card-body" >
+		<div class="container">
+			<div class="card d-block mx-auto mt-5">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-12 col-md-5 bg-danger">
+							<div class="d-flex flex-row" style="height: 90%;">
+								<div style="width: 100px;" class="flex-column">
+									<img th:each="img:${book.images}" class="img-fluid rounded img-sm"
+										th:src="@{${img.url}}" alt="">
+								</div>
+								<div class="flex-grow-1">
+									<img class="img-fluid" th:src="@{${book.images[0].url}}" alt="">
+								</div>
+							</div>
+							<div class="d-flex flex-row justify-content-around mt-2">
+								<button class="btn btn-outline-pink " style="width: 45%;">Thêm vào giỏ hàng</button>
+								<button class="btn btn-pink " style="width: 45%;">Mua hàng</button>
+							</div>
+						</div>
+						<div class="col-12 col-md-7">
+							<section>
+								<h3 class="mt-2">[[${book.name}]]</h3>
+								<p class="mt-2">Nhà cung cấp: Nhã Nam</p>
+								<p class="mt-2">Giá: [[${book.price}]]</p>
+								<p class="mt-2">Thời gian giao hàng: Giao hàng đến</p>
+								<p class="mt-2">Chính sách đổi trả: Đổi trả trong 30 ngày</p>
+								<section class="border rounded section-number">
+									<button class="btn btn-default">-</button>
+									<input class="input-book" type="number" step="1" value="1" disabled>
+									<button class="btn btn-default">+</button>
+								</section>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card d-block mx-auto mt-5">
+			<div class="card-body">
 				<div class="row" style="height: 90%;">
 					<div class="col-5">
 						<div class="d-flex flex-row" style="height: 90%;">
@@ -43,7 +80,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="card d-block mx-auto w-75 mt-5">
+
+		<div class="card d-block mx-auto w-75 mt-5" style="height:fit-content">
 			<div class="card-body" style="height: 100%;">
 				<div class="row">
 					<!-- Tabs navs -->
@@ -92,7 +130,8 @@
 										<div class="col-md-3">
 											<div class="card">
 												<div class="card-img">
-													<img src="https://via.placeholder.com/700x500.png/CB997E/333333?text=1" class="img-fluid">
+													<img src="https://via.placeholder.com/700x500.png/CB997E/333333?text=1"
+														class="img-fluid">
 												</div>
 												<div class="card-img-overlay">Slide 1</div>
 											</div>
@@ -110,14 +149,16 @@
 										</div>
 									</div>
 								</div>
-								<a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
+								<a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel"
+									role="button" data-bs-slide="prev">
 									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 								</a>
-								<a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
+								<a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel"
+									role="button" data-bs-slide="next">
 									<span class="carousel-control-next-icon" aria-hidden="true"></span>
 								</a>
 							</div>
-						</div>		
+						</div>
 					</div>
 				</div>
 			</div>
@@ -125,22 +166,22 @@
 	</div>
 	<div th:replace="~{commons/footer :: footer}"></div>
 	<script type="text/javascript">
-	let items = document.querySelectorAll('.carousel .carousel-item')
+		let items = document.querySelectorAll('.carousel .carousel-item')
 
 		items.forEach((el) => {
 			const minPerSlide = 4
 			let next = el.nextElementSibling
-			for (var i=1; i<minPerSlide; i++) {
+			for (var i = 1; i < minPerSlide; i++) {
 				if (!next) {
-            // wrap carousel by using first child
-            next = items[0]
-        }
-        let cloneChild = next.cloneNode(true)
-        el.appendChild(cloneChild.children[0])
-        next = next.nextElementSibling
-    }
-})
-</script>
+					// wrap carousel by using first child
+					next = items[0]
+				}
+				let cloneChild = next.cloneNode(true)
+				el.appendChild(cloneChild.children[0])
+				next = next.nextElementSibling
+			}
+		})
+	</script>
 </body>
 
 </html>
