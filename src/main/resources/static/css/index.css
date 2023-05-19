@@ -79,3 +79,16 @@
 	padding: 10px;
 
 }
+.hide{
+    display: none !important;
+}
+
+.show{
+    display: block!important;
+}
+
+#loading{
+    height: 50vh;
+    width: 100%;
+}
+
