@@ -1,0 +1,107 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" href="/css/index.css">
+<div th:replace="~{commons/head ::  head}"></div>
+
+<body>
+    <div th:replace="~{commons/navbar :: .navbar}"></div>
+    <main>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img th:src="@{/images/bg_img.png}" class="d-block" alt="...">
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="row m-5">
+                            <div class=" mb-12 col-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 text-center ">
+                                <h1>Personal information</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container p-3">
+            <div class="row">
+                <div class="col-lg-2 bg-light pt-5">
+                    <div th:replace="~{commons/card ::  #cart}"></div>
+                </div>
+                <div class="col-9">
+                    <form class="ms-5" th:action="@{/profile/update}" method="post" th:object="${users}">
+                        <h6 class="mb-3 mt-4">If you already have an account with us, please login at the login page.
+                        </h6>
+                        <h4><b>Your Personal Details</b></h4>
+                        <hr>
+                        <input th:field="*{id}" hidden type="text" class="form-control ms-4" 
+                                name="id">
+                        <div class="mb-3 mt-3">
+                            <label for="name">FullName:</label>
+                            <input th:field="*{name}" type="text" class="form-control ms-4" id="name" placeholder="Enter Fullname"
+                                name="name">
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label for="phone">Phone:</label>
+                            <input th:field="*{phone}" type="text" class="form-control ms-4" id="phone" placeholder="Enter phone"
+                                name="phone">
+                        </div>
+                        <div class="mb-3 mt-3">
+                            <label for="email">Email:</label>
+                            <input th:field="*{email}" type="email" class="form-control ms-4" id="email" placeholder="Enter email"
+                                name="email">
+                        </div>
+                        <h4><b>Your Password</b></h4>
+                        <hr>
+                        <div class="mb-3">
+                            <label for="pwd">Password:</label>
+                            <input th:value="*{password}" type="password" class="form-control ms-4" id="pwd" placeholder="Enter password"
+                                name="password">
+                        </div>
+                        <h4><b>Your Role</b></h4>
+                        <hr>
+                        <div class="form-radio mb-3">
+                            <label class="form-radio-label ms-4">
+                                <input class="form-radio " th:checked= "${users.role !=null}?${users.role}" type="radio" name="role" value="1"> Admin
+                                <input class="form-radio" th:checked= "${users.role !=null}?${!users.role}" type="radio" name="role" value="0"> User
+                            </label>
+                        </div>
+                        <button type="submit" class="btn button">Update</button>
+                    </form>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>FullName</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>[[${users.name}]]</td>
+                            <td>[[${users.phone}]]</td>
+                            <td>[[${users.email}]]</td>
+                            <td>[[${users.password}]]</td>
+                            <td>[[${users.role}]]</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h1>[[${success}]]</h1>
+            </div>
+          
+        </div>
+    </main>
+    <footer>
+        <div th:replace="~{commons/footer :: footer}"></div>
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
