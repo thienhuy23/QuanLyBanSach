@@ -24,39 +24,46 @@
                 <div class="col-lg-2 bg-light pt-5">
                 	<div th:replace="~{commons/card ::  #cart}"></div>
                 </div>
-                <div class="col-9">
-					 <form class="ms-5" action="" method="">
+                <div class="col-9 "> 
+					 <form class="ms-5 " action="register/insert" th:object="${Users}"  method="post">
 	                    <h6 class="mb-3 mt-4">If you already have an account with us, please login at the login page.</h6>
 	                    <h4><b>Your Personal Details</b></h4>
 	                    <hr>
-                        <div class="mb-3 mt-3">
+                        <div class="">
                             <label for="name">FullName:</label>
-                            <input type="text" class="form-control ms-4" id="name" placeholder="Enter Fullname" name="name">
+                            <input type="text" class="form-control ms-4" th:field="*{name}" id="name" placeholder="Enter Fullname" name="name">
+                         	<p class="alert  ms-4" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></p>
                         </div>
-                        <div class="mb-3 mt-3">
+                        <div class=" ">
                             <label for="phone">Phone:</label>
-                            <input type="text" class="form-control ms-4" id="phone" placeholder="Enter phone" name="phone">
+                            <input type="text" class="form-control ms-4" th:field="*{phone}" id="phone" placeholder="Enter phone" name="phone">
+                        	<p class="alert   ms-4" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" ></p>
                         </div>  
-                        <div class="mb-3 mt-3">
+                        <div class=" ">
                             <label for="email">Email:</label>
-                            <input type="email" class="form-control ms-4" id="email" placeholder="Enter email" name="email">
+                            <input type="email" class="form-control ms-4" th:field="*{email}" id="email" placeholder="Enter email" name="email">
+                        	<p class="alert    ms-4" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" ></p>
                         </div> 
 	                    <h4><b>Your Password</b></h4>
 	                    <hr> 
-                        <div class="mb-3">
+                        <div class=" ">
                             <label for="pwd">Password:</label>
-                            <input type="password" class="form-control ms-4" id="pwd" placeholder="Enter password" name="password">
+                            <input type="password" class="form-control ms-4" th:field="*{password}"  id="pwd" placeholder="Enter password" name="password">
+                        	<p class="alert    ms-4" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" ></p>
                         </div> 
 	                    <h4><b>Your Role</b></h4>
 	                    <hr> 
                         <div class="form-radio mb-3">
                             <label class="form-radio-label ms-4">
-                                <input class="form-radio " type="radio" name="role"> Admin
-                                <input class="form-radio" type="radio" name="role"> User
+                                <input class="form-radio " type="radio" th:field="*{role}" name="role" value="true"> Admin
+                                <input class="form-radio" type="radio" th:field="*{role}" name="role" value="false"> User
+                           		
                             </label>
+                            <p class="alert    ms-4"  th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></p>
                         </div> 
 	                    <button type="submit" class="btn button">Submit</button>
 					 </form>
+					 
                 </div>
             </div> 
         </div>
