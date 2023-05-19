@@ -38,6 +38,5 @@ public class LoginController {
 	public String logout() {
 		return "page/login";
 	}
-	
 }
 
