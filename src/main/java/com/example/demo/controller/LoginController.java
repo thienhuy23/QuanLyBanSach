@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Users;
 import com.example.demo.repository.UsersRepository;
+import com.example.demo.service.UsersService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -19,19 +20,18 @@ import jakarta.servlet.http.HttpSession;
 
 public class LoginController {
 	@Autowired
-	UsersRepository usersRepo;
+	UsersService service;
 
+	@Autowired
+	HttpSession session;
 	@RequestMapping("/login")
 	public String getLogin() {
 		return "page/login";
 	}
 	@PostMapping("CheckLogin")
-	public String checkLogin(@RequestParam("id")int profileid, @RequestParam("password")String password 
+	public String checkLogin(@RequestParam("email") String email, @RequestParam("password")String password 
 			,Model model) {
-		Optional<Users> Users = usersRepo.findById(profileid);
-		if(!Users.get().getPassword().equals(password)) {
-			return "redirect:/error";
-		}
+		Users Users = service.getOneUser(email,password);
 		return "page/cart";
 	}
 	@GetMapping("logout")
