@@ -18,8 +18,4 @@ public class HomeController {
 		model.addAttribute("books",bookService.findAll());
 		return "page/home";
 	}
-	@GetMapping("/error")
-	public String error() {
-		return "page/error";
-	}
 }
