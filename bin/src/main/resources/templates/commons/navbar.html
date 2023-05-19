@@ -1,5 +1,5 @@
 <div th:fragments="navbar">
-	<div class="navbar d-block">
+	<div class="navbar d-block pt-0">
 		<div>
 			<div class="container-fluid pt-1 is-outline-pink">
 				<nav id="top">
@@ -49,7 +49,7 @@
 						</div>
 						<div
 							class="text-center header-center text-lg-center col-lg-4 col-sm-4 mb-6 col-6 col-xl-4 col-xxl-4">
-							<a href=""><img src="https://bookcart.themability.com/image/catalog/logo.png"
+							<a th:href="@{/}"><img src="https://bookcart.themability.com/image/catalog/logo.png"
 									title="Your Store" alt="Your Store" class="img-fluid"></a>
 						</div>
 						<div class="header-right col-lg-4 col-sm-8 mb-6 col-6 col-xl-4 col-xxl-4">
@@ -60,7 +60,7 @@
 									</a>
 								</div>
 								<div class="icon">
-									<a href="#" class="position-relative">
+									<a href="cart" class="position-relative">
 										<span class="fs-4 text-dark ii"><i class="bi bi-cart3"></i></span>
 										<span
 											class="position-absolute top-2 start-100 translate-middle badge rounded-pill bg-danger">
@@ -97,7 +97,7 @@
 						<div class="collapse navbar-collapse" id="navbarNavDropdown">
 							<ul class="navbar-nav m-auto mb-2 mb-lg-0 ">
 								<li class="nav-item">
-									<a class="nav-link text-dark" href="#">Trang chủ</a>
+									<a class="nav-link text-dark" th:href="@{/}">Trang chủ</a>
 								</li>
 								<li class="nav-item dropdown">
 									<div class="dropdown-center">
