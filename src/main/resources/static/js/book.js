@@ -13,3 +13,4 @@ let items = document.querySelectorAll('.carousel .carousel-item')
         next = next.nextElementSibling
     }
 })
+
