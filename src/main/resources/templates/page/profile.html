@@ -34,7 +34,7 @@
 					<div th:replace="~{commons/card ::  #cart}"></div>
 				</div>
 				<div class="col-9">
-					<form class="ms-5" th:action="@{/profile/update}" id="form"
+					<form class="ms-5" th:action="@{/profile/update}" onSubmit="if(!confirm('Are you sure you want to update?')){return false;}"
 						method="post" th:object="${users}">
 						<h6 class="mb-3 mt-4">Nếu bạn đã có một tài khoản với chúng
 							tôi, vui lòng đăng nhập tại trang đăng nhập.</h6>
@@ -88,7 +88,7 @@
 								name="role" value="false"> User
 							</label>
 						</div>
-						<button type="submit" id="btn" class="btn button p-2 mb-3 ">Cập nhật</button>
+						<button  type="submit" id="btn" class="btn button p-2 mb-3 ">Cập nhật</button>
 					</form>
 				</div>
 				<table class="table">
@@ -119,16 +119,7 @@
 	<footer>
 		<div th:replace="~{commons/footer :: footer}"></div>
 	</footer>
-	<script>
-		$('form').submit(function(event) {
-			let text = "Are you sure you want to update?";
-			if (!confirm(text)) {
-				console.log(e);
-				event.preventDefault();
-				event.currentTarget.submit();
-			}
-		});
-	</script>
+
 	<!-- Bootstrap JavaScript Libraries -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
