@@ -12,5 +12,10 @@ let items = document.querySelectorAll('.carousel .carousel-item')
         el.appendChild(cloneChild.children[0])
         next = next.nextElementSibling
     }
-})
+});
 
+
+const clickPhoto = (url) => {
+    console.log(url);
+    $("#photo").attr("src", url);
+}
