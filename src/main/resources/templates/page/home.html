@@ -50,6 +50,44 @@
 						<span class="visually-hidden">Next</span>
 					</button>
 				</div>
+				<div class="container">
+					<h4 class="fw-bold text-center pt-5 pb-3">Thể loại</h4>
+					<div class="row d-flex justify-content-between pt-1">
+						<div
+							class="card  mb-3 col-6 col-md-3 col-lg-2 col-xl-2 col-xxl-2 border-1 border-secondary rounded-0">
+							<i class="mt-4 pb-0 bi bi-book-half text-secondary text-center"
+								style="font-size: 120px"></i>
+							<p class="text-center mt-0 pb-3 fs-5 text-secondary">Sách tham
+								khảo</p>
+						</div>
+						<div
+							class="card mb-3 col-6 col-md-3 col-lg-2 col-xl-2 col-xxl-2 border-1 border-secondary rounded-0">
+							<i class="mt-4 pb-0 bi bi-balloon-fill text-secondary text-center"
+								style="font-size: 120px"></i>
+							<p class="text-center mt-0 pb-3 fs-5 text-secondary">Thiếu nhi</p>
+						</div>
+						<div
+							class="card mb-3 col-6 col-md-3 col-lg-2 col-xl-2 col-xxl-2 border-1 border-secondary rounded-0">
+							<i
+								class="mt-4 pb-0 bi bi-currency-bitcoin text-secondary text-center"
+								style="font-size: 120px"></i>
+							<p class="text-center mt-0 pb-3 fs-5 text-secondary">Kinh tế</p>
+						</div>
+						<div
+							class="card mb-3 col-6 col-md-3 col-lg-2 col-xl-2 col-xxl-2 border-1 border-secondary rounded-0">
+							<i class="mt-4 pb-0 bi bi-puzzle-fill text-secondary text-center"
+								style="font-size: 120px"></i>
+							<p class="text-center mt-0 pb-3 fs-5 text-secondary">Kỹ năng</p>
+						</div>
+						<div
+							class="card mb-3 col-6 col-md-3 col-lg-2 col-xl-2 col-xxl-2 border-1 border-secondary rounded-0">
+							<i
+								class="mt-4 pb-0 bi bi-hourglass-split text-secondary text-center"
+								style="font-size: 120px"></i>
+							<p class="text-center mt-0 pb-3 fs-5 text-secondary">Lịch sử</p>
+						</div>
+					</div>
+				</div>
 				<!-- section book -->
 				<section>
 					<h4 class="text-center">Top sản phẩm</h4>
@@ -78,15 +116,15 @@
 					<nav aria-label="Page navigation example" class="d-flex justify-content-end">
 						<ul class="pagination">
 							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Previous">
+								<a class="page-link" href="/" aria-label="Previous">
 									<span aria-hidden="true">&laquo;</span>
 								</a>
 							</li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item" th:classappend="${index == i}?'active'"  th:each="i:${#numbers.sequence(0, count)}">
+								<a class="page-link" th:href="@{${i==0}? '/':'?index='+${i}}">[[${i+1}]]</a>
+							</li>
 							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Next">
+								<a class="page-link" th:href="@{'?index='+${count}}" aria-label="Next">
 									<span aria-hidden="true">&raquo;</span>
 								</a>
 							</li>

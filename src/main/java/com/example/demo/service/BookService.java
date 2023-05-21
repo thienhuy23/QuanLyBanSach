@@ -35,7 +35,10 @@ public class BookService {
 						.collect(Collectors.toList());
 	}
 	@Transactional
-	public Page<Book> getPagination(int limit, int offset){
+	public Page<Book> getPagination(int offset, int limit){
 		return bookRepo.findAll(PageRequest.of(offset, limit));
+	}
+	public long getCount(){
+		return bookRepo.count();
 	}
 }
