@@ -2,14 +2,20 @@ package com.example.demo.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import javax.print.attribute.standard.PageRanges;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Book;
 import com.example.demo.repository.BookRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class BookService {
@@ -27,5 +33,9 @@ public class BookService {
 						.stream()
 						.filter(s->s.getId()!=id)
 						.collect(Collectors.toList());
+	}
+	@Transactional
+	public Page<Book> getPagination(int limit, int offset){
+		return bookRepo.findAll(PageRequest.of(offset, limit));
 	}
 }
