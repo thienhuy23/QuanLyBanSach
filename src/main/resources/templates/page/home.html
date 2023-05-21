@@ -24,11 +24,9 @@
 <div th:replace="~{commons/head ::  head}"></div>
 
 <body>
-
-
 	<div th:replace="~{commons/navbar :: .navbar}"></div>
 	<div th:replace="~{commons/loading :: #loading}"></div>
-	<div class="main container-fluid hide">
+	<div class="container-fluid">
 		<!-- carousel -->
 		<div id="carouselHome" class="carousel slide" data-bs-ride="carousel">
 			<ol class="carousel-indicators">
@@ -67,80 +65,70 @@
 				<span class="visually-hidden">Next</span>
 			</button>
 		</div>
-		
-		<section class="container">
-			<h5 class="text-center fw-bold fs-4 pt-3">Top sản phẩm</h5>
-			<div class="row w-100 ">
-				 <div class="col-md-2">
-					<div class="card border-0 rounded-0">
-						<div
-							class="card-header pt-1 border-0 rounded-0 text-light fs-5 fw-bold is-outline-pink">Danh mục
-						</div>
-						<div class="card-body rounded-0 pt-3 is-outline-gray">
-							<div class="pt-1">
-								<a href="" class="text-decoration-none text-dark">Văn học</a>
+	</div>
+	<div class="container p-3">
+		<div class="row">
+			<div class="col-lg-2 bg-light pt-5 bg-danger">
+				<div th:replace="~{commons/category ::  #category}"></div>
+			</div>
+			<div class="main col-10 hide ">
+				<!-- section book -->
+				<section>
+					<h4 class="text-center fw-bold fs-4 pt-4">Top sản phẩm</h4>
+					<div class="w-120 d-flex justify-content-between ms-0 pt-3">
+						<div class="card col-2 mb-4 p-0 is-outline-gray border-0"
+							style="border-radius: 0 !important;" th:each="book:${books}">
+							<img class="card-img-top mt-3" th:src="${book.images[0].url}"
+								alt="Title">
+							<div class="card-body px-2">
+								<a th:href="@{'/book?bookId='+${book.id}}"
+									class="card-text text-decoration-none fw-bold text-dark">[[${book.name}]]</a>
 							</div>
-							<div class="pt-3">
-								<a href="" class="text-decoration-none text-dark">Kinh tế</a>
-							</div>
-							<div class="pt-3">
-								<a href="" class="text-decoration-none text-dark">Thiếu nhi
-									Password</a>
-							</div>
-							<div class="pt-3">
-								<a href="" class="text-decoration-none text-dark">Tham khảo</a>
-							</div>
-							<div class="pt-3">
-								<a href="" class="text-decoration-none text-dark">Tiểu sử</a>
-							</div>
-							<div class="pt-3">
-								<a href="" class="text-decoration-none text-dark">Kỹ năng</a>
-							</div>
-						
-						</div>
-					</div>
-				</div> 
-				<div class="col-md-10">
-					<div class="container-fluid">
-						<div class="row ms-0">
+							<div> 
+									<i class="bi bi-star text-warning"></i>
+									<i class="bi bi-star text-warning"></i> <i
+									class="bi bi-star text-warning"></i> <i
+									class="bi bi-star text-warning"></i> <i
+									class="bi bi-star text-warning"></i>
+								</div>
 							<div
-								class="card  mb-3 col-6 col-md-3 col-lg-3 col-xl-3 col-xxl-3 m-0 border-0 rounded-0 is-outline-gray"
-								style="border-radius: 2 !important;" th:each="book:${books}">
-								<img class="card-img-top mt-3" th:src="${book.images[0].url}"
-									alt="Title" />
-								<div class="card-body px-2">
-									<a th:href="@{'/book?bookId='+${book.id}}"
-										class="fw-bold pt-2  card-text text-decoration-none text-dark">[[${book.name}]]</a>
-								</div>
-								<div
-									class="card-footer border-top-0  justify-content-between px-2 mt-0"
-									style="background-color: transparent;">
-									<div>
-										<i class="bi bi-star text-warning"></i> <i
-											class="bi bi-star text-warning"></i> <i
-											class="bi bi-star text-warning"></i> <i
-											class="bi bi-star text-warning"></i> <i
-											class="bi bi-star text-warning"></i>
-									</div>
-									<span class="card-text fw-bold">[[${#strings.replace(#numbers.formatCurrency(book.price),
-										'.00', '')}]] </span>
-									<del class="text-Secondary">[[${#strings.replace(#numbers.formatCurrency(book.discount),
-										'.00', '')}]]</del>
-									<br>
-								</div>
+								class="card-footer border-top-0 d-flex justify-content-between px-2"
+								style="background-color: transparent;">
+								<span class="card-text fw-bold">[[${#strings.replace(#numbers.formatCurrency(book.price),
+									'.00', '')}]] </span> <del class="text-Secondary">[[${#strings.replace(#numbers.formatCurrency(book.discount),
+									'.00', '')}]]</del>
+									
 							</div>
 						</div>
 					</div>
-				</div>
+					<nav aria-label="Page navigation example"
+						class="d-flex justify-content-end">
+						<ul class="pagination">
+							<li class="page-item"><a class="page-link" href="/"
+								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							</a></li>
+							<li class="page-item" th:classappend="${index == i}?'active'"
+								th:each="i:${#numbers.sequence(0, count)}"><a
+								class="page-link" th:href="@{${i==0}? '/':'?index='+${i}}">[[${i+1}]]</a>
+							</li>
+							<li class="page-item"><a class="page-link"
+								th:href="@{'?index='+${count}}" aria-label="Next"> <span
+									aria-hidden="true">&raquo;</span>
+							</a></li>
+						</ul>
+					</nav>
+				</section>
 
 			</div>
-		</section>
+		</div>
+	</div>
+	<div class="container-fluid">
 		<!-- section image -->
 		<section class="row g-5 w-100 mb-5">
 			<div class="col-7">
 				<img class="img-fluid"
 					src="https://bookcart.themability.com/image/catalog/banners/banner1.png"
-					alt="" />
+					alt="">
 			</div>
 			<div class="col-2" style="flex: auto;">
 				<img class="img-fluid"
@@ -148,21 +136,18 @@
 					alt="">
 			</div>
 			<div class="col-2" style="flex: auto; height: min-content;">
-				<div class=" mb-4">
+				<div class="row mb-4">
 					<img class="img-fluid"
 						src="https://bookcart.themability.com/image/catalog/banners/banner3.png"
 						alt="">
 				</div>
-				<div class="">
+				<div class="row">
 					<img class="img-fluid"
 						src="https://bookcart.themability.com/image/catalog/banners/banner4.png"
 						alt="">
 				</div>
 			</div>
 		</section>
-
-
-
 	</div>
 	<div th:replace="~{commons/footer :: footer}"></div>
 	<script type="text/javascript">
@@ -192,7 +177,7 @@
 		integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
 		crossorigin="anonymous"></script>
 
-	
+
 </body>
 
 
