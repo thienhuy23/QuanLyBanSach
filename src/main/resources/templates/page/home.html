@@ -1,7 +1,24 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Link icon of fontawesome -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+<!-- Link icon of Bootstrap -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+<!-- Slick slider source CSS -->
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+<!-- Angular JS  -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"
+	integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <link rel="stylesheet" href="/css/index.css">
 <link rel="stylesheet" href="/css/home.css">
 <div th:replace="~{commons/head ::  head}"></div>
@@ -11,80 +28,149 @@
 
 	<div th:replace="~{commons/navbar :: .navbar}"></div>
 	<div th:replace="~{commons/loading :: #loading}"></div>
-	<div class="main container hide">
-		<!-- carousel -->
-		<div id="carouselHome" class="carousel slide" data-bs-ride="carousel">
-			<ol class="carousel-indicators">
-				<li data-bs-target="#carouselHome" data-bs-slide-to="0" class="active" aria-current="true"
-					aria-label="First slide"></li>
-				<li data-bs-target="#carouselHome" data-bs-slide-to="1" aria-label="Second slide"></li>
-				<li data-bs-target="#carouselHome" data-bs-slide-to="2" aria-label="Third slide"></li>
-			</ol>
-			<div class="carousel-inner" role="listbox">
-				<div class="carousel-item active">
-					<img src="https://bookcart.themability.com/image/cache/catalog/banners/mainbanner2-1920x800.png"
-						class="w-100 d-block" alt="First slide">
-				</div>
-				<div class="carousel-item">
-					<img src="https://bookcart.themability.com/image/cache/catalog/banners/mainbanner2-1920x800.png"
-						class="w-100 d-block" alt="Second slide">
-				</div>
-				<div class="carousel-item">
-					<img src="https://bookcart.themability.com/image/cache/catalog/banners/mainbanner1-1920x800.png"
-						class="w-100 d-block" alt="Third slide">
-				</div>
+	<div class="container p-3">
+		<div class="row">
+			<div class="col-lg-2 bg-light">
+				<div th:replace="~{commons/category ::  #category}"></div>
 			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
+			<div class="main col-10 hide">
+				<!-- carousel -->
+				<div id="carouselHome" class="carousel slide" data-bs-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-bs-target="#carouselHome" data-bs-slide-to="0" class="active" aria-current="true"
+							aria-label="First slide"></li>
+						<li data-bs-target="#carouselHome" data-bs-slide-to="1" aria-label="Second slide"></li>
+						<li data-bs-target="#carouselHome" data-bs-slide-to="2" aria-label="Third slide"></li>
+					</ol>
+					<div class="carousel-inner" role="listbox">
+						<div class="carousel-item active">
+							<img src="https://bookcart.themability.com/image/cache/catalog/banners/mainbanner2-1920x800.png"
+								class="w-100 d-block" alt="First slide">
+						</div>
+						<div class="carousel-item">
+							<img src="https://bookcart.themability.com/image/cache/catalog/banners/mainbanner2-1920x800.png"
+								class="w-100 d-block" alt="Second slide">
+						</div>
+						<div class="carousel-item">
+							<img src="https://bookcart.themability.com/image/cache/catalog/banners/mainbanner1-1920x800.png"
+								class="w-100 d-block" alt="Third slide">
+						</div>
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselHome"
+						data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselHome"
+						data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+				<div class="container">
+					<h4 class="fw-bold text-center pt-5 pb-3">Thể loại</h4>
+					<div class="row d-flex justify-content-between pt-1">
+						<div
+							class="card  mb-3 col-6 col-md-3 col-lg-2 col-xl-2 col-xxl-2 border-1 border-secondary rounded-0">
+							<i class="mt-4 pb-0 bi bi-book-half text-secondary text-center"
+								style="font-size: 120px"></i>
+							<p class="text-center mt-0 pb-3 fs-5 text-secondary">Sách tham
+								khảo</p>
+						</div>
+						<div
+							class="card mb-3 col-6 col-md-3 col-lg-2 col-xl-2 col-xxl-2 border-1 border-secondary rounded-0">
+							<i class="mt-4 pb-0 bi bi-balloon-fill text-secondary text-center"
+								style="font-size: 120px"></i>
+							<p class="text-center mt-0 pb-3 fs-5 text-secondary">Thiếu nhi</p>
+						</div>
+						<div
+							class="card mb-3 col-6 col-md-3 col-lg-2 col-xl-2 col-xxl-2 border-1 border-secondary rounded-0">
+							<i
+								class="mt-4 pb-0 bi bi-currency-bitcoin text-secondary text-center"
+								style="font-size: 120px"></i>
+							<p class="text-center mt-0 pb-3 fs-5 text-secondary">Kinh tế</p>
+						</div>
+						<div
+							class="card mb-3 col-6 col-md-3 col-lg-2 col-xl-2 col-xxl-2 border-1 border-secondary rounded-0">
+							<i class="mt-4 pb-0 bi bi-puzzle-fill text-secondary text-center"
+								style="font-size: 120px"></i>
+							<p class="text-center mt-0 pb-3 fs-5 text-secondary">Kỹ năng</p>
+						</div>
+						<div
+							class="card mb-3 col-6 col-md-3 col-lg-2 col-xl-2 col-xxl-2 border-1 border-secondary rounded-0">
+							<i
+								class="mt-4 pb-0 bi bi-hourglass-split text-secondary text-center"
+								style="font-size: 120px"></i>
+							<p class="text-center mt-0 pb-3 fs-5 text-secondary">Lịch sử</p>
+						</div>
+					</div>
+				</div>
+				<!-- section book -->
+				<section>
+					<h4 class="text-center">Top sản phẩm</h4>
+					<div class="w-100 d-flex justify-content-between ms-0">
+						<div class="card col-2 mb-4 p-0" style="border-radius: 0 !important;" th:each="book:${books}">
+							<img class="card-img-top" th:src="${book.images[0].url}" alt="Title">
+							<div class="card-body px-2">
+								<a th:href="@{'/book?bookId='+${book.id}}"
+									class="card-text text-decoration-none text-dark">[[${book.name}]]</a>
+							</div>
+							<div class="card-footer border-top-0 d-flex justify-content-between px-2"
+								style="background-color: transparent;">
+								<span class="card-text">[[${#strings.replace(#numbers.formatCurrency(book.price), '.00',
+									'')}]]
+								</span>
+								<span>
+									<i class="bi bi-star text-warning"></i>
+									<i class="bi bi-star text-warning"></i>
+									<i class="bi bi-star text-warning"></i>
+									<i class="bi bi-star text-warning"></i>
+									<i class="bi bi-star text-warning"></i>
+								</span>
+							</div>
+						</div>
+					</div>
+					<nav aria-label="Page navigation example" class="d-flex justify-content-end">
+						<ul class="pagination">
+							<li class="page-item">
+								<a class="page-link" href="/" aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li>
+							<li class="page-item" th:classappend="${index == i}?'active'"  th:each="i:${#numbers.sequence(0, count)}">
+								<a class="page-link" th:href="@{${i==0}? '/':'?index='+${i}}">[[${i+1}]]</a>
+							</li>
+							<li class="page-item">
+								<a class="page-link" th:href="@{'?index='+${count}}" aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</section>
+				<!-- section image -->
+				<section class="row g-5 w-100 mb-5">
+					<div class="col-7">
+						<img class="img-fluid" src="https://bookcart.themability.com/image/catalog/banners/banner1.png"
+							alt="">
+					</div>
+					<div class="col-2" style="flex: auto;">
+						<img class="img-fluid" src="https://bookcart.themability.com/image/catalog/banners/banner2.png"
+							alt="">
+					</div>
+					<div class="col-2" style="flex: auto;height:min-content;">
+						<div class="row mb-4">
+							<img class="img-fluid"
+								src="https://bookcart.themability.com/image/catalog/banners/banner3.png" alt="">
+						</div>
+						<div class="row">
+							<img class="img-fluid"
+								src="https://bookcart.themability.com/image/catalog/banners/banner4.png" alt="">
+						</div>
+					</div>
+				</section>
+			</div>
 		</div>
-		<!-- section book -->
-		<section>
-			<h4 class="text-center">Top sản phẩm</h4>
-			<div class="row w-100 gap-5 ms-0">
-				<div class="card col-2 mb-4 p-0" style="border-radius: 0 !important;" th:each="book:${books}">
-					<img class="card-img-top" th:src="${book.images[0].url}" alt="Title">
-					<div class="card-body px-2">
-						<a th:href="@{'/book?bookId='+${book.id}}" class="card-text text-decoration-none text-dark">[[${book.name}]]</a>
-					</div>
-					<div class="card-footer border-top-0 d-flex justify-content-between px-2" style="background-color: transparent;">
-						<span class="card-text">[[${#strings.replace(#numbers.formatCurrency(book.price), '.00', '')}]] 
-						</span>
-						<span>
-							<i class="bi bi-star text-warning"></i>
-							<i class="bi bi-star text-warning"></i>
-							<i class="bi bi-star text-warning"></i>
-							<i class="bi bi-star text-warning"></i>
-							<i class="bi bi-star text-warning"></i>
-						</span>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- section image -->
-		<section class="row g-5 w-100 mb-5">
-			<div class="col-7">
-				<img class="img-fluid" src="https://bookcart.themability.com/image/catalog/banners/banner1.png" alt="">
-			</div>
-			<div class="col-2" style="flex: auto;">
-				<img class="img-fluid" src="https://bookcart.themability.com/image/catalog/banners/banner2.png" alt="">
-			</div>
-			<div class="col-2" style="flex: auto;height:min-content;">
-				<div class="row mb-4">
-					<img class="img-fluid" src="https://bookcart.themability.com/image/catalog/banners/banner3.png"
-						alt="">
-				</div>
-				<div class="row">
-					<img class="img-fluid" src="https://bookcart.themability.com/image/catalog/banners/banner4.png"
-						alt="">
-				</div>
-			</div>
-		</section>
 	</div>
 	<div th:replace="~{commons/footer :: footer}"></div>
 	<script type="text/javascript">
@@ -103,13 +189,20 @@
 			}
 		})
 	</script>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-	integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-	</script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-	integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-	</script>
+	<!-- Bootstrap JavaScript Libraries -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+		integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+		integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+		crossorigin="anonymous"></script>
+
+	
+</body>
+
+
 
 </html>
