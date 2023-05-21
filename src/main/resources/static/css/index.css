@@ -79,6 +79,10 @@
 	padding: 10px;
 
 }
+
+.alert{
+	color: red;
+}
 .hide{
     display: none !important;
 }
