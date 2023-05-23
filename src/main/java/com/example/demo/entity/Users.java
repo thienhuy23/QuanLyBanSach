@@ -35,11 +35,13 @@ public class Users {
 	@NotEmpty(message = "Vui lòng nhập email")
 	@Email(message = "Email không hợp lệ")
 	String email; 
-	@Column
+	
 	@NotEmpty(message = "Vui lòng nhập sđt")
 	@Size( max = 11 , message ="Số điện thoại không hợp lệ")
-	String phone;
 	@Column
+	String phone;
+	
 	@NotNull(message = "Vui chọn vai trò")
+	@Column
 	Boolean role;
 }

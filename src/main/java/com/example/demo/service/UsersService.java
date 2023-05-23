@@ -19,7 +19,7 @@ public class UsersService {
 		return usersRepo.findById(profileid); // 1 object Book
 	}
 	public Users getOneUser(String email, String password) {
-		return usersRepo.getOneUser(email, password);
+		return null;
 	}
 
 	public List<Users> findAll() {

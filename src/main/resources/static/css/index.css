@@ -19,7 +19,7 @@
 }
 
 .is-outline-pink{
-    background-color: rgb(var(--main-pink-color));
+    background-color: rgb(var(--main-pink-color)) !important;
 }
 .is-outline-gray{
     background-color: rgb(var(--gray-color));
