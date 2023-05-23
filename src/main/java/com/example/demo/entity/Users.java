@@ -25,19 +25,15 @@ public class Users {
 	@Column
 	int id; 
 	@Column
-	@NotEmpty(message = "Vui lòng nhập tên")
-	String name; 
+	@NotEmpty(message ="{NotEmpty.student.name}")
+	String name;
 	@Column
-	@NotEmpty(message = "Vui lòng nhập mật khẩu")
-	@Size( min = 6 , message ="Mật khẩu phải tối thiểu 6 ký tự")
-	String password; 
+	@NotEmpty(message ="{NotEmpty.student.password}")
+	String password;
 	@Column
-	@NotEmpty(message = "Vui lòng nhập email")
-	@Email(message = "Email không hợp lệ")
-	String email; 
-	
-	@NotEmpty(message = "Vui lòng nhập sđt")
-	@Size( max = 11 , message ="Số điện thoại không hợp lệ")
+	@NotEmpty(message ="{NotEmpty.student.email}")
+	@Email(message = "Email.student.email")
+	String email;
 	@Column
 	String phone;
 	

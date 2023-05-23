@@ -44,13 +44,14 @@ public class ProfileController {
 	@PostMapping("update")
 	public String updateProfile(Model model, @Valid @ModelAttribute("users") Users user, BindingResult result) {
 		if (result.hasErrors()) {
-			model.addAttribute("message", "Một số trường không hợp lệ. Hãy sửa chúng!");
+			model.addAttribute("message", "Một số trường không hợp lệ. Hãy sửa chữa chúng!");
 		} else {
+			System.out.println("user update:" + user);
 			usersService.update(user);
 			model.addAttribute("users", user);
-			model.addAttribute("message", "Cập nhật thành công! !");
-		}
+			model.addAttribute("message", "Cập nhật thành công!");
 
+		}
 		return "page/profile";
 	}
 

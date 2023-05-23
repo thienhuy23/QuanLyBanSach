@@ -2,11 +2,15 @@
 	xmlns="http://www.w3.org/1999/xhtml">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/css/index.css">
 <div th:replace="~{commons/head ::  head}"></div>
 
 <body>
-	<script>
+	<script type="text/javascript">
 		if ("[[${message}]]" != "") {
 			alert("[[${message}]]");
 		}
@@ -34,12 +38,13 @@
 					<div th:replace="~{commons/card ::  #cart}"></div>
 				</div>
 				<div class="col-9">
-					<form class="ms-5" th:action="@{/profile/update}" onSubmit="if(!confirm('Are you sure you want to update?')){return false;}"
-						method="post" th:object="${users}">
+					<form class="ms-5" th:action="@{/profile/update}" method="post"
+						th:object="${users}"
+						onSubmit="if(!confirm('Bạn muốn cập nhật?')){return false;}">
 						<h6 class="mb-3 mt-4">Nếu bạn đã có một tài khoản với chúng
 							tôi, vui lòng đăng nhập tại trang đăng nhập.</h6>
 						<h4>
-							<b>Thông tin cá nhân của bạn</b>
+							<b> Thông tin cá nhân của bạn</b>
 						</h4>
 						<hr>
 						<input th:field="*{id}" hidden type="text"
@@ -55,13 +60,15 @@
 							<label for="phone">Điện thoại:</label> <input th:field="*{phone}"
 								type="text" class="form-control ms-4" id="phone"
 								placeholder="Enter phone" name="phone">
-							<p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" />
+							<p class="text-danger" th:if="${#fields.hasErrors('phone')}"
+								th:errors="*{phone}" />
 						</div>
 						<div class="mb-3 mt-3">
 							<label for="email">Email:</label> <input th:field="*{email}"
 								type="email" class="form-control ms-4" id="email"
 								placeholder="Enter email" name="email">
-							<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" />
+							<p class="text-danger" th:if="${#fields.hasErrors('email')}"
+								th:errors="*{email}" />
 						</div>
 						<h4>
 							<b>Mật khẩu của bạn</b>
@@ -71,30 +78,29 @@
 							<label for="pwd">Mật khẩu:</label> <input th:value="*{password}"
 								type="password" class="form-control ms-4" id="pwd"
 								placeholder="Enter password" name="password">
-							<p th:if="${#fields.hasErrors('password')}"
+							<p class="text-danger" th:if="${#fields.hasErrors('password')}"
 								th:errors="*{password}" />
 						</div>
 						<h4>
-							<b>Vai trò của bạn</b>
+							<b>Vai trò </b>
 						</h4>
 						<hr>
 						<div class="form-radio mb-3">
 							<label class="form-radio-label ms-4"> <input
 								class="form-radio "
 								th:checked="${users.role !=null}?${users.role}" type="radio"
-								name="role" value="true"> Admin <input
-								class="form-radio"
+								name="role" value="1"> Admin <input class="form-radio"
 								th:checked="${users.role !=null}?${!users.role}" type="radio"
-								name="role" value="false"> User
+								name="role" value="0"> User
 							</label>
 						</div>
-						<button  type="submit" id="btn" class="btn button p-2 mb-3 ">Cập nhật</button>
+						<button type="submit" class="btn button p-2">Cập nhật</button>
 					</form>
 				</div>
 				<table class="table">
 					<thead>
 						<tr>
-							<th>Họ và Tên</th>
+							<th>Họ và tên</th>
 							<th>Điện thoại</th>
 							<th>Email</th>
 							<th>Mật khẩu</th>
@@ -119,7 +125,6 @@
 	<footer>
 		<div th:replace="~{commons/footer :: footer}"></div>
 	</footer>
-
 	<!-- Bootstrap JavaScript Libraries -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

@@ -12,7 +12,7 @@ public class ResourceConfig {
 	@Bean("messageResource")
 	public MessageSource getMessageSource() {
 		ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();
-		ms.setBasename("classpath:messages/Staff");
+		ms.setBasename("classpath:messages/student");
 		ms.setDefaultEncoding("utf-8");
 		return ms;
 	}
