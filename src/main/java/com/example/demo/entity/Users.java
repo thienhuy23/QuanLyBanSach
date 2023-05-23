@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class Users {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
+
 	int id;
 	@Column
 	@NotEmpty(message ="{NotEmpty.student.name}")
@@ -33,6 +35,7 @@ public class Users {
 	@Email(message = "Email.student.email")
 	String email;
 	@Column
+	@NotEmpty(message = "{NotEmpty.users.phone}")
 	String phone;
 	@Column
 	Boolean role;

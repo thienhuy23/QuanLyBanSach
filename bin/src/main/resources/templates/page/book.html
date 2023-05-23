@@ -4,7 +4,8 @@
 
 <body>
 	<div th:replace="~{commons/navbar :: .navbar}"></div>
-	<div class="container-fluid mb-5">
+	<div th:replace="~{commons/loading :: #loading}"></div>
+	<div class="main container-fluid mb-5 hide">
 		<div class="">
 			<img th:src="@{/images/bg_img.png}" class="img-fluid" alt="...">
 		</div>
@@ -23,7 +24,7 @@
 								</div>
 							</div>
 							<div class="d-flex flex-row justify-content-around mt-2">
-								<button class="btn btn-outline-pink fw-bold fs-5" style="width: 280px;">Thêm vào giỏ hàng</button>
+								<a th:href="@{/cart?bookId=${book.id}&quantity=1}" class="btn btn-outline-pink text-decoration-none fw-bold fs-5" style="width: 280px;">Thêm vào giỏ hàng</a>
 								<button class="btn btn-pink fw-bold fs-5" style="width: 280px;">Mua ngay</button>
 							</div>
 						</div>
@@ -134,7 +135,7 @@
 		</div>
 	</div>
 	<div th:replace="~{commons/footer :: footer}"></div>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		let items = document.querySelectorAll('.carousel .carousel-item')
 		items.forEach((el) => {
 			const minPerSlide = 4
@@ -149,7 +150,8 @@
 				next = next.nextElementSibling
 			}
 		})
-	</script>
+	</script> -->
+	<script type="text/javascript" th:src="@{/js/book.js}"></script>
 </body>
 
 </html>
