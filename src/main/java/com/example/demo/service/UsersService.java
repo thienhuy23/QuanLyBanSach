@@ -18,6 +18,9 @@ public class UsersService {
 	public Optional<Users> findById(int profileid) {
 		return usersRepo.findById(profileid); // 1 object Book
 	}
+	public Users getOneUser(String email, String password) {
+		return usersRepo.getOneUser(email, password);
+	}
 
 	public List<Users> findAll() {
 		return usersRepo.findAll();
