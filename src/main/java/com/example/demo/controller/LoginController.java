@@ -20,19 +20,19 @@ public class LoginController {
 	@Autowired
 	UsersRepository usersRepo;
 
-	@RequestMapping("/login")
+	@GetMapping("/login")
 	public String getLogin() {
 		return "page/login";
 	}
-	@PostMapping("CheckLogin")
-	public String checkLogin(@RequestParam("id")int profileid, @RequestParam("password")String password 
-			,Model model) {
-		Optional<Users> Users = usersRepo.findById(profileid);
-		if(!Users.get().getPassword().equals(password)) {
-			return "redirect:/error";
-		}
-		return "page/cart";
-	}
+//	@PostMapping("CheckLogin")
+//	public String checkLogin(@RequestParam("id")int profileid, @RequestParam("password")String password 
+//			,Model model) {
+//		Optional<Users> Users = usersRepo.findById(profileid);
+//		if(!Users.get().getPassword().equals(password)) {
+//			return "redirect:/error";
+//		}
+//		return "page/cart";
+//	}
 	@GetMapping("logout")
 	public String logout() {
 		return "page/login";
