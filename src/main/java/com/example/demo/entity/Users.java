@@ -25,16 +25,17 @@ public class Users {
 	@Column
 	int id; 
 	@Column
-	@NotEmpty(message ="{NotEmpty.student.name}")
+	@NotEmpty(message ="{NotEmpty.users.name}")
 	String name;
 	@Column
-	@NotEmpty(message ="{NotEmpty.student.password}")
+	@NotEmpty(message ="{NotEmpty.users.password}")
 	String password;
 	@Column
-	@NotEmpty(message ="{NotEmpty.student.email}")
-	@Email(message = "Email.student.email")
+	@NotEmpty(message ="{NotEmpty.users.email}")
+	@Email(message = "Email.users.email")
 	String email;
 	@Column
+	@NotEmpty(message ="{NotEmpty.users.phone}")
 	String phone;
 	
 	@NotNull(message = "Vui chọn vai trò")

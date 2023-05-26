@@ -25,7 +25,7 @@
 
 <body>
 	<div th:replace="~{commons/navbar :: .navbar}"></div>
-	<div th:replace="~{commons/loading :: #loading}"></div>
+	
 	<div class="container-fluid">
 		<!-- carousel -->
 		<div id="carouselHome" class="carousel slide" data-bs-ride="carousel">
@@ -66,6 +66,7 @@
 			</button>
 		</div>
 	</div>
+	<div th:replace="~{commons/loading :: #loading}"></div>
 	<div class="container p-3">
 		<div class="row">
 			<div class="col-lg-2 bg-light pt-5 bg-danger">
@@ -75,9 +76,11 @@
 				<!-- section book -->
 				<section>
 					<h4 class="text-center fw-bold fs-4 pt-4">Top sản phẩm</h4>
-					<div class="w-120 d-flex justify-content-between ms-0 pt-3">
-						<div class="card col-2 mb-4 p-0 is-outline-gray border-0"
-							style="border-radius: 0 !important;" th:each="book:${books}">
+					
+					<div class=" justify-content-between ms-0 pt-3">
+					<div class="row">
+						<div class="card col-12 col-md-3 mb-4 m-2 is-outline-gray border-0 "
+							style="border-radius: 0 !important; width: 255px" th:each="book:${books}">
 							<img class="card-img-top mt-3" th:src="${book.images[0].url}"
 								alt="Title">
 							<div class="card-body px-2">
@@ -99,6 +102,7 @@
 									'.00', '')}]]</del>
 									
 							</div>
+						</div>
 						</div>
 					</div>
 					<nav aria-label="Page navigation example"

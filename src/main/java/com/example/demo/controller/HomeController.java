@@ -23,10 +23,10 @@ public class HomeController {
 	public String home(@RequestParam("index") Optional<Integer> index,Model model){
 		int i = index.isPresent() ? index.get() : 0;
 		model.addAttribute("index",i);
-		model.addAttribute("books",bookService.getPagination(i, 5));
+		model.addAttribute("books",bookService.getPagination(i, 8));
 		model.addAttribute("categories",categoryService.findAll());
-		model.addAttribute("count", Math.round(bookService.getCount()/5));
-		System.out.println(Math.ceil(bookService.getCount()/5));
+		model.addAttribute("count", Math.round(bookService.getCount()/8));
+		System.out.println(Math.ceil(bookService.getCount()/8));
 		return "page/home";
 	}
 	
