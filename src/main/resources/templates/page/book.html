@@ -24,9 +24,10 @@
 								</div>
 							</div>
 							<div class="d-flex flex-row justify-content-around mt-2">
-								<a th:href="@{/cart?bookId=${book.id}&quantity=1}"
+								<button th:href="@{/cart?bookId=${book.id}&quantity=1}"
+								name="add"
 									class="btn btn-outline-pink text-decoration-none fw-bold fs-5"
-									style="width: 280px;">Thêm vào giỏ hàng</a>
+									style="width: 280px;">Thêm vào giỏ hàng</button>
 								<button class="btn btn-pink fw-bold fs-5" style="width: 280px;">Mua ngay</button>
 							</div>
 						</div>
@@ -45,7 +46,7 @@
 								<p class="mt-2">Chính sách đổi trả: Đổi trả trong 30 ngày</p>
 								<section class="border rounded section-number">
 									<button class="btn btn-default">-</button>
-									<input class="input-book" type="number" step="1" value="1" disabled>
+									<input name="book" class="input-book" type="number" step="1" value="1" disabled>
 									<button class="btn btn-default">+</button>
 								</section>
 							</section>
@@ -124,6 +125,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<div th:replace="~{commons/footer :: footer}"></div>
 	<script type="text/javascript" th:src="@{/js/book.js}"></script>
 </body>
