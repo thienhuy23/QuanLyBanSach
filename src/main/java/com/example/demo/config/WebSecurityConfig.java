@@ -32,7 +32,6 @@ public class WebSecurityConfig{
 			UserDetailsServiceImpl s;
 			@Override
 			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-				// TODO Auto-generated method stub
 				return s.loadUserByUsername(username);
 			}
 		};

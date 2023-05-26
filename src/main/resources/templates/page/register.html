@@ -45,26 +45,20 @@
 						</h4>
 						<hr>
 						<div class="mb-3 p-5 pt-0 pb-1">
-							<label for="name" class="form-label fw-bold">Họ và Tên:</label> <input
-								type="text"
-								class="form-control form-control rounded-0 border-secondary"
-								th:field="*{name}" name="name" placeholder="Nhập họ tên">
+							<label for="name" class="form-label fw-bold">Họ và Tên:</label> 
+							<input type="text" class="form-control form-control rounded-0 border-secondary" th:field="*{name}" name="name" placeholder="Nhập họ tên">
 							<p class="alert ms-0" th:if="${#fields.hasErrors('name')}"
 								th:errors="*{name}"></p>
 						</div>
 						<div class="mb-3 p-5 pt-0 pb-1">
-							<label for="phone" class="form-label fw-bold">Liên lạc:</label> <input
-								type="text"
-								class="form-control form-control rounded-0 border-secondary"
-								th:field="*{phone}" placeholder="Nhập phương thức liên lạc">
+							<label for="phone" class="form-label fw-bold">Liên lạc:</label> 
+							<input type="text" class="form-control form-control rounded-0 border-secondary" th:field="*{phone}" placeholder="Nhập phương thức liên lạc">
 							<p class="alert mb-1" th:if="${#fields.hasErrors('phone')}"
 								th:errors="*{phone}"></p>
 						</div>
 						<div class="mb-3 p-5 pt-0 pb-1">
-							<label for="email" class="form-label fw-bold">Email:</label> <input
-								type="email"
-								class="form-control form-control rounded-0 border-secondary"
-								th:field="*{email}" placeholder="Nhập email">
+							<label for="email" class="form-label fw-bold">Email:</label> 
+							<input type="email" class="form-control form-control rounded-0 border-secondary" th:field="*{email}" placeholder="Nhập email">
 							<p class="alert " th:if="${#fields.hasErrors('email')}"
 								th:errors="*{email}"></p>
 						</div>
@@ -73,41 +67,23 @@
 						</h4>
 						<hr>
 						<div class=" mb-3 p-5 pt-1 pb-1">
-							<label for="pwd" class="form-label fw-bold">Mật Khẩu:</label> <input
-								type="password"
-								class="form-control form-control rounded-0 border-secondary"
-								th:field="*{password}" placeholder="Nhập mật khẩu">
-							<p class="alert pb-1 ms-4" th:if="${#fields.hasErrors('password')}"
-								th:errors="*{password}"></p>
+							<label for="pwd" class="form-label fw-bold">Mật Khẩu:</label> 
+							<input type="password" class="form-control form-control rounded-0 border-secondary" th:field="*{password}" placeholder="Nhập mật khẩu">
+							<p class="alert pb-1 ms-4"
+								th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
 						</div>
-						<h4>
-							<b>Vai trò của bạn</b>
-						</h4>
-						<hr>
-						<div class="form-radio mb-3 p-5 pt-1 pb-1">
-							<label class="form-radio-label ms-1"> <input
-								class="form-radio " type="radio" th:field="*{role}" value="true">
-								Admin <input class="form-radio" type="radio" th:field="*{role}"
-								value="false"> User
-								<p class="alert    ms-4" th:if="${#fields.hasErrors('role')}"
-									th:errors="*{role}"></p>
-							</label>
 
-						</div>
 						<div class=" p-5 pt-1 pb-3">
 							<button type="submit"
 								class="btn button border-0 fs-5 rounded-0 text-light is-outline-pink"
 								style="width: 150px;">Submit</button>
-							<div>
+							<div></div>
+
+						</div>
 					</form>
-
-
-
 				</div>
-
 			</div>
 		</div>
-
 	</main>
 	<footer>
 		<div th:replace="~{commons/footer :: footer}"></div>
