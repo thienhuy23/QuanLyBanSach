@@ -38,6 +38,9 @@ public class UsersService {
 			// TODO: handle exception
 		}
 	}
+    public Users findByEmail(String name) {
+        return usersRepo.findByEmail(name);
+    }
 
 
 }
