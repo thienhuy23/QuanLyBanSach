@@ -26,10 +26,6 @@ public class LoginController {
 //		}
 //		return "page/cart";
 //	}
-@PostMapping("/login")
-public String login1() {
-	return "page/login";
-}
 	@GetMapping("logout")
 	public String logout() {
 		return "page/login";

@@ -32,9 +32,9 @@ public class ProfileController {
 		if (!users.isPresent()) {
 			return "redirect:/error";
 		}
-		if (users.get().getRole() == true) {
-			return "redirect:/error";
-		}
+		// if (users.get().getRole() == true) {
+		// 	return "redirect:/error";
+		// }
 		System.out.println(users.get());
 		model.addAttribute("users", users.get());
 //		model.addAttribute("listUsers",usersService.findListExpect(profileid));

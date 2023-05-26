@@ -36,7 +36,7 @@ public class WebSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http
+		http.csrf().disable()
 				.authorizeRequests()
 				.requestMatchers("/cart", "/admin")
 				.authenticated()
@@ -44,17 +44,18 @@ public class WebSecurityConfig {
 				.permitAll()
 				.and()
 				.authenticationProvider(authenticationProvider())
-				.httpBasic();
-				// .formLogin()
-				// .loginPage("/login")
-				// .usernameParameter("username")
-				// .passwordParameter("password")
-				// // .loginProcessingUrl("/perform_login")
-				// .defaultSuccessUrl("/home", true)
-				// .permitAll()
-				// .and()
-				// .logout()
-				// .permitAll();
+				// .httpBasic();
+				.formLogin()
+				.loginPage("/login")
+				.usernameParameter("username")
+				.passwordParameter("password")
+				// .loginProcessingUrl("/perform_login")
+				// .successForwardUrl("/")
+				.defaultSuccessUrl("/home", true)
+				.permitAll()
+				.and()
+				.logout()
+				.permitAll();
 		;
 		return http.build();
 	}
