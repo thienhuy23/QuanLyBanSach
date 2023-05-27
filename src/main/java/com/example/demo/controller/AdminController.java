@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class AdminController {
 	@RequestMapping("/admin")
-	@ResponseBody
 	public String home() {
-		return "admin";
+		return "page/admin";
 	}
 }
