@@ -25,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-//        SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        // SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Users account = repo.findByEmail(username);
 		System.out.println(account.toString());
         if(account == null){

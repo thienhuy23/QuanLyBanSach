@@ -44,7 +44,7 @@ public class WebSecurityConfig {
 				.and()
 				.authenticationProvider(authenticationProvider())
 				// .httpBasic();
-				.formLogin()
+				.formLogin() //cho phép người dùng xác thực bằng login 
 				.loginPage("/login")
 				.usernameParameter("username")
 				.passwordParameter("password")
