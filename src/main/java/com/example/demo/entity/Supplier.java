@@ -2,6 +2,8 @@ package com.example.demo.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -23,5 +25,6 @@ public class Supplier {
 	public String name;
 	
 	@OneToMany(mappedBy = "supplier",fetch = FetchType.LAZY)
+	@JsonIgnore
 	List<Book> books;
 }

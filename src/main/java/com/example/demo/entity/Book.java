@@ -1,6 +1,9 @@
 package com.example.demo.entity;
 
+import java.io.Serializable;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Book {
+public class Book implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
@@ -40,13 +43,16 @@ public class Book {
 	String describe;
 	
 	@OneToMany(mappedBy = "book",fetch=FetchType.LAZY)
+	// @JsonIgnore
 	List<Image> images;
 	
 	@ManyToOne
 	@JoinColumn(name = "author_id")
+	@JsonIgnore
 	Author author;
 	
 	@ManyToOne
 	@JoinColumn(name = "supplier_id")
+	@JsonIgnore
 	Supplier supplier;
 }

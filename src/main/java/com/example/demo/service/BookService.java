@@ -41,4 +41,8 @@ public class BookService {
 	public long getCount(){
 		return bookRepo.count();
 	}
+
+	public List<Book> findByListId(List<Integer> list){
+		return bookRepo.findByListId(list);
+	}
 }
