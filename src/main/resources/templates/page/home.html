@@ -30,7 +30,7 @@
 
 <body>
 	<div th:replace="~{commons/navbar :: .navbar}"></div>
-	
+
 	<div class="container-fluid">
 		<!-- carousel -->
 		<div id="carouselHome" class="carousel slide" data-bs-ride="carousel">
@@ -81,33 +81,36 @@
 				<!-- section book -->
 				<section>
 					<h4 class="text-center fw-bold fs-4 pt-4">Top sản phẩm</h4>
-					
+
 					<div class=" justify-content-between ms-0 pt-3">
-					<div class="row">
-						<div class="card col-12 col-md-3 mb-4 m-2 is-outline-gray border-0 "
-							style="border-radius: 0 !important; width: 255px" th:each="book:${books}">
-							<img class="card-img-top mt-3" th:src="${book.images[0].url}"
-								alt="Title">
-							<div class="card-body px-2">
-								<a th:href="@{'/book?bookId='+${book.id}}"
-									class="card-text text-decoration-none fw-bold text-dark">[[${book.name}]]</a>
-							</div>
-							<div> 
-									<i class="bi bi-star text-warning"></i>
-									<i class="bi bi-star text-warning"></i> <i
-									class="bi bi-star text-warning"></i> <i
-									class="bi bi-star text-warning"></i> <i
-									class="bi bi-star text-warning"></i>
-								</div>
+						<div class="row">
 							<div
-								class="card-footer border-top-0 d-flex justify-content-between px-2"
-								style="background-color: transparent;">
-								<span class="card-text fw-bold">[[${#strings.replace(#numbers.formatCurrency(book.price),
-									'.00', '')}]] </span> <del class="text-Secondary">[[${#strings.replace(#numbers.formatCurrency(book.discount),
-									'.00', '')}]]</del>
-									
+								class="card col-12 col-md-3 mb-4 m-2 is-outline-gray border-0 "
+								style="border-radius: 0 !important; width: 255px"
+								th:each="book:${books}">
+								<img class="card-img-top mt-3" th:src="${book.images[0].url}"
+									alt="Title">
+								<div class="card-body px-2">
+									<a th:href="@{'/book?bookId='+${book.id}}"
+										class="card-text text-decoration-none fw-bold text-dark">[[${book.name}]]</a>
+								</div>
+								<div>
+									<i class="bi bi-star text-warning"></i> <i
+										class="bi bi-star text-warning"></i> <i
+										class="bi bi-star text-warning"></i> <i
+										class="bi bi-star text-warning"></i> <i
+										class="bi bi-star text-warning"></i>
+								</div>
+								<div
+									class="card-footer border-top-0 d-flex justify-content-between px-2"
+									style="background-color: transparent;">
+									<span class="card-text fw-bold">[[${#strings.replace(#numbers.formatCurrency(book.price),
+										'.00', '')}]] </span>
+									<del class="text-Secondary">[[${#strings.replace(#numbers.formatCurrency(book.discount),
+										'.00', '')}]]</del>
+
+								</div>
 							</div>
-						</div>
 						</div>
 					</div>
 					<nav aria-label="Page navigation example"

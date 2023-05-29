@@ -66,9 +66,10 @@
 								<div class="icon dropdown btn-group">
 									<a href="#" data-bs-toggle="dropdown"
 										class="dropdown-toggle btn-link text-dark text-decoration-none"
-										aria-expanded="false"> <span class="fs-4 text-dark ii"><i
-											class="bi bi-person-circle "></i></span>
-									</a>
+										aria-expanded="false"><span
+										sec:authorize="isAuthenticated()">[[${session.user?.name}]]</span>
+										<span class="fs-4 text-dark ii"><i
+											class="bi bi-person-circle "></i></span> </a>
 									<ul
 										class="dropdown-menu currency-dropdown dropdown-menu-right mt-2">
 										<li><a href="" class="dropdown-item">Đăng ký</a></li>
@@ -80,10 +81,6 @@
 										class="fs-4 text-dark ii"><i class="bi bi-cart3"></i></span> <span
 										class="position-absolute top-2 start-100 translate-middle badge rounded-pill bg-danger">
 											0 </span>
-									<a href=" #" class="position-relative text-end">
-										<span sec:authorize="isAuthenticated()" >[[${session.user?.name}]]</span>
-										<span class="fs-4 text-dark ii"><i class="bi bi-person-circle "></i></span>
-									</a>
 								</div>
 								<div class="icon">
 									<a href="#" class="position-relative"> <span
