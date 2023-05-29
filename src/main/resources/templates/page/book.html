@@ -24,10 +24,10 @@
 								</div>
 							</div>
 							<div class="d-flex flex-row justify-content-around mt-2">
-								<button th:href="@{/cart?bookId=${book.id}&quantity=1}"
+								<a th:href="@{/cart}"
 								name="add"
 									class="btn btn-outline-pink text-decoration-none fw-bold fs-5"
-									style="width: 280px;">Thêm vào giỏ hàng</button>
+									style="width: 280px;">Thêm vào giỏ hàng</a>
 								<button class="btn btn-pink fw-bold fs-5" style="width: 280px;">Mua ngay</button>
 							</div>
 						</div>
@@ -45,9 +45,9 @@
 								<p class="mt-2">Thời gian giao hàng: Giao hàng đến</p>
 								<p class="mt-2">Chính sách đổi trả: Đổi trả trong 30 ngày</p>
 								<section class="border rounded section-number">
-									<button class="btn btn-default">-</button>
-									<input name="book" class="input-book" type="number" step="1" value="1" disabled>
-									<button class="btn btn-default">+</button>
+									<button onclick="this.parentNode.querySelector('input').stepDown()" class="btn btn-default">-</button>
+									<input name="book" class="input-book" type="number" min="1" id="number" step="1" value="1" disabled>
+									<button onclick="this.parentNode.querySelector('input').stepUp()" class="btn btn-default">+</button>
 								</section>
 							</section>
 						</div>
