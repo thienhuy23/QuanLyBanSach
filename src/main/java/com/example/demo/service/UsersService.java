@@ -15,9 +15,10 @@ public class UsersService {
 	@Autowired
 	UsersRepository usersRepo;
 
-	public Optional<Users> findById(int profileid) {
+	public Optional<Users> findByIdProfile(int profileid) {
 		return usersRepo.findById(profileid); // 1 object Book
 	}
+	
 	public Users getOneUser(String email, String password) {
 		return null;
 	}
@@ -30,6 +31,23 @@ public class UsersService {
 		return usersRepo.findAll().stream().filter(s -> s.getId() != id).collect(Collectors.toList());
 	}
 
+	public void save(Users user) {
+		try {
+			usersRepo.save(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+	}
+	public void findById(int id) {
+		try {
+			usersRepo.findById((id));
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+	}
+	
 	public void update(Users user) {
 		try {
 			usersRepo.save(user);
