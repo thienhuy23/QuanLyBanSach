@@ -578,6 +578,9 @@
 							<tr th:each="cate : ${categorys}">
 								<th>[[${cate.id}]]</th>
 								<th>[[${cate.name}]]</th>
+								<th><a class=" btn is-outline-pink"
+									style="text-decoration: none;"
+									th:href="@{|/category/delete/${cate.id}|}">Xóa</a></th>
 							</tr>
 						</tbody>
 					</table>
@@ -667,11 +670,10 @@
 								<th>[[${user.password}]]</th>
 								<th>[[${user.email}]]</th>
 								<th>[[${user.phone}]]</th>
-								<td>
-									<button class="btn">
-										<a style="text-decoration: none;" href="/user/edit/${user.id}">Edit</a>
-									</button>
-								</td>
+
+								<th><a class="btn is-outline-pink"
+									style="text-decoration: none;"
+									th:href="@{|/user/delete/${user.id}|}">Xóa</a></th>
 							</tr>
 						</tbody>
 					</table>

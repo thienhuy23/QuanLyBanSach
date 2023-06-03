@@ -56,14 +56,21 @@ CategoryService categoryService;
 			model.addAttribute("message", "Cập nhật thành công!");
 		return "redirect:/admin";
 	}
+	
+	@RequestMapping("/user/delete/{id}")
+	public String DeletetUsersId( @PathVariable("id") int id) {		
+		usersService.deleteUserId(id);
+		return "/page/admin";
+	}
+	
 	@PostMapping("/category/create")
 	public String createCategory(Model model, @ModelAttribute("category") Category category) {	
 			System.out.println("user update:" + category);
-			categoryService.save(category);
+			categoryService.createCategory(category);
 			model.addAttribute("users", category);
 			model.addAttribute("message", "Thêm mới thành công!");
 
-		return "redirect:/admin";
+		return "page/admin";
 	}
 	@PostMapping("/category/update")
 	public String updateCategory(Model model, @ModelAttribute("category") Category category) {	
@@ -74,11 +81,10 @@ CategoryService categoryService;
 		return "redirect:/admin";
 	}
 	
-//	@RequestMapping("/user/edit/{id}")
-//	public String edit(Model model, @PathVariable("id") int id) {		
-//		Users user = usersService.findById(id);
-//		model.addAttribute("user", user);
-//		return "/page/admin";
-//	}
+	@RequestMapping("/category/delete/{id}")
+	public String DeleteCategoryId(Model model, @PathVariable("id") int id) {		
+		categoryService.deleteCategoryId(id);	
+		return "/page/admin";
+	}
 	
 }

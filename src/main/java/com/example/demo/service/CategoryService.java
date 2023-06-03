@@ -17,7 +17,7 @@ public class CategoryService {
         return cateRepo.findAll();
     }
     
-	public void save(Category cate) {
+	public void createCategory(Category cate) {
 		try {
 			cateRepo.save(cate);
 		} catch (Exception e) {
@@ -25,7 +25,7 @@ public class CategoryService {
 			// TODO: handle exception
 		}
 	}
-	public void findById(int id) {
+	public void findByIdCategory(int id) {
 		try {
 			cateRepo.findById((id));
 		} catch (Exception e) {
@@ -41,5 +41,9 @@ public class CategoryService {
 			e.printStackTrace();
 			// TODO: handle exception
 		}
+	}
+	
+	public void deleteCategoryId(Integer id) {
+		cateRepo.deleteById(id);
 	}
 }

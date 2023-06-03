@@ -56,6 +56,9 @@ public class UsersService {
 			// TODO: handle exception
 		}
 	}
+	public void deleteUserId(Integer id) {
+		usersRepo.deleteById(id);
+	}
     public Users findByEmail(String name) {
         return usersRepo.findByEmail(name);
     }
