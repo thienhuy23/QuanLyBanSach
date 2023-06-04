@@ -534,31 +534,24 @@
 						<div class="card rounded-0 border-0">
 							<div class=" pb-2 fs-4 p-4 pt-0 fw-bold">Danh sách loại sản
 								phẩm</div>
-							<form class="row g-3" th:action="@{/admin}" method="post">
-
-								<div class=" p-5 pt-3 pb-1">
-									<label for="inputAddress" class="form-label fw-bold">ID:
-									</label> <input type="text" name="id"
-										class="form-control rounded-0 border-secondary"
-										id="inputAddress" />
-								</div>
+							<form class="row g-3" action="/CheckLogin" method="post">
 
 								<div class=" p-5 pt-3 pb-1">
 									<label for="inputAddress" class="form-label fw-bold">Tên
-										loại sản phẩm: </label> <input type="text" name="name"
+										loại sản phẩm: </label> <input type="text" name="email"
 										class="form-control rounded-0 border-secondary"
 										id="inputAddress" />
 								</div>
 								<div class=" p-5 pt-1 pb-3">
 									<button type="submit"
 										class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
-										style="width: 100px;" formaction="/category/create">Thêm</button>
+										style="width: 100px;">Thêm</button>
 									<button type="submit"
 										class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 										style="width: 100px;">Xóa</button>
 									<button type="submit"
 										class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
-										style="width: 100px;" formaction="/category/update">Sửa</button>
+										style="width: 100px;">Sửa</button>
 									<button type="submit"
 										class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 										style="width: 100px;">Đặt lại</button>
@@ -575,12 +568,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="cate : ${categorys}">
-								<th>[[${cate.id}]]</th>
-								<th>[[${cate.name}]]</th>
-								<th><a class=" btn is-outline-pink"
-									style="text-decoration: none;"
-									th:href="@{|/category/delete/${cate.id}|}">Xóa</a></th>
+							<tr>
+								<th>1</th>
+								<th>2</th>
 							</tr>
 						</tbody>
 					</table>
@@ -590,26 +580,11 @@
 						<div class="card rounded-0 border-0">
 							<div class=" pb-2 fs-4 p-4 pt-0 fw-bold">Danh sách người
 								dùng</div>
-							<form class="row g-3" th:action="@{/admin}" method="post">
-
-								<div class=" p-5 pt-3 pb-1">
-									<label for="inputAddress" class="form-label fw-bold">ID:
-									</label> <input type="text" name="id"
-										class="form-control rounded-0 border-secondary"
-										id="inputAddress" />
-
-								</div>
+							<form class="row g-3" action="" method="post">
 
 								<div class=" p-5 pt-3 pb-1">
 									<label for="inputAddress" class="form-label fw-bold">Tên
 										khách hàng: </label> <input type="text" name="name"
-										class="form-control rounded-0 border-secondary"
-										id="inputAddress" />
-
-								</div>
-								<div class=" p-5 pt-3 pb-1">
-									<label for="inputAddress" class="form-label fw-bold">Mật
-										khẩu: </label> <input type="text" name="password"
 										class="form-control rounded-0 border-secondary"
 										id="inputAddress" />
 
@@ -628,23 +603,16 @@
 										id="inputAddress" />
 
 								</div>
-								<div class="form-radio mb-3">
-									<label class="form-radio-label ms-4"> <input
-										class="form-radio " type="radio" name="role" value="1">
-										Admin <input class="form-radio" type="radio" name="role"
-										value="0"> User
-									</label>
-								</div>
 								<div class=" p-5 pt-1 pb-3">
 									<button type="submit"
 										class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
-										style="width: 100px;" formaction="/user/create">Thêm</button>
+										style="width: 100px;">Thêm</button>
 									<button type="submit"
 										class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 										style="width: 100px;">Xóa</button>
 									<button type="submit"
 										class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
-										style="width: 100px;" formaction="/user/update">Sửa</button>
+										style="width: 100px;">Sửa</button>
 									<button type="submit"
 										class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 										style="width: 100px;">Đặt lại</button>
@@ -656,24 +624,14 @@
 						<thead class="thead-dark font-weight-bold text-dark">
 							<tr class="fw-bold">
 								<td>ID:</td>
-								<td>Họ và Tên:</td>
-								<td>Mật khẩu:</td>
-								<td>Email</td>
-								<td>SDT:</td>
+								<td>Tên loại sản phẩm:</td>
 								<!-- <td>&nbsp;</td> -->
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="user : ${users}">
-								<th>[[${user.id}]]</th>
-								<th>[[${user.name}]]</th>
-								<th>[[${user.password}]]</th>
-								<th>[[${user.email}]]</th>
-								<th>[[${user.phone}]]</th>
-
-								<th><a class="btn is-outline-pink"
-									style="text-decoration: none;"
-									th:href="@{|/user/delete/${user.id}|}">Xóa</a></th>
+							<tr>
+								<th>1</th>
+								<th>2</th>
 							</tr>
 						</tbody>
 					</table>
@@ -736,7 +694,7 @@
 				</div>
 
 
-				<!-- Quản lý đơn hàng -->
+<!-- Quản lý đơn hàng -->
 
 				<div id="order" class="tabcontent" style="display: none;">
 					<div id="layout-wrapper">
@@ -866,7 +824,7 @@
 																				<i class="fa-sharp fa-solid fa-pen-to-square"></i>
 																		</a> <a href="" class="text-danger" data-toggle="tooltip"><i
 																				class="fa-solid fa-trash"></i></a>
-																	</tr>
+																	</tr>																
 																</tbody>
 															</table>
 														</div>
@@ -1019,7 +977,7 @@
 														</div>
 													</div>
 												</div>
-											</div>
+											</div>									
 											<div class="modal-footer">
 												<button type="submit" class="btn btn-primary">Cập
 													nhật</button>
@@ -1033,7 +991,7 @@
 						</div>
 					</div>
 				</div>
-				<!-- Quản lý đơn hàng -->
+<!-- Quản lý đơn hàng -->
 
 			</div>
 		</div>

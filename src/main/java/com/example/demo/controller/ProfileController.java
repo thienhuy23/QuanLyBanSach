@@ -27,7 +27,7 @@ public class ProfileController {
 
 	@GetMapping({ "/", "" })
 	public String getProfile(@RequestParam("profileId") int profileid, Model model) {
-		Optional<Users> users = usersService.findById(profileid);
+		Optional<Users> users = usersService.findByIdProfile(profileid);
 
 		if (!users.isPresent()) {
 			return "redirect:/error";
@@ -50,7 +50,6 @@ public class ProfileController {
 			usersService.update(user);
 			model.addAttribute("users", user);
 			model.addAttribute("message", "Cập nhật thành công!");
-
 		}
 		return "page/profile";
 	}
