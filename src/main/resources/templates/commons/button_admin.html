@@ -6,7 +6,7 @@
 			<i class="bi bi-person-circle ms-4 me-2"></i>ADMIN
 		</div>
 		<hr>
-		<a th:href="@{/statistical}">
+		<a th:href="@{/admin}">
 			<button
 				class=" tablinks active	w-100 border-0 p-3 fw-bold fs-5 text-start">
 				<i class="bi bi-clipboard2-data-fill fs-4 p-3 "></i> Thống kê
@@ -39,11 +39,12 @@
 			<i class="bi bi-box-seam-fill fs-4 p-3"></i> Quản lý sản phẩm
 		</button>
 		</a>
+		<a th:href="@{/order}">
 		<button
-			class="tablinks active w-100 border-0 p-3 fw-bold fs-5 text-start"
-			onclick="openCity(event, 'London')">
+			class="tablinks active w-100 border-0 p-3 fw-bold fs-5 text-start">
 			<i class="bi bi-journal-medical fs-4 p-3"></i> Quản lý đơn hàng
 		</button>
+		</a>
 		<a th:href="@{/account}">
 		<button
 			class="tablinks active w-100 border-0 p-3 fw-bold fs-5 text-start">

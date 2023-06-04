@@ -54,6 +54,11 @@ public class AdminController {
 		return "page/account_admin";
 
 	}
+	@RequestMapping("/order")
+	public String order() {
+		return "page/order_admin";
+
+	}
 	
 	@RequestMapping("/admin_js")
 	public String home(Model model) {
@@ -62,7 +67,6 @@ public class AdminController {
 		List<Category> category = categoryService.findAll();
 		model.addAttribute("categorys", category);
 		return "page/admin";
-
 	}
 	
 	@PostMapping("/user/create")
@@ -71,9 +75,9 @@ public class AdminController {
 			usersService.save(user);
 			model.addAttribute("users", user);
 			model.addAttribute("message", "Thêm mới thành công!");
-
 		return "redirect:/admin";
 	}
+	
 	@PostMapping("/user/update")
 	public String updateUser(Model model, @ModelAttribute("users") Users user) {	
 			System.out.println("user update:" + user);
@@ -95,7 +99,6 @@ public class AdminController {
 			categoryService.createCategory(category);
 			model.addAttribute("users", category);
 			model.addAttribute("message", "Thêm mới thành công!");
-
 		return "page/admin";
 	}
 	@PostMapping("/category/update")
