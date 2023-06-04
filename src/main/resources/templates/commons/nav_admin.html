@@ -1,0 +1,29 @@
+<div th:fragments="nav_admin">
+	<div id="nav_admin">
+		<nav class="sb-topnav navbar navbar-expand ">
+			<!-- Navbar Brand-->
+			<div class="pt-3">
+				<a th:href="@{/}"><img
+					src="https://bookcart.themability.com/image/catalog/logo.png"
+					title="Your Store" alt="Your Store" class="img-fluid"></a>
+			</div>
+			<!-- Navbar Search-->
+			<form
+				class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+				<div class="text-right  header-right me-5  mr-auto">
+					<div class="input-group mb-3 mt-3 text-right "
+						style="width: 350px;">
+						<input type="text" class="form-control rounded-0 is-outline-gray"
+							placeholder="Tìm kiếm..." aria-label="Search..."
+							aria-describedby="button-addon2">
+						<button
+							class="btn btn-outline-secondary rounded-0 border-0 is-outline-pink"
+							type="button" id="button-addon2">
+							<i class="bi bi-search text-light"></i>
+						</button>
+					</div>
+				</div>
+			</form>
+		</nav>
+	</div>
+</div>

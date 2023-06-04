@@ -28,7 +28,6 @@ public class HomeController {
 	BookService bookService;
 	@Autowired
 	CategoryService categoryService;
-
 	@Autowired
 	UsersService usersService;
 

@@ -1,0 +1,59 @@
+<div th:fragments="button_admin">
+	<div id="button_admin" class="left is-outline-gray "
+		style="height: 100%">
+		<hr>
+		<div class="fs-3">
+			<i class="bi bi-person-circle ms-4 me-2"></i>ADMIN
+		</div>
+		<hr>
+		<a th:href="@{/statistical}">
+			<button
+				class=" tablinks active	w-100 border-0 p-3 fw-bold fs-5 text-start">
+				<i class="bi bi-clipboard2-data-fill fs-4 p-3 "></i> Thống kê
+			</button>
+		</a> <a th:href="@{/supplier}">
+			<button
+				class="tablinks active w-100 border-0 p-3 fw-bold fs-5 text-start">
+				<i class="bi bi-building-fill fs-4 p-3"></i> Nhà cung cấp
+			</button>
+		</a> <a th:href="@{/author}">
+			<button
+				class="tablinks active w-100 border-0 p-3 fw-bold fs-5 text-start">
+				<i class="bi bi-person-badge fs-4 p-3"></i> Tác giả
+			</button>
+		</a> <a th:href="@{/category}">
+			<button
+				class="tablinks active w-100 border-0 p-3 fw-bold fs-5 text-start">
+				<i class="bi bi-archive-fill fs-4 p-3"></i> Loại sản phẩm
+			</button>
+		</a>
+		<a th:href="@{/image}">
+		<button
+			class="tablinks active w-100 border-0 p-3 fw-bold fs-5 text-start">
+			<i class="bi bi-file-earmark-image fs-4 p-3"></i> Hình ảnh sản phẩm
+		</button>
+		</a>
+		<a th:href="@{/product}">
+		<button
+			class="tablinks active w-100 border-0 p-3 fw-bold fs-5 text-start">
+			<i class="bi bi-box-seam-fill fs-4 p-3"></i> Quản lý sản phẩm
+		</button>
+		</a>
+		<button
+			class="tablinks active w-100 border-0 p-3 fw-bold fs-5 text-start"
+			onclick="openCity(event, 'London')">
+			<i class="bi bi-journal-medical fs-4 p-3"></i> Quản lý đơn hàng
+		</button>
+		<a th:href="@{/account}">
+		<button
+			class="tablinks active w-100 border-0 p-3 fw-bold fs-5 text-start">
+			<i class="bi bi-people-fill fs-4 p-3"></i> Quản lý tài khoản
+		</button>
+		</a>
+		<button
+			class="tablinks active w-100 border-0 p-3 fw-bold fs-5 text-start">
+			<i class="bi bi-sign-turn-slight-right fs-4 p-3"></i>Đăng xuất
+		</button>
+
+	</div>
+</div>
