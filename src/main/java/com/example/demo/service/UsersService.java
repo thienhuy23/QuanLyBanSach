@@ -39,14 +39,6 @@ public class UsersService {
 			// TODO: handle exception
 		}
 	}
-	public void findById(int id) {
-		try {
-			usersRepo.findById((id));
-		} catch (Exception e) {
-			e.printStackTrace();
-			// TODO: handle exception
-		}
-	}
 	
 	public void update(Users user) {
 		try {
@@ -58,6 +50,9 @@ public class UsersService {
 	}
 	public void deleteUserId(Integer id) {
 		usersRepo.deleteById(id);
+	}
+	public Optional<Users> findById(int id) {
+		return usersRepo.findById(id);
 	}
     public Users findByEmail(String name) {
         return usersRepo.findByEmail(name);

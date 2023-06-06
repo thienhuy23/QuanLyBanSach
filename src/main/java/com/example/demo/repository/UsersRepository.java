@@ -1,5 +1,8 @@
 package com.example.demo.repository;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,4 +13,6 @@ import com.example.demo.entity.Users;
 public interface UsersRepository extends JpaRepository<Users, Integer> {
 
 	Users findByEmail(String username);
+	@Query("SELECT u FROM Users u WHERE u.name LIKE %?1% ")
+	List<Users> findAllByNameLike(Optional<String> key);
 }
