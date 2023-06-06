@@ -10,9 +10,13 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @Entity
 @Table
 @AllArgsConstructor
@@ -20,8 +24,10 @@ import lombok.NoArgsConstructor;
 public class Supplier {
 	@Id
 	@Column
+	@NotNull(message ="{NotNull.supplier.id}")
 	int id;
 	@Column
+	@NotEmpty(message ="{NotEmpty.supplier.name}")
 	public String name;
 	
 	@OneToMany(mappedBy = "supplier",fetch = FetchType.LAZY)

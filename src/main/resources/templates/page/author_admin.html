@@ -5,7 +5,33 @@
 <div th:replace="~{commons/head ::  head}"></div>
 <body>
 	<div class="container-fluid">
-		<div th:replace="~{commons/nav_admin :: #nav_admin}"></div>
+		<div id="nav_admin">
+		<nav class="sb-topnav navbar navbar-expand ">
+			<!-- Navbar Brand-->
+			<div class="pt-3">
+				<a th:href="@{/}"><img
+					src="https://bookcart.themability.com/image/catalog/logo.png"
+					title="Your Store" alt="Your Store" class="img-fluid"></a>
+			</div>
+			<!-- Navbar Search-->
+			<form action="/admin/searchAuthor" method="post"
+				class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+				<div class="text-right  header-right me-5  mr-auto">
+					<div class="input-group mb-3 mt-3 text-right "
+						style="width: 350px;">
+						<input type="text" name="name" class="form-control rounded-0 is-outline-gray"
+							placeholder="Tìm kiếm..." aria-label="Search..."
+							aria-describedby="button-addon2">
+						<button
+							class="btn btn-outline-secondary rounded-0 border-0 is-outline-pink"
+							type="submit" id="button-addon2">
+							<i class="bi bi-search text-light"></i>
+						</button>
+					</div>
+				</div>
+			</form>
+		</nav>
+		</div>
 		<div class="row">
 			<div class="col-md-2">
 				<div th:replace="~{commons/button_admin :: #button_admin}"></div>
@@ -15,46 +41,62 @@
 				<div class="col-md-10 offset-md-1 pt-3">
 					<div class="card rounded-0 border-0">
 						<div class=" pb-2 fs-4 p-4 pt-0 fw-bold">Danh sách tác giả:</div>
-						<form class="row g-3" action="" method="post">
-
+						<span th:text="${message}" class="text-danger"></span>
+						<form class="row g-3" th:object="${authorr}"  method="post">
 							<div class=" p-5 pt-3 pb-1">
-								<label for="inputAddress" class="form-label fw-bold">Tên
-									tác giả: </label> <input type="text" name="email"
-									class="form-control rounded-0 border-secondary"
-									id="inputAddress" />
+								<label class="form-label fw-bold">Id: </label> 
+								<input type="text" th:field="*{id}" class="form-control "/>
+								<p class="alert" th:if="${#fields.hasErrors('id')}" th:errors="*{id}" ></p>
+							</div>
+							<div class=" p-5 pt-3 pb-1">
+								<label class="form-label fw-bold">Tên tác giả: </label> 
+								<input type="text" th:field="*{name}" class="form-control "/>
+								<p class="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></p>
 							</div>
 							<div class=" p-5 pt-1 pb-3">
-								<button type="submit"
+								<button formaction="/admin/CreateAuthor" 
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 									style="width: 100px;">Thêm</button>
-								<button type="submit"
+								<button formaction=""
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 									style="width: 100px;">Xóa</button>
-								<button type="submit"
+								<button formaction="/admin/CreateAuthor"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 									style="width: 100px;">Sửa</button>
-								<button type="submit"
+								<button formaction="/admin"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 									style="width: 100px;">Đặt lại</button>
 							</div>
 						</form>
 					</div>
 				</div>
-				<table class="table border-0 ">
-					<thead class="thead-dark font-weight-bold text-dark">
-						<tr class="fw-bold">
-							<td>ID:</td>
-							<td>Tên tác giả:</td>
-							<!-- <td>&nbsp;</td> -->
+				<div class="table-responsive form-control mt-3">
+					<table class="table table-centered table-nowrap">
+					<thead class="is-outline-gray">
+						<tr>
+							<th>ID:</th>
+							<th>Tên tác giả:</th>
+							<th>&nbsp;</th>
+							<th>&nbsp;</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th>1</th>
-							<th>2</th>
+						<tr th:each="author:${author}">
+							<td><b>#[[${author.id}]]</b></td>
+							<td>[[${author.name}]]</td>
+							<td>&nbsp;</td>
+							<td>
+								<a th:href="@{|/admin/EditAuthor/${author.id}|}" class="mr-3 fs-5 text-dark text-decoration-none"
+										  data-toggle="modal" data-target=".exampleModalUpdate">
+										<i class="fa-sharp fa-solid fa-pen-to-square"></i></a> 
+								<a th:href="@{|/admin/DeleteAuthor/${author.id}|}"class="is-color-pink ms-2 fs-5"
+										  data-toggle="tooltip">
+										<i class="fa-solid fa-trash"></i></a>
+							</td>
 						</tr>
 					</tbody>
 				</table>
+				</div>
 			</div>
 		</div>
 	</div>

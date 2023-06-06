@@ -8,6 +8,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,8 +22,10 @@ import lombok.NoArgsConstructor;
 public class Author {
 	@Id
 	@Column
+	@NotNull(message ="{NotNull.author.id}")
 	int id;
 	@Column
+	@NotEmpty(message ="{NotEmpty.author.name}")
 	String name;
 	
 	@OneToMany(mappedBy = "author",fetch = FetchType.LAZY)
