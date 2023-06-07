@@ -70,9 +70,5 @@ public class HomeController {
 		
 	}
 	
-	@GetMapping("/USER")
-	public String USER() {
-		return "page/user";
-		
-	}
+	
 }
