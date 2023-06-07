@@ -20,291 +20,170 @@
 				<div th:replace="~{commons/button_admin :: #button_admin}"></div>
 			</div>
 			<div class="col-md-10">
-				<div class="container-fluid ">
-					<div id="layout-wrapper pt-0">
-						<div class="page-content ">
-							<div
-								class="page-title-box d-flex align-items-center justify-content-between">
-								<h4 class="mb-3 ms-2 fs-4  fw-bold">Quản lý đơn hàng</h4>
-							</div>
+				<div class="container-fluid mt-5">
+					<h3>Đơn hàng </h3>
+					<br>
+					<!-- Nav tabs -->
+					<ul class="nav nav-tabs" role="tablist">
+						<li class="nav-item"><a class="nav-link active"
+							data-bs-toggle="tab" href="#home">Đang xử lý</a></li>
+						<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
+							href="#menu1">Đang giao hàng</a></li>
+						<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
+							href="#menu2">Giao hàng thành công</a></li>
+						<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
+							href="#menu3">Giao hàng thất bại</a></li>
+					</ul>
 
-							<div class="row">
-								<form action="" method="post">
-									<div class="col-12">
-										<div class="card">
-											<div class="card-body">
-												<div class="row mb-2">
-													<div class="col-sm-4">
-														<div class="search-box mr-2 mb-2 d-inline-block">
-															<div class="position-relative">
-																<input type="text" class="form-control"
-																	placeholder="Tìm kiếm..."> <i
-																	class="bx bx-search-alt search-icon"></i>
-															</div>
-														</div>
-													</div>
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<div id="home" class="container-fluid  tab-pane active">
+							<div class="mt-3 card pt-3">
+								<table class="table pt-2">
+									<thead>
+										<tr>
+											<th scope="col">Mã hóa đơn</th>
+											<th scope="col">Mã người dùng</th>
+											<th scope="col">Ngày đặt hàng</th>
+											<th scope="col">Tổng tiền</th>
+											<th scope="col">Trạng thái</th>
+											<th scope="col">Chi tiết</th>
+											<th scope="col"></th>
+											<th scope="col"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr class="pt-3">
+											<td>1</td>
+											<td>1</td>
+											<td>06/07/2023</td>
+											<td>144.000</td>
+											<td><select class="form-select"
+												aria-label="Default select example">
+													<option selected>Trạng thái</option>
+													<option value="1">Đang xử lý</option>
+													<option value="2">Đang giao hàng</option>
+													<option value="3">Giao thành công</option>
+													<option value="3">Giao thất bại</option>
+											</select></td>
+											<td><button type="button"
+													class="btn border-dark text-dark " data-bs-toggle="modal"
+													data-bs-target="#myModal">Xem chi tiết</button></td>
 
-												</div>
-												<div class="table-responsive">
-													<table class="table table-centered table-nowrap">
-														<thead class="thead-light">
-															<tr>
-																<th>Mã bill</th>
-																<th>Tên Khách hàng</th>
-																<th>Ngày lập</th>
-																<th>Tổng tiền</th>
-																<th>Trạng thái</th>
-																<th>Chi tiết</th>
-																<th>Hành động</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr>
-																<td><a href="" class="text-body font-weight-bold">#HD1</a></td>
-																<td>Huy</td>
-																<td>16 May 2023</td>
-																<td>$400</td>
-																<td><span class=" font-size-12">Đã thanh
-																		toán</span></td>
 
-																<td>
-																	<button type="button"
-																		class="btn is-outline-pink text-light btn-sm btn-rounded"
-																		data-toggle="modal" data-target=".exampleModal">
-																		Xem chi tiết</button>
-																</td>
-																<td><a href=""
-																	class="mr-3 fs-5 text-dark text-decoration-none"
-																	data-toggle="modal" data-target=".exampleModalUpdate">
-																		<i class="fa-sharp fa-solid fa-pen-to-square "></i>
-																</a> <a href="" class="is-color-pink ms-2 fs-5"
-																	data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
-															</tr>
-															<tr>
-																<td><a href="" class="text-body font-weight-bold">#HD2</a></td>
-																<td>aa</td>
-																<td>16 May 2023</td>
-																<td>$400</td>
-																<td><span class=" font-size-12">Đã thanh
-																		toán</span></td>
 
-																<td>
-																	<button type="button"
-																		class="btn is-outline-pink text-light btn-sm btn-rounded"
-																		data-toggle="modal" data-target=".exampleModal">
-																		Xem chi tiết</button>
-																</td>
-																<td><a href=""
-																	class="mr-3 fs-5 text-dark text-decoration-none"
-																	data-toggle="modal" data-target=".exampleModalUpdate">
-																		<i class="fa-sharp fa-solid fa-pen-to-square "></i>
-																</a> <a href="" class="is-color-pink ms-2 fs-5"
-																	data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
-															</tr>
-															<tr>
+											<td><button class="btn is-outline-pink text-light "
+													type="submit">Giao hàng</button></td>
+											<td><a href="" class="is-color-pink  ms-2 fs-5"
+												data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a></td>
+										</tr>
+									</tbody>
+								</table>
 
-																<td><a href="" class="text-body font-weight-bold">#HD3</a></td>
-																<td>b</td>
-																<td>16 May 2023</td>
-																<td>$400</td>
-																<td><span class=" font-size-12">Đã thanh
-																		toán</span></td>
+								<!-- The Modal -->
+								<div class="modal" id="myModal">
+									<div class="modal-dialog modal-lg">
+										<div class="modal-content">
 
-																<td>
-																	<button type="button"
-																		class="btn is-outline-pink text-light btn-sm btn-rounded"
-																		data-toggle="modal" data-target=".exampleModal">
-																		Xem chi tiết</button>
-																</td>
-																<td><a href=""
-																	class="mr-3 fs-5 text-dark text-decoration-none"
-																	data-toggle="modal" data-target=".exampleModalUpdate">
-																		<i class="fa-sharp fa-solid fa-pen-to-square"></i>
-																</a> <a href="" class="is-color-pink ms-2 fs-5"
-																	data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
-															</tr>
-															<tr>
-																<td><a href="" class="text-body font-weight-bold">#HD4</a></td>
-																<td>c</td>
-																<td>16 May 2023</td>
-																<td>$500</td>
-																<td><span class="font-size-12">Đã thanh toán</span></td>
-
-																<td>
-																	<button type="button"
-																		class="btn is-outline-pink text-light btn-sm btn-rounded"
-																		data-toggle="modal" data-target=".exampleModal">
-																		Xem chi tiết</button>
-																</td>
-																<td><a href=""
-																	class="mr-3 fs-5 text-dark text-decoration-none"
-																	data-toggle="modal" data-target=".exampleModalUpdate">
-																		<i class="fa-sharp fa-solid fa-pen-to-square "></i>
-																</a> <a href="" class="is-color-pink  ms-2 fs-5"
-																	data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
-															</tr>
-														</tbody>
-													</table>
-												</div>
+											<!-- Modal Header -->
+											<div class="modal-header">
+												<h4 class="modal-title">Chi tiết đơn hàng</h4>
+												<button type="button" class="btn-close"
+													data-bs-dismiss="modal"></button>
 											</div>
+
+											<!-- Modal body -->
+											<div class="modal-body">
+												<form>
+													<div class="mb-3">
+														<label class="form-label">Email:</label> <input
+															type="email" class="form-control" id=""
+															aria-describedby="emailHelp">
+													</div>
+													<div class="mb-3">
+														<label class="form-label">Số điện thoại:</label> <input
+															type="text" class="form-control" id=""
+															aria-describedby="emailHelp">
+													</div>
+													<div class="mb-3">
+														<label class="form-label">Địa chỉ:</label> <input
+															type="text" class="form-control" id=""
+															aria-describedby="emailHelp">
+													</div>
+												</form>
+												<table class="table pt-2">
+													<thead>
+														<tr>
+															<th class="visually-hidden" scope="col">Hình</th>
+															<th class="visually-hidden" scope="col">Tên</th>
+															<th class="visually-hidden" scope="col">Số lượng</th>
+															<th class="visually-hidden" scope="col">Giá</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr class="pt-3">
+															<td><div href="#" class="position-relative pt-1">
+																	<span class="fs-4 text-dark ii"><img
+																		src="https://cdn0.fahasa.com/media/catalog/product/i/m/image_217480.jpg"
+																		style="width: 100px" class="rounded float-start"
+																		alt="..."></span>
+																</div></td>
+															<td>Cây cam ngọt của tôi</td>
+															<td>1</td>
+															<td>109.000</td>
+														</tr>
+														<tr class="pt-3">
+															<td><div href="#" class="position-relative pt-1">
+																	<span class="fs-4 text-dark ii"><img
+																		src="https://cdn0.fahasa.com/media/catalog/product/i/m/image_217480.jpg"
+																		style="width: 100px" class="rounded float-start"
+																		alt="..."></span>
+																</div></td>
+															<td>Cây cam ngọt của tôi</td>
+															<td>1</td>
+															<td>109.000</td>
+														</tr>
+														<tr>
+															<td colspan="3" class="text-end fw-bold">Tạm tính</td>
+															<td>109.000</td>
+														</tr>
+														<tr>
+															<td colspan="3" class="text-end fw-bold">Phí vận chuyển</td>
+															<td>35.000</td>
+														</tr>
+														<tr>
+															<td colspan="3" class="text-end fw-bold">Thành tiền</td>
+															<td>144.000</td>
+														</tr>
+														
+													</tbody>
+												</table>
+
+											</div>
+
+											<!-- Modal footer -->
+											<div class="modal-footer">
+												<button type="button" class="btn btn-danger"
+													data-bs-dismiss="modal">Close</button>
+											</div>
+
 										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-						<div class="modal fade exampleModal" tabindex="-1" role="dialog"
-							aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<!-- chinh -->
-							<div style="padding-left: 200px;"
-								class="modal-dialog modal-lg modal-dialog-centered"
-								role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel">Chi tiết
-											đơn hàng</h5>
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<div class="modal-body">
-										<p class="mb-2">
-											ID: <span class="text-primary">#</span>
-										</p>
-										<p class="mb-4">
-											Người nhận: <span class="text-primary">a</span>
-										</p>
-										<div class="table-responsive">
-											<table class="table table-centered table-nowrap">
-												<thead>
-													<tr>
-														<th scope="col">Ảnh</th>
-														<th scope="col">Tên</th>
-														<th scope="col">Số lượng</th>
-														<th scope="col">Giá</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<th>
-															<div>
-																<img src=".png" alt="" class="avatar-sm">
-															</div>
-														</th>
-														<td>
-															<div>
-																<h5 class="text-truncate font-size-14">Quần</h5>
-																<p class="text-muted mb-0">$ 225</p>
-															</div>
-														</td>
-														<td><span class="ps-4">1</span></td>
-														<td>$ 255</td>
-													</tr>
-													<tr>
-														<td colspan="3">
-															<h6 class="m-0 text-right">Tổng:</h6>
-														</td>
-														<td>$ 225</td>
-													</tr>
-													<tr>
-														<td colspan="3">
-															<h6 class="m-0 text-right">Giao hàng:</h6>
-														</td>
-														<td>Free</td>
-													</tr>
-													<tr>
-														<td colspan="3">
-															<h6 class="m-0 text-right">Tổng:</h6>
-														</td>
-														<td>$ 255</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary"
-											data-dismiss="modal">Đóng</button>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!--  -->
-						<form action="" method="post">
-							<div class="modal fade exampleModalUpdate" tabindex="-1"
-								role="dialog" aria-labelledby="exampleModalLabel"
-								aria-hidden="true">
-								<!-- chinh -->
-								<div style="padding-left: 200px;"
-									class="modal-dialog modal-xl modal-dialog-centered"
-									role="document">
-									<div class="modal-content">
-
-										<div class="card">
-											<button type="button" class="close text-end pt-3 pe-3"
-												data-dismiss="modal" aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-											<div class="card-body">
-
-												<div class="form-group row">
-													<label for="example-text-input"
-														class="col-md-2 col-form-label">Mã bill</label>
-													<div class="col-md-10">
-														<input class="form-control" type="text" value="#HD1"
-															disabled>
-													</div>
-												</div>
-												<div class="form-group row">
-													<label for="example-search-input"
-														class="col-md-2 col-form-label">Người nhận</label>
-													<div class="col-md-10">
-														<input class="form-control" type="search" value="Huy">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label for="example-date-input"
-														class="col-md-2 col-form-label">Ngày lập</label>
-													<div class="col-md-10">
-														<input class="form-control" type="date" value="2019-08-19"
-															id="example-date-input">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label for="example-search-input"
-														class="col-md-2 col-form-label">Nơi nhận</label>
-													<div class="col-md-10">
-														<input class="form-control" type="search" value="aaa">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label for="example-url-input"
-														class="col-md-2 col-form-label">Tổng tiền</label>
-													<div class="col-md-10">
-														<input class="form-control" type="url" value="$400"
-															disabled>
-													</div>
-												</div>
-												<div class="form-group row">
-													<label for="example-password-input"
-														class="col-md-2 col-form-label">Phương thức</label>
-													<div class="col-md-10">
-														<input class="form-control" type="text" value="Momo"
-															disabled>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="modal-footer">
-											<button type="submit" class="btn is-outline-pink text-light">Cập
-												nhật</button>
-											<button type="button" class="btn btn-secondary"
-												data-dismiss="modal">Đóng</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</form>
+						<div id="menu1" class="container tab-pane fade">
+							<br>
+							<h3>Menu 1</h3>
+							<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco
+								laboris nisi ut aliquip ex ea commodo consequat.</p>
+						</div>
+						<div id="menu2" class="container tab-pane fade">
+							<br>
+							<h3>Menu 2</h3>
+							<p>Sed ut perspiciatis unde omnis iste natus error sit
+								voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+						</div>
 					</div>
 				</div>
 			</div>

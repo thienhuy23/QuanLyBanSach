@@ -36,13 +36,15 @@
 	background-color: var(--black-color)!important;
 }
 
-
+.ca a:hover{
+	 color:  rgb(var(--main-pink-color))!important;
+}
 .icon {
     margin: 0px 15px;
 }
 
 .ii i:hover {
-    color:  rgb(var(--main-pink-color));
+    color:  rgb(var(--main-pink-color))!important;
 }
 
 .nav-item {
