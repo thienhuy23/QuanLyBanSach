@@ -35,12 +35,12 @@
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control " id=""
 						placeholder="name@example.com"> <label
-						class="text-secondary">Họ và tên</label>
+						class="text-secondary" th:value="${session.user?.name}">Họ và tên</label>
 				</div>
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control" id=""
 						placeholder="name@example.com"> <label
-						class="text-secondary">Số điện thoại</label>
+						class="text-secondary" th:value="${session.user?.phone}">Số điện thoại</label>
 				</div>
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control" id=""
@@ -81,11 +81,11 @@
 						class="form-check-label " for="flexCheckChecked"> Lưu phương thức vận chuyển </label>
 				</div>
 				<div class="row pt-5">
-					<a href="#" class="text-decoration-none text-dark col-6"><i
+					<a href="/cart" class="text-decoration-none text-dark col-6"><i
 						class="bi bi-chevron-double-left"></i>Giỏ hàng</a>
 					<div class="text-end col-6">
 						<button class="btn is-outline-pink text-light "
-							style="width: 135px;" type="submit">Đặt hàng</button>
+							style="width: 135px;" type="button" th:onclick="'pay('+${session.user?.id}+')'">Đặt hàng</button>
 					</div>
 
 				</div>
@@ -102,24 +102,8 @@
 								<th class="visually-hidden ms-4">Giá</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<div class="icon">
-										<div href="#" class="position-relative pt-1">
-											<span class="fs-4 text-dark ii"><img
-												src="https://cdn0.fahasa.com/media/catalog/product/i/m/image_217480.jpg"
-												style="width: 100px" class="rounded float-start" alt="..."></span>
-											<span
-												class="position-absolute top-5 start-200 translate-middle badge rounded-pill bg-secondary">
-												1 </span>
-										</div>
-									</div>
-								</td>
-								<td style="padding-left: -10px;" class="">Cây cam ngọt của
-									tôi</td>
-								<td class="ms-4" style="padding-left: 8em;">$109.000</td>
-							</tr>
+						<tbody id="body">
+
 						</tbody>
 
 					</table>
@@ -136,20 +120,21 @@
 
 				<div class="row">
 					<p class="text-start col-6">Tạm tính</p>
-					<p class="text-end col-6">109.000</p>
+					<p class="text-end col-6" id="mt"></p>
 				</div>
 				<div class="row">
 					<p class="text-start col-6">Phí vận chuyển</p>
-					<p class="text-end col-6">35.000</p>
+					<p class="text-end col-6">35.000 VND</p>
 				</div>
 				<hr>
 				<div class="row">
 					<p class="text-start col-6">Tổng cộng</p>
-					<p class="text-end col-6 fs-5">144.000</p>
+					<p class="text-end col-6 fs-5" id="cost"></p>
 				</div>
 			</div>
 
 		</div>
 	</div>
+	<script th:src="@{/js/purchase.js}"></script>
 </body>
 </html>
