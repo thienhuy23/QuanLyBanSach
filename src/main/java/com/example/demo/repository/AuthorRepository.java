@@ -21,5 +21,8 @@ public interface AuthorRepository extends JpaRepository<Author, Integer>{
 	
 	@Query("SELECT s FROM Supplier s WHERE s.name LIKE %?1% ORDER BY s.name ASC")
 	Page<Author> findAllByNameLikePage(Optional<String> name,PageRequest pageable);
+	
+	
+	
 
 }

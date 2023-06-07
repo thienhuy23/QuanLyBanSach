@@ -40,4 +40,5 @@ public class Users {
 	@NotNull(message = "Vui chọn vai trò")
 	@Column
 	Boolean role;
+	
 }

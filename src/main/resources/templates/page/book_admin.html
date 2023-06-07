@@ -10,21 +10,26 @@
 			<div class="col-md-2">
 				<div th:replace="~{commons/button_admin :: #button_admin}"></div>
 			</div>
-			<div class="col-md-10">
-
-				<div class="col-md-10 offset-md-1 pt-3">
-					<div class="card rounded-0 border-0">
-						<div class=" pb-2 fs-4 p-4 pt-0 fw-bold">Danh sách sản phẩm</div>
+			<div class="col-md-10 tab-content">
+				<div class="mb-3 pb-2 fs-4 p-4 pt-0 fw-bold">Danh sách sản phẩm</div>
+				<ul class="nav nav-tabs" role="tablist">
+					    <li class="nav-item">
+					      <a class="nav-link active" data-bs-toggle="tab" href="#form"><b>Form sản phẩm</b></a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" data-bs-toggle="tab" href="#table"><b>Danh sách</b></a>
+					    </li>
+				  </ul>
+				<div id="form" class="col-md-10 offset-md-1 pt-3 container tab-pane active">
+					<div  class="card rounded-0 border-0 ">
 						<form class="row g-3" action="" method="post">
 							<div class=" p-5 pt-3 pb-1">
-								<label for="inputAddress" class="form-label fw-bold">Tên
-									tác giả: </label> <select
+								<label for="inputAddress" class="form-label fw-bold">Tên tác giả: </label> 
+									<select 
 									class="form-select border-secondary rounded-0 bg-light"
 									aria-label="Disabled select example">
 
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
+									<option >1</option>
 								</select>
 							</div>
 							<div class=" p-5 pt-3 pb-1">
@@ -99,39 +104,46 @@
 						</form>
 					</div>
 				</div>
-				<table class="table border-0 ">
+				<div id="table" class="col-md-10 offset-md-1 pt-3 mt-3 container tab-pane fade table-responsive form-control">
+					<table class="table table-centered table-nowrap mt-2">
 					<thead class="thead-dark font-weight-bold text-dark">
-						<tr class="fw-bold">
-							<td>ID</td>
-							<td>Tác giả</td>
-							<td>Nhà cung cấp</td>
-							<td>Loại</td>
-							<td>Tên</td>
-							<td>Giá</td>
-							<td>Giảm giá</td>
-							<td>Năm xuất bản</td>
-							<td>Mô tả</td>
-
+						<tr class="is-outline-gray">
+							<th>ID</th>
+							<th>Tác giả</th>
+							<th>Nhà cung cấp</th>
+							<th>Loại</th>
+							<th>Tên</th>
+							<th>Giá</th>
+							<th>Giảm giá</th>
+							<th>Năm xuất bản</th>
+							<th>Mô tả</th>
 							<!-- <td>&nbsp;</td> -->
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th>1</th>
-							<th>2</th>
-							<th>3</th>
-							<th>4</th>
-							<th>5</th>
-							<th>6</th>
-							<th>7</th>
-							<th>8</th>
-							<th>9</th>
+						<tr th:each="book:${book}">
+							<td>[[${book.id}]]</td>
+							<td>2</td>
+							<td>3</td>
+							<td>[[${book.name}]]</td>
+							<td>[[${book.price}]]</td>
+							<td>[[${book.discount}]]</td>
+							<td>[[${book.number_page}]]</td>
+							<td>[[${book.published_year}]]</td>
+							<td>
+								<a  class="mr-3 fs-5 text-dark text-decoration-none"
+										  data-toggle="modal" data-target=".exampleModalUpdate">
+										<i class="fa-sharp fa-solid fa-pen-to-square"></i></a> 
+								<a  class="is-color-pink ms-2 fs-5"
+										  data-toggle="tooltip">
+										<i class="fa-solid fa-trash"></i></a>
+							</td>
 						</tr>
 					</tbody>
 				</table>
-			</div>
+			</div> 	
 		</div>
+	</div>	
 	</div>
-
 </body>
 </html>

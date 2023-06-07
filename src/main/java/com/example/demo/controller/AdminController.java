@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Author;
+import com.example.demo.entity.Book;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Supplier;
 import com.example.demo.entity.Users;
 import com.example.demo.repository.AuthorRepository;
+import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.SupplierRepository;
+import com.example.demo.repository.UsersRepository;
 import com.example.demo.service.AuthorService;
+import com.example.demo.service.BookService;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.SupplierService;
 import com.example.demo.service.UsersService;
@@ -42,14 +47,19 @@ public class AdminController {
 	SupplierService supplierServ;
 	@Autowired
 	AuthorService authorService;
-	
+	@Autowired
+	BookService bookService;
 	@Autowired
 	SupplierRepository SupplierRep;
 	@Autowired
 	AuthorRepository AuthorRep;
+	
+	@Autowired
+	UsersRepository UserRepo;
 
 	@RequestMapping("/admin")
-	public String home(HttpSession session, Principal principal) {
+	public String home(Model model, HttpSession session, Principal principal) {
+		model.addAttribute("count", UserRepo.ListReportNbMembers());
 		if (principal != null) {
 			session.setAttribute("user", usersService.findByEmail(principal.getName()));
 		}
@@ -84,10 +94,9 @@ public class AdminController {
 	}
 
 	@RequestMapping("/admin/EditSupplier/{id}")
-	public String EditSupplier(Model model, @PathVariable("id") Integer id) {
-		System.out.println(id);
-		Optional<Supplier> supplier = supplierServ.findById(id);
-//		model.addAttribute("supplier", supplierServ.findById(id));
+	public String EditSupplier(Model model, @PathVariable("id") Optional<Integer>  id) {
+		List<Supplier> supplier = SupplierRep.findAllByID(id);
+		//model.addAttribute("supplier", supplier);
 		System.out.println(supplier.toString());
 		return "redirect:/supplier";
 
@@ -159,7 +168,9 @@ public class AdminController {
 	}
 
 	@RequestMapping("/product")
-	public String product() {
+	public String product(Model model) {
+		List<Book> book = bookService.findAll();
+ 		model.addAttribute("book",book );
 		return "page/book_admin";
 	}
 
