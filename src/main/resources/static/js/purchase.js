@@ -1,17 +1,17 @@
 let repo = JSON.parse(localStorage.getItem("mydata"));
-const data = JSON.stringify(repo.map(s=>parseInt(s.id))).replace("[","").replace("]","");
+const data = JSON.stringify(repo.map(s => parseInt(s.id))).replace("[", "").replace("]", "");
 let result = [];
-axios.get("/cart/get?arr="+data).then((result) => {
-    fillData(result.data);
-    this.result = result.data;
-    console.log(result.data);
+axios.get("/cart/get?arr=" + data).then((result) => {
+	fillData(result.data);
+	this.result = result.data;
+	console.log(result.data);
 }).catch((err) => {
-    console.log(err);
+	console.log(err);
 });;
 let mt = 0;
-const fillData = (data) =>{
-    data.forEach((s,i) => {
-        $("#body").append(`
+const fillData = (data) => {
+	data.forEach((s, i) => {
+		$("#body").append(`
         <tr>
         <td>
             <div class="icon">
@@ -25,34 +25,34 @@ const fillData = (data) =>{
             </div>
         </td>
         <td style="padding-left: -10px;" class="">${s.name}</td>
-        <td class="ms-4" style="padding-left: 8em;">${s.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</td>
+        <td class="ms-4" style="padding-left: 8em;">${s.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</td>
     </tr>
         `);
-        mt+=parseInt(s.price) * parseInt(repo[i].quantity);
-    });
-    $("#mt").text(mt.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})    );
-    $("#cost").text((mt+35000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
+		mt += parseInt(s.price) * parseInt(repo[i].quantity);
+	});
+	$("#mt").text(mt.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }));
+	$("#cost").text((mt + 35000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' }));
 }
 
-const pay = async(username) =>{
+const pay = async (username) => {
 
-    let bdt = [];
+	let bdt = [];
 
 
-    result.forEach((s,i)=>{
-        bdt.push({
-            book_id:s.id,
-            quantity:repo[i].quantity
-        });
-    });
+	result.forEach((s, i) => {
+		bdt.push({
+			book_id: s.id,
+			quantity: repo[i].quantity
+		});
+	});
 
-    const data={
-        receive_place:$("input[name='receive_place']").val(),
-        // user_id:username,
-        sum:mt+35000,
-        bill_details:bdt
-    };
-    console.log(data);
-    await axios.post("/bill?user_id="+username,data);
-    location.href = "/status_bill";
+	const data = {
+		receive_place: $("input[name='receive_place']").val(),
+		// user_id:username,
+		sum: mt + 35000,
+		bill_details: bdt
+	};
+	console.log(data);
+	await axios.post("/bill?user_id=" + username, data);
+	location.href = "/status_bill";
 }
