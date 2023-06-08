@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.repository.UsersRepository;
 
-
 @Controller
 public class LoginController {
 	@Autowired
@@ -17,6 +16,7 @@ public class LoginController {
 	public String login() {
 		return "page/login";
 	}
+	
 //	@PostMapping("CheckLogin")
 //	public String checkLogin(@RequestParam("id")int profileid, @RequestParam("password")String password 
 //			,Model model) {
@@ -26,10 +26,10 @@ public class LoginController {
 //		}
 //		return "page/cart";
 //	}
+
 	@GetMapping("logout")
 	public String logout() {
 		return "page/login";
 	}
-	
-}
 
+}

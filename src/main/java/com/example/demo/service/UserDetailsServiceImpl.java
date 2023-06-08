@@ -1,4 +1,4 @@
- package com.example.demo.service;
+package com.example.demo.service;
 
 import java.util.Arrays;
 
@@ -12,34 +12,31 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Users;
+import com.example.demo.entity.UsersDetail;
+import com.example.demo.repository.UsersDetailRepository;
 import com.example.demo.repository.UsersRepository;
-@Service
-public class UserDetailsServiceImpl implements UserDetailsService{
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
-    
-    @Autowired
-    private UsersRepository repo;
-	
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
+
+	@Autowired
+	PasswordEncoder passwordEncoder;
+
+	@Autowired
+	private UsersDetailRepository repo;
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-        // SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Users account = repo.findByEmail(username);
+		// SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UsersDetail account = repo.findByEmail(username);
 		System.out.println(account.toString());
-        if(account == null){
-            throw new UsernameNotFoundException(username);
-        }
-        account.setPassword(passwordEncoder.encode(account.getPassword()));
-        return new org.springframework.security.core.userdetails.User(
-        account.getEmail(),
-        account.getPassword(),
-        true,
-        true,
-        true,
-        true,
-        Arrays.asList(new SimpleGrantedAuthority("USER")));
+		if (account == null) {
+			throw new UsernameNotFoundException(username);
+		}
+		account.setPassword(passwordEncoder.encode(account.getPassword()));
+		return new org.springframework.security.core.userdetails.User(account.getEmail(), account.getPassword(), true,
+				true, true, true, Arrays.asList(new SimpleGrantedAuthority("USER")));
 	}
 
 }

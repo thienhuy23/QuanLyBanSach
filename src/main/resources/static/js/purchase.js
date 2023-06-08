@@ -48,11 +48,11 @@ const pay = async(username) =>{
 
     const data={
         receive_place:$("input[name='receive_place']").val(),
-        user_id:username,
+        // user_id:username,
         sum:mt+35000,
         bill_details:bdt
     };
-
-    await axios.post("/purchase",data);
+    console.log(data);
+    await axios.post("/purchase?user_id="+username,data);
     location.href = "/ORDER_USER";
 }
