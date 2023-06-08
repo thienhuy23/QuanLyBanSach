@@ -17,13 +17,13 @@ const fillData = (data) =>{
             </div>
         </td>
         <td style="padding-left: -10px;" class="">${s.name}</td>
-        <td class="ms-4" style="padding-left: 8em;">${s.price.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})}</td>
+        <td class="ms-4" style="padding-left: 8em;">${s.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</td>
     </tr>
         `);
-        mt+=parseInt(s.price) * parseInt(repo[i].quantity);
-    });
-    $("#mt").text(mt.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})    );
-    $("#cost").text((mt+35000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
+		mt += parseInt(s.price) * parseInt(repo[i].quantity);
+	});
+	$("#mt").text(mt.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }));
+	$("#cost").text((mt + 35000).toLocaleString('it-IT', { style: 'currency', currency: 'VND' }));
 }
 const init =async()=> {   
     result =await axios.get("/cart/get?arr="+data);
@@ -39,7 +39,7 @@ init();
 let mt = 0;
 
 
-const pay = async(username) =>{
+const pay = async (username) => {
 
     let bdt1 = [];
 

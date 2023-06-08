@@ -20,10 +20,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Author {
+	
 	@Id
 	@Column
 	@NotNull(message ="{NotNull.author.id}")
 	int id;
+	
 	@Column
 	@NotEmpty(message ="{NotEmpty.author.name}")
 	String name;

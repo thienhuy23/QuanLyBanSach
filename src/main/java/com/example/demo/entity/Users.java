@@ -19,35 +19,41 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Users implements Serializable{
+public class Users implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
-	int id; 
+	int id;
 	@Column
-	@NotEmpty(message ="{NotEmpty.users.name}")
+	@NotEmpty(message = "{NotEmpty.users.name}")
 	String name;
 	@Column
-	@NotEmpty(message ="{NotEmpty.users.password}")
+	@NotEmpty(message = "{NotEmpty.users.password}")
 	String password;
 	@Column
-	@NotEmpty(message ="{NotEmpty.users.email}")
+	@NotEmpty(message = "{NotEmpty.users.email}")
 	@Email(message = "Email.users.email")
 	String email;
 	@Column
-	@NotEmpty(message ="{NotEmpty.users.phone}")
+	@NotEmpty(message = "{NotEmpty.users.phone}")
 	String phone;
-	
+
 	@NotNull(message = "Vui chọn vai trò")
 	@Column
 	Boolean role;
 
-	@OneToMany(mappedBy = "user",fetch=FetchType.LAZY)
-	@JsonIgnore
-	List<Bill> bills;
+	/*
+	 * @OneToMany(mappedBy = "user",fetch=FetchType.LAZY)
+	 * 
+	 * @JsonIgnore List<Bill> bills;
+	 */
+//	@OneToMany(mappedBy = "user",fetch=FetchType.LAZY)
+//	@JsonIgnore
+//	List<Bill> bills;
 }

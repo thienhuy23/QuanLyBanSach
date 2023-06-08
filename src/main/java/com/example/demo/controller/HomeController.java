@@ -40,12 +40,6 @@ public class HomeController {
 	@Autowired
 	UsersService usersService;
 
-	@Autowired
-	BillService billService;
-
-	@Autowired
-	StatusRepository repo;
-
 	@GetMapping(value = { "", "/", "/home" })
 	public String home(@RequestParam("index") Optional<Integer> index, 
 						Model model,
@@ -67,50 +61,13 @@ public class HomeController {
 	public String error() {
 		return "page/error";
 	}
-
 	// @SessionAttribute("user")
 	// public Users getUser(Principal principal) {
 	// 	return usersService.findByEmail(principal.getName());
 	// }
 	
-	@GetMapping("/purchase")
-	public String Purchase(HttpSession session) {
-		// Users user = (Users)session.getAttribute("user");
-		// usersService.findById(user.getId());
-		return "page/Purchase";
-	}
-	@ResponseBody
-	@PostMapping("/purchase")
-	public List<?> savePurchase(@RequestParam("user_id") int id,@RequestBody Bill bill) {
-		Users user =usersService.findById(id).get();
-		Status status = repo.findById(1).get();
-		bill.setUser(user);
-		bill.setStatus(status);
-		bill.getBdt().stream().forEach(s->{
-			s.setBook(bookService.findById(s.getBook_id()).get());
-			s.setBill(bill);
-			// System.out.println(s.toString());
-		});
 
-		// System.out.println(bill.getBill_details());
-		billService.save(bill);
-		return billService.findAll();
-	}
-
-	@GetMapping("/ORDER_USER")
-	public String ORDER_USER(Model model) {
-		List<Bill> bills= billService.findAll();
-		long count = bills.stream().map(s->s.getBdt()).filter(s->s.size()>0).count();
-
-		System.out.println("size:"+count+",sum:"+bills.size());
-		model.addAttribute("bills",bills);
-		return "page/ORDER_USER";
-		
-	}
 	
-	@GetMapping("/USER")
-	public String USER() {
-		return "page/user";
-		
-	}
+	
+	
 }
