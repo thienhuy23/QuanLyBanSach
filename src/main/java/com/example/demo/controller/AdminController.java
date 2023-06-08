@@ -25,7 +25,7 @@ import com.example.demo.entity.Category;
 import com.example.demo.entity.Supplier;
 import com.example.demo.entity.Users;
 import com.example.demo.repository.AuthorRepository;
-import com.example.demo.repository.BookRepository;
+import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.SupplierRepository;
 import com.example.demo.repository.UsersRepository;
 import com.example.demo.service.AuthorService;
@@ -42,13 +42,18 @@ public class AdminController {
 	@Autowired
 	UsersService usersService;
 	@Autowired
+	UsersRepository userrepo;
+	@Autowired
 	CategoryService categoryService;
+	@Autowired
+	CategoryRepository categoryrepo;
 	@Autowired
 	SupplierService supplierServ;
 	@Autowired
 	AuthorService authorService;
 	@Autowired
 	BookService bookService;
+
 	@Autowired
 	SupplierRepository SupplierRep;
 	@Autowired
@@ -223,12 +228,30 @@ public class AdminController {
 		model.addAttribute("users", user);
 		return "redirect:/account";
 	}
+	@RequestMapping("/user/search")
+	public String searchUsers(Model model, @RequestParam("search") Optional<String> search) {
+		List<Users> user = userrepo.findAllByNameLike(search);
+		model.addAttribute("users", user);
+		System.out.println(search);
+		System.out.println(user);
+		return "page/account_admin";
+
+	}
+	@RequestMapping("/category/search")
+	public String searchCategorys(Model model, @RequestParam("search") Optional<String> search) {
+		List<Category> cate = categoryrepo.findAllByNameLike(search);
+		model.addAttribute("categorys", cate);
+		System.out.println(search);
+		System.out.println(cate);
+		return "page/category_admin";
+
+	}
 
 	@PostMapping("/category/create")
 	public String createCategory(Model model, @ModelAttribute("category") Category category) {
 		System.out.println("user update:" + category);
 		categoryService.createCategory(category);
-		model.addAttribute("users", category);
+		model.addAttribute("categorys", category);
 		model.addAttribute("message", "Thêm mới thành công!");
 		return "redirect:/category";
 	}
@@ -237,7 +260,7 @@ public class AdminController {
 	public String updateCategory(Model model, @ModelAttribute("category") Category category) {
 		System.out.println("user update:" + category);
 		categoryService.update(category);
-		model.addAttribute("users", category);
+		model.addAttribute("categorys", category);
 		model.addAttribute("message", "Cập nhật thành công!");
 		return "redirect:/category";
 	}
@@ -247,5 +270,6 @@ public class AdminController {
 		categoryService.deleteCategoryId(id);
 		return "redirect:/category";
 	}
+
 
 }

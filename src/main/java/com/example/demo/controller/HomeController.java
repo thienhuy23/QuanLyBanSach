@@ -11,10 +11,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.example.demo.entity.Bill;
 import com.example.demo.entity.Users;
+import com.example.demo.service.BillService;
 import com.example.demo.service.BookService;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.UsersService;
@@ -30,6 +35,9 @@ public class HomeController {
 	CategoryService categoryService;
 	@Autowired
 	UsersService usersService;
+
+	@Autowired
+	BillService billService;
 
 	@GetMapping(value = { "", "/", "/home" })
 	public String home(@RequestParam("index") Optional<Integer> index, 
@@ -57,4 +65,29 @@ public class HomeController {
 	// public Users getUser(Principal principal) {
 	// 	return usersService.findByEmail(principal.getName());
 	// }
+	
+	@GetMapping("/purchase")
+	public String Purchase(HttpSession session) {
+		// Users user = (Users)session.getAttribute("user");
+		// usersService.findById(user.getId());
+		return "page/Purchase";
+	}
+
+	@PostMapping("/purchase")
+	public String savePurchase(@RequestBody Bill bill) {
+		billService.save(bill);
+		return "redirect:/ORDER_USER";
+	}
+
+	@RequestMapping("/ORDER_USER")
+	public String ORDER_USER() {
+		return "page/ORDER_USER";
+		
+	}
+	
+	@GetMapping("/USER")
+	public String USER() {
+		return "page/user";
+		
+	}
 }
