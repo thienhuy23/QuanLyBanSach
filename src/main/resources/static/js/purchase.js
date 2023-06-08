@@ -1,4 +1,4 @@
-let repo = JSON.parse(localStorage.getItem("mydata")==null?[]:ocalStorage.getItem("mydata"));
+let repo = JSON.parse(localStorage.getItem("mydata")==null?[]:localStorage.getItem("mydata"));
 const data = JSON.stringify(repo.map(s=>parseInt(s.id))).replace("[","").replace("]","");
 let result = [];
 const fillData = (data) =>{
@@ -58,7 +58,7 @@ const pay = async (username) => {
         bdt:bdt1
     };
     console.log(data);
-    await axios.post("/purchase?user_id="+username,data);
+    await axios.post("/bill?user_id="+username,data);
     localStorage.removeItem("myData");
-    // location.href = "/ORDER_USER";
+    location.href = "/status_bill";
 }
