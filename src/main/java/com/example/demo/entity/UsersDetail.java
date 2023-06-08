@@ -20,11 +20,11 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
-@Table
+@Table(name ="users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Users implements Serializable{
+public class UsersDetail implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
@@ -47,7 +47,7 @@ public class Users implements Serializable{
 	@Column
 	Boolean role;
 
-	@OneToMany(mappedBy = "user",fetch=FetchType.LAZY)
-	@JsonIgnore
-	List<Bill> bills;
+	// @OneToMany(mappedBy = "user",fetch=FetchType.LAZY)
+	// @JsonIgnore
+	// List<Bill> bills;
 }

@@ -12,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Users;
+import com.example.demo.entity.UsersDetail;
+import com.example.demo.repository.UsersDetailRepository;
 import com.example.demo.repository.UsersRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
@@ -20,13 +22,13 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     PasswordEncoder passwordEncoder;
     
     @Autowired
-    private UsersRepository repo;
+    private UsersDetailRepository repo;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
         // SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Users account = repo.findByEmail(username);
+		UsersDetail account = repo.findByEmail(username);
 		System.out.println(account.toString());
         if(account == null){
             throw new UsernameNotFoundException(username);
