@@ -32,11 +32,11 @@
 					<div class="card rounded-0 border-0">
 						<div class=" pb-2 fs-4 p-4 pt-0 fw-bold">Danh sách người
 							dùng</div>
-						<form class="row g-3" th:action="@{/admin}" method="post" th:object="${user}">
+						<form class="row g-3" th:action="@{/admin}" method="post" th:object="${users}">
 
 							<div class=" p-5 pt-3 pb-1">
-								<label for="inputAddress" class="form-label fw-bold">ID:
-								</label> <input   hidden type="text" name="id" 
+								<label hidden="" for="inputAddress" class="form-label fw-bold">ID:
+								</label> <input   hidden type="text" name="id" disabled="disabled"
 									class="form-control rounded-0 border-secondary"
 									id="inputAddress" />
 
@@ -44,14 +44,14 @@
 
 							<div class=" p-5 pt-3 pb-1">
 								<label for="inputAddress" class="form-label fw-bold">Tên
-									khách hàng: </label> <input type="text" name="name" 
+									khách hàng: </label> <input  type="text" name="name" 
 									class="form-control rounded-0 border-secondary"
 									id="inputAddress" />
 
 							</div>
 							<div class=" p-5 pt-3 pb-1">
 								<label for="inputAddress" class="form-label fw-bold">Mật
-									khẩu: </label> <input type="text" name="password" 
+									khẩu: </label> <input type="password" name="password" 
 									class="form-control rounded-0 border-secondary"
 									id="inputAddress" />
 

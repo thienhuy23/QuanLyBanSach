@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Author;
 import com.example.demo.entity.Category;
+import com.example.demo.entity.Image;
 import com.example.demo.entity.Supplier;
 import com.example.demo.entity.Users;
 import com.example.demo.repository.AuthorRepository;
@@ -28,6 +29,7 @@ import com.example.demo.repository.SupplierRepository;
 import com.example.demo.repository.UsersRepository;
 import com.example.demo.service.AuthorService;
 import com.example.demo.service.CategoryService;
+import com.example.demo.service.ImageService;
 import com.example.demo.service.SupplierService;
 import com.example.demo.service.UsersService;
 
@@ -42,18 +44,20 @@ public class AdminController {
 	UsersRepository userrepo;
 	@Autowired
 	CategoryService categoryService;
-	@Autowired 
+	@Autowired
 	CategoryRepository categoryrepo;
 	@Autowired
 	SupplierService supplierServ;
 	@Autowired
 	AuthorService authorService;
-	@Autowired 
+	@Autowired
 	UsersRepository repository;
 	@Autowired
 	SupplierRepository SupplierRep;
 	@Autowired
 	AuthorRepository AuthorRep;
+	@Autowired
+	ImageService imgservice;
 
 	@RequestMapping("/admin")
 	public String home(HttpSession session, Principal principal) {
@@ -65,7 +69,7 @@ public class AdminController {
 
 	// Supplier
 	@RequestMapping("/supplier")
-	public String supplier(Model model,@RequestParam("field") Optional<String> field) {
+	public String supplier(Model model, @RequestParam("field") Optional<String> field) {
 		model.addAttribute("supplierr", new Supplier());
 		Sort sort = Sort.by(field.orElse("name"));
 		model.addAttribute("supplier", SupplierRep.findAll(sort));
@@ -112,10 +116,10 @@ public class AdminController {
 
 	// Author
 	@RequestMapping("/author")
-	public String author(Model model,@RequestParam("field") Optional<String> field) {
+	public String author(Model model, @RequestParam("field") Optional<String> field) {
 		model.addAttribute("authorr", new Author());
 		Sort sort = Sort.by(field.orElse("name"));
-		model.addAttribute("author" ,AuthorRep.findAll(sort));
+		model.addAttribute("author", AuthorRep.findAll(sort));
 		return "page/author_admin";
 	}
 
@@ -142,10 +146,10 @@ public class AdminController {
 		model.addAttribute("author", author.get());
 		return "page/author_admin";
 	}
-	
+
 	@RequestMapping("/admin/searchAuthor")
-	public String searchAuthor(Model model,@RequestParam("name") Optional<String> name,
-											@RequestParam("field") Optional<String> field) {
+	public String searchAuthor(Model model, @RequestParam("name") Optional<String> name,
+			@RequestParam("field") Optional<String> field) {
 		model.addAttribute("authorr", new Author());
 		Sort sort = Sort.by(field.orElse("name"));
 		List<Author> author = AuthorRep.findAllByNameLike(name, sort);
@@ -161,7 +165,9 @@ public class AdminController {
 	}
 
 	@RequestMapping("/image")
-	public String image() {
+	public String image(Model model) {
+		List<Image> img = imgservice.findAll();
+		model.addAttribute("img", img);
 		return "page/image_admin";
 	}
 
@@ -212,6 +218,18 @@ public class AdminController {
 		return "redirect:/account";
 	}
 
+	@RequestMapping("/user/edit/{id}")
+	public String editUser(Model model, @PathVariable("id") int id) {
+//		Users user = userrepo.findById(id)
+//			      .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+//			    
+//			    model.addAttribute("users", user);
+		Optional<Users> user = usersService.findById(id);
+		model.addAttribute("users", user.get());
+		System.out.println(user);
+		return "redirect:/account";
+	}
+
 	@RequestMapping("/user/delete/{id}")
 	public String DeletetUsersId(@PathVariable("id") int id, Model model) {
 		usersService.deleteUserId(id);
@@ -219,6 +237,7 @@ public class AdminController {
 		model.addAttribute("users", user);
 		return "redirect:/account";
 	}
+
 	@RequestMapping("/user/search")
 	public String searchUsers(Model model, @RequestParam("search") Optional<String> search) {
 		List<Users> user = userrepo.findAllByNameLike(search);
@@ -228,6 +247,7 @@ public class AdminController {
 		return "page/account_admin";
 
 	}
+
 	@RequestMapping("/category/search")
 	public String searchCategorys(Model model, @RequestParam("search") Optional<String> search) {
 		List<Category> cate = categoryrepo.findAllByNameLike(search);
@@ -238,16 +258,29 @@ public class AdminController {
 
 	}
 
-	@PostMapping("/category/create")
-	public String createCategory(Model model, @ModelAttribute("category") Category category) {
-		System.out.println("user update:" + category);
+	@RequestMapping("/category/create")
+	public String createCategory(Model model, @ModelAttribute("categorys") Category category) {
 		categoryService.createCategory(category);
-		model.addAttribute("categorys", category);
 		model.addAttribute("message", "Thêm mới thành công!");
 		return "redirect:/category";
+
 	}
 
-	@PostMapping("/category/update")
+//	@RequestMapping("/category/create")
+//	public String createCategory(@Valid @ModelAttribute("categorys") Category category, BindingResult result,
+//			Model model) {
+//
+//		if (result.hasErrors()) {
+//			model.addAttribute("categorys", categoryService.findAll());
+//			return "page/category_admin";
+//		} else {
+//			categoryService.createCategory(category);
+//			model.addAttribute("message", "Thêm mới thành công!");
+//			return "redirect:/category";
+//		}
+//
+//	}
+	@RequestMapping("/category/update")
 	public String updateCategory(Model model, @ModelAttribute("category") Category category) {
 		System.out.println("user update:" + category);
 		categoryService.update(category);
@@ -262,5 +295,12 @@ public class AdminController {
 		return "redirect:/category";
 	}
 
+	@RequestMapping("/category/edit/{id}")
+	public String editCategorys(Model model, @PathVariable("id") int id) {
+		Optional<Category> cate = categoryService.findById(id);
+		model.addAttribute("categorys", cate.get());
+		System.out.println(cate);
+		return "redirect:/category";
+	}
 
 }
