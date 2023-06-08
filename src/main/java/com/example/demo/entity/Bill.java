@@ -34,7 +34,7 @@ public class Bill implements Serializable{
     int id;
 
     @Column
-    String receivePlace;
+    String receive_place;
 
     @Column
     Date date=new Date();

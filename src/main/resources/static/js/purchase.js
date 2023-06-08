@@ -53,6 +53,6 @@ const pay = async(username) =>{
         bill_details:bdt
     };
     console.log(data);
-    await axios.post("/purchase?user_id="+username,data);
-    location.href = "/ORDER_USER";
+    await axios.post("/bill?user_id="+username,data);
+    location.href = "/status_bill";
 }

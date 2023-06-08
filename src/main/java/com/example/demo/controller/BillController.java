@@ -30,8 +30,10 @@ public class BillController {
 	
 	@GetMapping("/bill")
 	public String Purchase(HttpSession session) {
-		// Users user = (Users)session.getAttribute("user");
-		// usersService.findById(user.getId());
+		/*
+		 * Users user = (Users)session.getAttribute("user");
+		 * usersService.findById(user.getId());
+		 */
 		return "page/bill";
 	}
 
