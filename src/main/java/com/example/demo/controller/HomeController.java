@@ -38,12 +38,6 @@ public class HomeController {
 	@Autowired
 	UsersService usersService;
 
-	@Autowired
-	BillService billService;
-
-	@Autowired
-	StatusRepository repo;
-
 	@GetMapping(value = { "", "/", "/home" })
 	public String home(@RequestParam("index") Optional<Integer> index, 
 						Model model,
@@ -65,35 +59,13 @@ public class HomeController {
 	public String error() {
 		return "page/error";
 	}
-
 	// @SessionAttribute("user")
 	// public Users getUser(Principal principal) {
 	// 	return usersService.findByEmail(principal.getName());
 	// }
 	
-	@GetMapping("/purchase")
-	public String Purchase(HttpSession session) {
-		// Users user = (Users)session.getAttribute("user");
-		// usersService.findById(user.getId());
-		return "page/Purchase";
-	}
 
-	@PostMapping("/purchase")
-	public String savePurchase(@RequestParam("user_id") int id,@RequestBody Bill bill) {
-		Users user =usersService.findById(id).get();
-		Status status = repo.findById(1).get();
-		bill.setUser(user);
-		bill.setStatus(status);
-		billService.save(bill);
-		return "redirect:/ORDER_USER";
-	}
-
-	@GetMapping("/ORDER_USER")
-	public String ORDER_USER(Model model) {
-		model.addAttribute("bill",billService.findAll());
-		return "page/ORDER_USER";
-		
-	}
+	
 	
 	
 }
