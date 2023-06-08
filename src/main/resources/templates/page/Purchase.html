@@ -28,19 +28,19 @@
 						<i class="bi bi-person-square" style="font-size: 45px"></i>
 					</div>
 					<p class=" ms-3">
-						long@gmail.com <br> <a
+						[[${session.user?.name}]] <br> <a
 							class="text-decoration-none is-color-pink" href="">Đăng xuất</a>
 					</p>
 				</div>
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control " id=""
-						placeholder="name@example.com"> <label
-						class="text-secondary" th:value="${session.user.name}">Họ và tên</label>
+						placeholder="name@example.com" th:value="${session.user?.name}"> <label
+						class="text-secondary" >Họ và tên</label>
 				</div>
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control" id=""
-						placeholder="name@example.com"> <label
-						class="text-secondary" th:value="${session.user.phone}">Số điện thoại</label>
+						placeholder="name@example.com" th:value="${session.user?.phone}"> <label
+						class="text-secondary" >Số điện thoại</label>
 				</div>
 				<div class="form-floating mb-3">
 					<input type="text" name="receive_place" class="form-control" id=""

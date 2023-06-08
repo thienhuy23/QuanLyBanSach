@@ -6,6 +6,7 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.annotation.Generated;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -47,9 +48,9 @@ public class Bill implements Serializable{
 	@JsonIgnore
 	Users user;
 
-    @OneToMany(mappedBy = "bill",fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "bill",fetch=FetchType.LAZY,cascade = CascadeType.PERSIST)
 	// @JsonIgnore
-	List<Bill_detail> bill_details;
+	List<Bill_detail> bdt;
 
 
     @ManyToOne

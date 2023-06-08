@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.catalina.authenticator.SpnegoAuthenticator.AuthenticateAction;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.example.demo.entity.Bill;
@@ -77,20 +79,31 @@ public class HomeController {
 		// usersService.findById(user.getId());
 		return "page/Purchase";
 	}
-
+	@ResponseBody
 	@PostMapping("/purchase")
-	public String savePurchase(@RequestParam("user_id") int id,@RequestBody Bill bill) {
+	public List<?> savePurchase(@RequestParam("user_id") int id,@RequestBody Bill bill) {
 		Users user =usersService.findById(id).get();
 		Status status = repo.findById(1).get();
 		bill.setUser(user);
 		bill.setStatus(status);
+		bill.getBdt().stream().forEach(s->{
+			s.setBook(bookService.findById(s.getBook_id()).get());
+			s.setBill(bill);
+			// System.out.println(s.toString());
+		});
+
+		// System.out.println(bill.getBill_details());
 		billService.save(bill);
-		return "redirect:/ORDER_USER";
+		return billService.findAll();
 	}
 
 	@GetMapping("/ORDER_USER")
 	public String ORDER_USER(Model model) {
-		model.addAttribute("bill",billService.findAll());
+		List<Bill> bills= billService.findAll();
+		long count = bills.stream().map(s->s.getBdt()).filter(s->s.size()>0).count();
+
+		System.out.println("size:"+count+",sum:"+bills.size());
+		model.addAttribute("bills",bills);
 		return "page/ORDER_USER";
 		
 	}

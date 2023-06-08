@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.entity.Book;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
-    @Query("select b from Book b where b.id in  (:list)")
+    @Query("select b from Book b where b.id in (:list)")
     List<Book> findByListId(@Param("list")List<Integer> list);
 }

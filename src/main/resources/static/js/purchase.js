@@ -1,14 +1,6 @@
-let repo = JSON.parse(localStorage.getItem("mydata"));
+let repo = JSON.parse(localStorage.getItem("mydata")==null?[]:ocalStorage.getItem("mydata"));
 const data = JSON.stringify(repo.map(s=>parseInt(s.id))).replace("[","").replace("]","");
 let result = [];
-axios.get("/cart/get?arr="+data).then((result) => {
-    fillData(result.data);
-    this.result = result.data;
-    console.log(result.data);
-}).catch((err) => {
-    console.log(err);
-});;
-let mt = 0;
 const fillData = (data) =>{
     data.forEach((s,i) => {
         $("#body").append(`
@@ -33,14 +25,27 @@ const fillData = (data) =>{
     $("#mt").text(mt.toLocaleString('it-IT', {style : 'currency', currency : 'VND'})    );
     $("#cost").text((mt+35000).toLocaleString('it-IT', {style : 'currency', currency : 'VND'}));
 }
+const init =async()=> {   
+    result =await axios.get("/cart/get?arr="+data);
+    console.log(result.data);
+    result = result.data;
+    fillData(result);
+
+};
+init();
+// $(document).ready(async function () {
+
+
+let mt = 0;
+
 
 const pay = async(username) =>{
 
-    let bdt = [];
+    let bdt1 = [];
 
 
     result.forEach((s,i)=>{
-        bdt.push({
+        bdt1.push({
             book_id:s.id,
             quantity:repo[i].quantity
         });
@@ -50,9 +55,10 @@ const pay = async(username) =>{
         receive_place:$("input[name='receive_place']").val(),
         // user_id:username,
         sum:mt+35000,
-        bill_details:bdt
+        bdt:bdt1
     };
     console.log(data);
     await axios.post("/purchase?user_id="+username,data);
-    location.href = "/ORDER_USER";
+    localStorage.removeItem("myData");
+    // location.href = "/ORDER_USER";
 }
