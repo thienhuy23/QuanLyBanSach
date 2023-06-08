@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,17 +27,18 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Bill {
+public class Bill implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     int id;
+
     @Column
     String receive_place;
+
     @Column
-    String status;
-    @Column
-    Date date;
+    Date date=new Date();
+    
     @Column
     double sum;
 
@@ -49,4 +51,9 @@ public class Bill {
 	// @JsonIgnore
 	List<Bill_detail> bill_details;
 
+
+    @ManyToOne
+	@JoinColumn(name="status_id")
+	@JsonIgnore
+	Status status;
 }

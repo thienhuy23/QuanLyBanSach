@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.example.demo.entity.Bill;
+import com.example.demo.entity.Status;
 import com.example.demo.entity.Users;
+import com.example.demo.repository.StatusRepository;
 import com.example.demo.service.BillService;
 import com.example.demo.service.BookService;
 import com.example.demo.service.CategoryService;
@@ -38,6 +40,9 @@ public class HomeController {
 
 	@Autowired
 	BillService billService;
+
+	@Autowired
+	StatusRepository repo;
 
 	@GetMapping(value = { "", "/", "/home" })
 	public String home(@RequestParam("index") Optional<Integer> index, 
@@ -74,13 +79,18 @@ public class HomeController {
 	}
 
 	@PostMapping("/purchase")
-	public String savePurchase(@RequestBody Bill bill) {
+	public String savePurchase(@RequestParam("user_id") int id,@RequestBody Bill bill) {
+		Users user =usersService.findById(id).get();
+		Status status = repo.findById(1).get();
+		bill.setUser(user);
+		bill.setStatus(status);
 		billService.save(bill);
 		return "redirect:/ORDER_USER";
 	}
 
-	@RequestMapping("/ORDER_USER")
-	public String ORDER_USER() {
+	@GetMapping("/ORDER_USER")
+	public String ORDER_USER(Model model) {
+		model.addAttribute("bill",billService.findAll());
 		return "page/ORDER_USER";
 		
 	}

@@ -35,15 +35,15 @@
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control " id=""
 						placeholder="name@example.com"> <label
-						class="text-secondary" th:value="${session.user?.name}">Họ và tên</label>
+						class="text-secondary" th:value="${session.user.name}">Họ và tên</label>
 				</div>
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control" id=""
 						placeholder="name@example.com"> <label
-						class="text-secondary" th:value="${session.user?.phone}">Số điện thoại</label>
+						class="text-secondary" th:value="${session.user.phone}">Số điện thoại</label>
 				</div>
 				<div class="form-floating mb-3">
-					<input type="text" class="form-control" id=""
+					<input type="text" name="receive_place" class="form-control" id=""
 						placeholder="name@example.com"> <label
 						class="text-secondary">Địa chỉ</label>
 				</div>
@@ -92,7 +92,6 @@
 
 			</div>
 			<div class="col-md-5 col-sm-12 p-5">
-
 				<div class="pt-5">
 					<table class="table-product ">
 						<thead>
