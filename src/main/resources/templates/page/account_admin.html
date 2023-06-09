@@ -38,7 +38,7 @@
 								</label>
 								<!--/*@thymesVar id="id" type=""*/-->
 								<input type="text" name="id" th:value="${user?.id}"
-									disabled="disabled"
+									disabled="disabled" readonly="readonly"
 									class="form-control rounded-0 border-secondary" id="inputId" />
 							</div>
 
@@ -69,6 +69,24 @@
 									điện thoại: </label> <input type="text" th:value="${user?.phone}"
 									name="phone" class="form-control rounded-0 border-secondary"
 									id="inputAddress" />
+							</div>
+							<div class=" p-5 pt-3 pb-1">
+								<label for="inputAddress" class="form-label fw-bold">Mật
+									khẩu: </label> <input th:value="${user?.password}" type="password"
+									name="password" class="form-control rounded-0 border-secondary"
+									id="inputPassword" />
+							</div>
+							<div class=" p-5 pt-3 pb-1">
+								<label for="inputAddress" class="form-label fw-bold">Email:
+								</label> <input type="email" th:value="${user?.email}" name="email"
+									class="form-control rounded-0 border-secondary" id="inputEmail" />
+
+							</div>
+							<div class=" p-5 pt-3 pb-1">
+								<label for="inputAddress" class="form-label fw-bold">Số
+									điện thoại: </label> <input type="text" th:value="${user?.phone}"
+									name="phone" class="form-control rounded-0 border-secondary"
+									id="inputAddress" />
 
 							</div>
 							<div class="form-radio mb-3">
@@ -76,10 +94,10 @@
 									class="form-radio " value="1"
 									th:checked="${user?.role == true}" type="radio" name="role">
 									Admin <input class="form-radio" type="radio" name="role"
-									value="0" th:checked="${user?.role == false}">
-									User
+									value="0" th:checked="${user?.role == false}"> User
 								</label>
 							</div>
+
 							<div class=" p-5 pt-1 pb-3">
 								<button type="submit"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
@@ -92,7 +110,9 @@
 									style="width: 100px;" formaction="/user/update">Sửa</button>
 								<button type="submit"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
-									style="width: 100px;">Đặt lại</button>
+									HEAD style="width: 100px;">Đặt lại</button>
+								</button>
+
 							</div>
 						</form>
 					</div>
@@ -118,6 +138,7 @@
 							<td>[[${user.phone}]]</td>
 							<td><a style="text-decoration: none;"
 								th:href="@{/user/edit(id=${user.id})}">Edit</a></td>
+
 							<th><a class="is-color-pink fs-4"
 								style="text-decoration: none;"
 								th:href="@{|/user/delete/${user.id}|}"><i
@@ -127,7 +148,5 @@
 				</table>
 			</div>
 		</div>
-	</div>
-
 </body>
 </html>

@@ -93,10 +93,10 @@
 						<div class="row mx-auto my-auto justify-content-center">
 							<div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
 								<div class="carousel-inner" role="listbox">
-									<div class="carousel-item" th:classappend="${b.id == listBook[0].id}?'active':''" th:each="b:${listBook}">
+									<div class="carousel-item" th:classappend="${iter.index==0}?'active':''" th:each="b,iter:${listBook}">
 										<div class="col-md-3">
 											<div class="card" style="border-radius: 0 !important;">
-												<img class="card-img-top" th:src="${b.images[0].url}" alt="Title">
+												<!-- <img class="card-img-top" th:src="@{${b.images[0].url}}" alt="Title"> -->
 												<div class="card-body px-2">
 													<a th:href="@{'/book?bookId='+${b.id}}" class="card-text text-decoration-none text-dark">[[${b.name}]]</a>
 												</div>

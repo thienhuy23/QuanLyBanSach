@@ -45,7 +45,7 @@ public class HomeController {
 						Model model,
 						HttpSession session,
 						Principal principal) {
-		int i = index.isPresent() ? index.get() : 0;
+		int i = index.orElse(0);
 		model.addAttribute("index", i);
 		model.addAttribute("books", bookService.getPagination(i, 8));
 		model.addAttribute("categories", categoryService.findAll());

@@ -25,6 +25,7 @@ public class BookController {
 			return "redirect:/error";
 		}
 		model.addAttribute("book", book.get());
+		// bookService.findListExpect(bookId).stream().map(s->s.getImages().size()).forEach(System.out::println);
 		model.addAttribute("listBook",bookService.findListExpect(bookId));
 		return "page/book";
 	}

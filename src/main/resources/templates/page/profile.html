@@ -99,8 +99,7 @@
 						<div class="modal-body">
 
 
-							<form class="ms-5" th:action="@{/profile/update}" method="post"
-th:object="${users}"
+							<form class="ms-5" th:action="@{/profile/update}" method="post" th:object="${users}"
 								onSubmit="if(!confirm('Bạn muốn cập nhật?')){return false;}">
 
 								<input th:field="*{id}" hidden type="text"
