@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.catalina.authenticator.SpnegoAuthenticator.AuthenticateAction;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.example.demo.entity.Bill;
@@ -43,7 +45,7 @@ public class HomeController {
 						Model model,
 						HttpSession session,
 						Principal principal) {
-		int i = index.isPresent() ? index.get() : 0;
+		int i = index.orElse(0);
 		model.addAttribute("index", i);
 		model.addAttribute("books", bookService.getPagination(i, 8));
 		model.addAttribute("categories", categoryService.findAll());

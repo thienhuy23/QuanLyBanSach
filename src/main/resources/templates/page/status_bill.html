@@ -66,21 +66,26 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr class="pt-3" th:each="item:${bill[0].bill_details}">
-												<td><div href="#" class="position-relative pt-1">
-														<span class="fs-4 text-dark ii"><img
-															src="https://cdn0.fahasa.com/media/catalog/product/i/m/image_217480.jpg"
-															style="width: 100px" class="rounded float-start"
-															alt="..."></span>
-													</div></td>
-												<td>[[${item.book.name}]]</td>
-												<td>[[${item.quantity}]]</td>
-												<td>[[${item.book.price}]]</td>
-											</tr>
-											<tr>
-												<td colspan="3" class="text-end fw-bold">Thành tiền</td>
-												<td>[[${bill[0].sum}]]</td>
-											</tr>
+											<div th:each="bill:${bills}">
+												<tr class="pt-3" th:each="item:${bill.bdt}">
+													<td><div href="#" class="position-relative pt-1">
+															<span class="fs-4 text-dark ii"><img
+																src="https://cdn0.fahasa.com/media/catalog/product/i/m/image_217480.jpg"
+																style="width: 100px" class="rounded float-start"
+																alt="..."></span>
+														</div></td>
+													<td>[[${item.book.name}]]</td>
+													<td>[[${item.quantity}]]</td>
+													<td>[[${item.book.price}]]</td>
+												</tr>
+												<tr>
+													<td colspan="3" class="text-end fw-bold">Thành tiền</td>
+													<td>[[${bill.sum}]]</td>
+													<td>												[[${bill.receive_place}]]
+													</td>
+												</tr>
+											</div>
+											
 											<tr>
 												<td colspan="2">Đơn hàng đang được xử lý</td>
 

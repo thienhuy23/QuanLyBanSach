@@ -14,7 +14,7 @@ import com.example.demo.entity.Book;
 import jakarta.transaction.Transactional;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
-    @Query("select b from Book b where b.id in  (:list)")
+    @Query("select b from Book b where b.id in (:list)")
     List<Book> findByListId(@Param("list")List<Integer> list);
     
     @Modifying
