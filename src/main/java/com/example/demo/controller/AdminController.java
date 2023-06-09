@@ -69,13 +69,11 @@ public class AdminController {
 	@Autowired
 	AuthorRepository AuthorRep;
 
-	
 	@Autowired
 	UsersRepository UserRepo;
 
 	@Autowired
 	ImageService imgservice;
-
 
 	@RequestMapping("/admin")
 	public String home(Model model, HttpSession session, Principal principal) {
@@ -113,7 +111,7 @@ public class AdminController {
 
 	}
 
-	@RequestMapping( "/supplier/edit")
+	@RequestMapping("/supplier/edit")
 	public String editSupplier(Model model, @RequestParam("id") int id) {
 		Optional<Supplier> supplier = supplierServ.findById(id);
 		model.addAttribute("supplier", supplierServ.findAll());
@@ -157,21 +155,20 @@ public class AdminController {
 		return "redirect:/author";
 	}
 
-	
-	@RequestMapping( "/author/edit")
+	@RequestMapping("/author/edit")
 	public String editAuthur(Model model, @RequestParam("id") int id) {
 		Optional<Author> authur = authorService.findById(id);
 		model.addAttribute("author", authorService.findAll());
 		model.addAttribute("authorr", authur.orElse(new Author()));
 		return "page/author_admin";
 	}
+
 	@RequestMapping("/admin/EditAuthor/{id}")
 	public String EditAuthor(Model model, @PathVariable("id") Integer id) {
 		Optional<Author> author = authorService.findById(id);
 		model.addAttribute("author", author.get());
 		return "page/author_admin";
 	}
-	
 
 	@RequestMapping("/admin/searchAuthor")
 	public String searchAuthor(Model model, @RequestParam("name") Optional<String> name,
@@ -182,7 +179,6 @@ public class AdminController {
 		model.addAttribute("author", author);
 		return "page/author_admin";
 	}
-	
 
 	@RequestMapping("/category")
 	public String category(Model model) {
@@ -198,36 +194,41 @@ public class AdminController {
 		model.addAttribute("img", img);
 		return "page/image_admin";
 	}
+
 	@PostMapping("/image")
 	public String handleImage(Model model, @RequestParam("url") String url,
-							  @RequestParam(value = "id", required = false) String idString,
-							  @RequestParam("bookId") int bookId,
-							  @RequestParam(value = "action", required = false) String action) {
+			@RequestParam(value = "id", required = false) String idString, @RequestParam("bookId") int bookId,
+			@RequestParam(value = "action", required = false) String action) {
 		int id = 0; // Default value for id
 		if (idString != null && !idString.isEmpty()) {
 			id = Integer.parseInt(idString);
 		}
 		if (action != null && action.equals("add")) {
-		
+
 			Image img = new Image();
 			Optional<Book> book = bookService.findById(bookId);
 			img.setBook(book.get());
 			img.setUrl(url);
 			imgservice.save(img);
-		}else if(action != null && action.equals("edit")){
+		} else if (action != null && action.equals("edit")) {
 			Optional<Image> image = imgservice.findById(id);
-			if(image.isPresent()){
+			if (image.isPresent()) {
 				image.get().setUrl(url);
 				image.get().setBook(bookService.findById(bookId).get());
 				imgservice.save(image.get());
 			}
-		}else if (action.equals("delete")) {
-		
+		} else if (action.equals("delete")) {
+
 		}
 		return "redirect:/image";
 	}
 
-	@GetMapping("/image/edit")
+	@RequestMapping("/image/new")
+	public String newImage(Model model) {
+
+		return "redirect:/image";
+	}
+	@RequestMapping("/image/edit")
 	public String editImage(Model model, @RequestParam("id") int id) {
 		Optional<Image> img = imgservice.findById(id);
 		model.addAttribute("book", bookService.findAll());
@@ -241,20 +242,18 @@ public class AdminController {
 		model.addAttribute("Author", authorService.findAll());
 		model.addAttribute("Supplier", supplierServ.findAll());
 		model.addAttribute("Cateory", categoryService.findAll());
- 		model.addAttribute("book",bookService.findAll());
+		model.addAttribute("book", bookService.findAll());
 		return "page/book_admin";
 	}
-	
+
 	@RequestMapping("/ProductCreate")
-	public String ProductCreate(
-			@RequestParam("category") Optional<Integer> category,@RequestParam("supplier") Optional<Integer> supplier,@RequestParam("author") Optional<Integer> author,
-			 @RequestParam("name") Optional<String> name,
-											@RequestParam("price") Optional<Double> price,
-											@RequestParam("discount") Optional<Float> discount,
-											@RequestParam("published_year") Optional<Integer> published_year,
-											@RequestParam("number_page") Optional<Integer> number_page,
-											@RequestParam("describe") Optional<String> describe
-											)  {
+	public String ProductCreate(@RequestParam("category") Optional<Integer> category,
+			@RequestParam("supplier") Optional<Integer> supplier, @RequestParam("author") Optional<Integer> author,
+			@RequestParam("name") Optional<String> name, @RequestParam("price") Optional<Double> price,
+			@RequestParam("discount") Optional<Float> discount,
+			@RequestParam("published_year") Optional<Integer> published_year,
+			@RequestParam("number_page") Optional<Integer> number_page,
+			@RequestParam("describe") Optional<String> describe) {
 		bookRep.saveBook(category, supplier, author, name, price, discount, published_year, number_page, describe);
 ////		model.addAttribute("bookk", new Book());
 //		System.out.println(name+"name");
@@ -294,12 +293,9 @@ public class AdminController {
 	}
 
 	@PostMapping("/user/create")
-	public String createUser(Model model,
-							 @RequestParam("name") String name,
-							 @RequestParam("password") String password,
-							 @RequestParam("email") String email,
-							 @RequestParam("phone") String phone,
-							 @RequestParam("role") String role) {
+	public String createUser(Model model, @RequestParam("name") String name, @RequestParam("password") String password,
+			@RequestParam("email") String email, @RequestParam("phone") String phone,
+			@RequestParam("role") String role) {
 		Users user = new Users();
 		user.setName(name);
 		user.setPassword(password);
@@ -334,6 +330,12 @@ public class AdminController {
 		usersService.deleteUserId(id);
 		List<Users> user = usersService.findAll();
 		model.addAttribute("users", user);
+		return "redirect:/account";
+	}
+
+	@RequestMapping("/user/new")
+	public String newUser(Model model) {
+
 		return "redirect:/account";
 	}
 
@@ -388,12 +390,6 @@ public class AdminController {
 		return "redirect:/category";
 	}
 
-	@RequestMapping("/category/delete/{id}")
-	public String DeleteCategoryId(Model model, @PathVariable("id") int id) {
-		categoryService.deleteCategoryId(id);
-		return "redirect:/category";
-	}
-
 	@RequestMapping("/category/edit/{id}")
 	public String editCategorys(Model model, @PathVariable("id") int id) {
 		Optional<Category> cate = categoryService.findById(id);
@@ -401,13 +397,25 @@ public class AdminController {
 		System.out.println(cate);
 		return "redirect:/category";
 	}
-	
+
 	@RequestMapping("/category/edit")
 	public String editCategory(Model model, @RequestParam("id") int id) {
 		Optional<Category> cate = categoryService.findById(id);
 		model.addAttribute("categorys", categoryService.findAll());
 		model.addAttribute("category", cate.orElse(new Category()));
 		return "page/category_admin";
+	}
+
+	@RequestMapping("/category/new")
+	public String newCategory(Model model) {
+
+		return "redirect:/category";
+	}
+
+	@RequestMapping("/category/delete/{id}")
+	public String DeleteCategoryId(Model model, @PathVariable("id") int id) {
+		categoryService.deleteCategoryId(id);
+		return "redirect:/category";
 	}
 
 }
