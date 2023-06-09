@@ -102,15 +102,15 @@
 				<table class="table border-0 ">
 					<thead class="thead-dark font-weight-bold text-dark">
 						<tr class="fw-bold">
-							<td>ID</td>
-							<td>Tác giả</td>
-							<td>Nhà cung cấp</td>
-							<td>Loại</td>
-							<td>Tên</td>
-							<td>Giá</td>
-							<td>Giảm giá</td>
-							<td>Năm xuất bản</td>
-							<td>Mô tả</td>
+							<th>ID</th>
+							<th>Tác giả</th>
+							<th>Nhà cung cấp</th>
+							<th>Loại</th>
+							<th>Tên</th>
+							<th>Giá</th>
+							<th>Giảm giá</th>
+							<th>Năm xuất bản</th>
+							<td>&nbsp;</td>  
 
 							<!-- <td>&nbsp;</td> -->
 						</tr>
@@ -126,6 +126,22 @@
 							<th>7</th>
 							<th>8</th>
 							<th>9</th>
+						</tr>
+						<tr th:each="book : ${book}">
+							<td>[[${book.id}]]</td>
+							<td>[[${book.author.id}]]</td>
+							<td>[[${book.supplier.id}]]</td>
+							<td>[[${book.category.id}]]</td>
+							<td>[[${book.name}]]</td>
+							<td>[[${book.price}]]</td>
+							<td>[[${book.discount}]]</td>
+							<td>[[${book.published_year}]]</td>
+							<td><a style="text-decoration: none;"
+								th:href="@{/user/edit(id=${user.id})}">Edit</a></td>
+							<th><a class="is-color-pink fs-4"
+								style="text-decoration: none;"
+								th:href="@{|/user/delete/${user.id}|}"><i
+									class="bi bi-trash"></i></a></th>
 						</tr>
 					</tbody>
 				</table>

@@ -61,10 +61,8 @@ public class BillController {
 	public String ORDER_USER(Model model) {
 		List<Bill> bills= billService.findAll();
 		long count = bills.stream().map(s->s.getBdt()).filter(s->s.size()>0).count();
-
 		System.out.println("size:"+count+",sum:"+bills.size());
 		model.addAttribute("bills",bills);
 		return "page/status_bill";
-		
 	}
 }

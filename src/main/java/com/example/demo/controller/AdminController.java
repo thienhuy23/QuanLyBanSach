@@ -177,6 +177,7 @@ public class AdminController {
 		model.addAttribute("img", img);
 		return "page/image_admin";
 	}
+	
 	@PostMapping("/image")
 	public String handleImage(Model model, @RequestParam("url") String url,
 							  @RequestParam(value = "id", required = false) String idString,
@@ -215,10 +216,7 @@ public class AdminController {
 		return "page/image_admin";
 	}
 
-	@RequestMapping("/product")
-	public String product() {
-		return "page/book_admin";
-	}
+	
 
 	@RequestMapping("/account")
 	public String account(Model model) {
@@ -234,15 +232,7 @@ public class AdminController {
 
 	}
 
-	@RequestMapping("/admin_js")
-	public String home(Model model) {
-		List<Users> user = usersService.findAll();
-		model.addAttribute("users", user);
-		List<Category> category = categoryService.findAll();
-		model.addAttribute("categorys", category);
-		return "page/admin";
-
-	}
+	
 
 	@PostMapping("/user/create")
 	public String createUser(Model model, @ModelAttribute("users") Users user) {
