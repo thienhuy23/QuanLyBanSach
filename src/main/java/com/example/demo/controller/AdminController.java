@@ -113,13 +113,12 @@ public class AdminController {
 
 	}
 
-	@RequestMapping("/admin/EditSupplier/{id}")
-	public String EditSupplier(Model model, @PathVariable("id") Optional<Integer>  id) {
-		List<Supplier> supplier = SupplierRep.findAllByID(id);
-		//model.addAttribute("supplier", supplier);
-		System.out.println(supplier.toString());
-		return "redirect:/supplier";
-
+	@RequestMapping( "/supplier/edit")
+	public String editSupplier(Model model, @RequestParam("id") int id) {
+		Optional<Supplier> supplier = supplierServ.findById(id);
+		model.addAttribute("supplier", supplierServ.findAll());
+		model.addAttribute("supplierr", supplier.orElse(new Supplier()));
+		return "page/supplier_admin";
 	}
 
 	@RequestMapping("/admin/searchSupplier")
@@ -158,12 +157,21 @@ public class AdminController {
 		return "redirect:/author";
 	}
 
+	
+	@RequestMapping( "/author/edit")
+	public String editAuthur(Model model, @RequestParam("id") int id) {
+		Optional<Author> authur = authorService.findById(id);
+		model.addAttribute("author", authorService.findAll());
+		model.addAttribute("authorr", authur.orElse(new Author()));
+		return "page/author_admin";
+	}
 	@RequestMapping("/admin/EditAuthor/{id}")
 	public String EditAuthor(Model model, @PathVariable("id") Integer id) {
 		Optional<Author> author = authorService.findById(id);
 		model.addAttribute("author", author.get());
 		return "page/author_admin";
 	}
+	
 
 	@RequestMapping("/admin/searchAuthor")
 	public String searchAuthor(Model model, @RequestParam("name") Optional<String> name,
@@ -174,6 +182,7 @@ public class AdminController {
 		model.addAttribute("author", author);
 		return "page/author_admin";
 	}
+	
 
 	@RequestMapping("/category")
 	public String category(Model model) {
