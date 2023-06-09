@@ -57,27 +57,25 @@ public class AdminController {
 	@Autowired
 	AuthorService authorService;
 	@Autowired
-<<<<<<< HEAD
+
 	BookService bookService;
 	@Autowired
 	BookRepository bookRep;
-=======
+
 	UsersRepository repository;
->>>>>>> 1e711acf72d496301fc0e645ed548ebb7f2a0c57
+
 	@Autowired
 	SupplierRepository SupplierRep;
 	@Autowired
 	AuthorRepository AuthorRep;
-<<<<<<< HEAD
+
 	
 	@Autowired
 	UsersRepository UserRepo;
-=======
+
 	@Autowired
 	ImageService imgservice;
-	@Autowired
-	BookService bookservice;
->>>>>>> 1e711acf72d496301fc0e645ed548ebb7f2a0c57
+
 
 	@RequestMapping("/admin")
 	public String home(Model model, HttpSession session, Principal principal) {
@@ -187,7 +185,7 @@ public class AdminController {
 	@RequestMapping("/image")
 	public String image(Model model) {
 		List<Image> img = imgservice.findAll();
-		model.addAttribute("book", bookservice.findAll());
+		model.addAttribute("book", bookService.findAll());
 		model.addAttribute("img", img);
 		return "page/image_admin";
 	}
@@ -203,7 +201,7 @@ public class AdminController {
 		if (action != null && action.equals("add")) {
 		
 			Image img = new Image();
-			Optional<Book> book = bookservice.findById(bookId);
+			Optional<Book> book = bookService.findById(bookId);
 			img.setBook(book.get());
 			img.setUrl(url);
 			imgservice.save(img);
@@ -211,7 +209,7 @@ public class AdminController {
 			Optional<Image> image = imgservice.findById(id);
 			if(image.isPresent()){
 				image.get().setUrl(url);
-				image.get().setBook(bookservice.findById(bookId).get());
+				image.get().setBook(bookService.findById(bookId).get());
 				imgservice.save(image.get());
 			}
 		}else if (action.equals("delete")) {
@@ -223,7 +221,7 @@ public class AdminController {
 	@GetMapping("/image/edit")
 	public String editImage(Model model, @RequestParam("id") int id) {
 		Optional<Image> img = imgservice.findById(id);
-		model.addAttribute("book", bookservice.findAll());
+		model.addAttribute("book", bookService.findAll());
 		model.addAttribute("image", img.get());
 		model.addAttribute("img", imgservice.findAll());
 		return "page/image_admin";
@@ -287,15 +285,25 @@ public class AdminController {
 	}
 
 	@PostMapping("/user/create")
-	public String createUser(Model model, @ModelAttribute("users") Users user) {
-		System.out.println("user update:" + user);
+	public String createUser(Model model,
+							 @RequestParam("name") String name,
+							 @RequestParam("password") String password,
+							 @RequestParam("email") String email,
+							 @RequestParam("phone") String phone,
+							 @RequestParam("role") String role) {
+		Users user = new Users();
+		user.setName(name);
+		user.setPassword(password);
+		user.setEmail(email);
+		user.setPhone(phone);
+		user.setRole((role.equals("1") ? true : false));
+
 		usersService.save(user);
-		model.addAttribute("users", user);
 		model.addAttribute("message", "Thêm mới thành công!");
 		return "redirect:/account";
 	}
 
-	@PostMapping("/user/update")
+	@RequestMapping("/user/update")
 	public String updateUser(Model model, @ModelAttribute("users") Users user) {
 		System.out.println("user update:" + user);
 		usersService.update(user);
@@ -383,6 +391,14 @@ public class AdminController {
 		model.addAttribute("categorys", cate.get());
 		System.out.println(cate);
 		return "redirect:/category";
+	}
+	
+	@RequestMapping("/category/edit")
+	public String editCategory(Model model, @RequestParam("id") int id) {
+		Optional<Category> cate = categoryService.findById(id);
+		model.addAttribute("categorys", categoryService.findAll());
+		model.addAttribute("category", cate.orElse(new Category()));
+		return "page/category_admin";
 	}
 
 }

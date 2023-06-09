@@ -52,15 +52,5 @@ public class Users implements Serializable {
 //	@JsonIgnore
 //	List<Bill> bills;
 
-<<<<<<< HEAD
-=======
-	/*
-	 * @OneToMany(mappedBy = "user",fetch=FetchType.LAZY)
-	 * 
-	 * @JsonIgnore List<Bill> bills;
-	 */
-//	@OneToMany(mappedBy = "user",fetch=FetchType.LAZY)
-//	@JsonIgnore
-//	List<Bill> bills;
->>>>>>> 1e711acf72d496301fc0e645ed548ebb7f2a0c57
+
 }
