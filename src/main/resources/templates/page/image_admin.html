@@ -47,17 +47,16 @@
                         <div class=" p-5 pt-1 pb-3">
                             <button type="submit"
                                     class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
-                                    style="width: 100px;" name="action" value="add">Thêm
+                                    style="width: 100px;"  formaction="/image/create">Thêm
                             </button>
                             <button type="submit"
                                     class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
                                     style="width: 100px;"
-                            name="action"
-                            value="edit">Sửa
+                           formaction="/image/update">Sửa
                             </button>
                             <button type="submit"
                                     class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
-                                    style="width: 100px;">Đặt lại
+                                    style="width: 100px;" formaction="/image/new">Đặt lại
                             </button>
                         </div>
                     </form>
@@ -68,19 +67,19 @@
                 <tr class="fw-bold">
                     <td>ID:</td>
                     <td>URL</td>
-                    <td>Book name</td>
+                    <td>Tên sách</td>
                     <!-- <td>&nbsp;</td> -->
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="img : ${img}">
                     <th>[[${img.id}]]</th>
-                    <!--							<th>[[${img.url}]]</th>-->
-                    <th><img th:src="@{|${img.url}|}" width="100px" height="100px"/></th>
+                    <!-- <th><img th:src="@{|${img.url}|}" width="100px" height="100px"/></th> -->
+                    <th>[[${img.url}]]</th>
                     <!--							book id-->
                     <th>[[${img.book.name}]]</th>
                     <td><a style="text-decoration: none;"
-                           th:href="@{/image/edit(id=${img.id})}">Edit</a></td>
+                           th:href="@{/image/edit(id=${img.id})}"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
                     <th><a class="is-color-pink fs-4"
                            style="text-decoration: none;"
                            th:href="@{|/image/delete/${img.id}|}"><i
