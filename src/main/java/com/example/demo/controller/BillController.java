@@ -17,8 +17,10 @@ import com.example.demo.entity.Users;
 import com.example.demo.repository.StatusRepository;
 import com.example.demo.service.BillService;
 import com.example.demo.service.BookService;
+import com.example.demo.service.MailerService;
 import com.example.demo.service.UsersService;
 
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -33,6 +35,9 @@ public class BillController {
 	StatusRepository repo;
 	@Autowired
 	BookService bookService;
+	@Autowired
+	MailerService mailerService;
+
 	@GetMapping("/bill")
 	public String Purchase(HttpSession session) {
 		// Users user = (Users)session.getAttribute("user");
@@ -41,7 +46,7 @@ public class BillController {
 	}
 	@ResponseBody
 	@PostMapping("/bill")
-	public List<?> savePurchase(@RequestParam("user_id") int id,@RequestBody Bill bill) {
+	public List<?> savePurchase(@RequestParam("user_id") int id,@RequestBody Bill bill) throws MessagingException {
 		Users user =usersService.findById(id).get();
 		Status status = repo.findById(1).get();
 		bill.setUser(user);
@@ -52,19 +57,8 @@ public class BillController {
 			// System.out.println(s.toString());
 		});
 
-		// System.out.println(bill.getBill_details());
 		billService.save(bill);
+		mailerService.send(user.getEmail(), "Mua hàng", "Bạn vừa mua hàng");
 		return billService.findAll();
-	}
-
-	@GetMapping("/status_bill")
-	public String ORDER_USER(Model model) {
-		List<Bill> bills= billService.findAll();
-		long count = bills.stream().map(s->s.getBdt()).filter(s->s.size()>0).count();
-
-		System.out.println("size:"+count+",sum:"+bills.size());
-		model.addAttribute("bills",bills);
-		return "page/status_bill";
-		
 	}
 }

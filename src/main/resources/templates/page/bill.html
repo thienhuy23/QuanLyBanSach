@@ -5,6 +5,7 @@
 <div th:replace="~{commons/head ::  head}"></div>
 <body>
 	<div class="container">
+		<input type="hidden" name="user_id" th:value="${session.user?.id}">
 		<div class="row">
 			<div class="col-md-7 col-sm-12 p-5"
 				style="border-right: 2px solid rgba(0, 0, 0, 0.2);">
@@ -34,12 +35,12 @@
 				</div>
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control " id=""
-						placeholder="name@example.com" th:value="${session.user?.name}"> <label
-						class="text-secondary" >Họ và tên</label>
+						placeholder="name@example.com" disabled th:value="${session.user?.name}"> <label
+						class="text-secondary">Họ và tên</label>
 				</div>
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control" id=""
-						placeholder="name@example.com" th:value="${session.user?.phone}"> <label
+						placeholder="name@example.com" disabled th:value="${session.user?.phone}"> <label
 						class="text-secondary" >Số điện thoại</label>
 				</div>
 				

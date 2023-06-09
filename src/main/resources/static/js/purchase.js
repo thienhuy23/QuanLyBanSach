@@ -1,4 +1,6 @@
-let repo = JSON.parse(localStorage.getItem("mydata")==null?[]:localStorage.getItem("mydata"));
+const user_id = $('input[name=user_id]').val();
+
+let repo = JSON.parse(localStorage.getItem(`cart_${user_id}`)==null?[]:localStorage.getItem(`cart_${user_id}`));
 const data = JSON.stringify(repo.map(s=>parseInt(s.id))).replace("[","").replace("]","");
 let result = [];
 const fillData = (data) =>{
@@ -59,6 +61,6 @@ const pay = async (username) => {
     };
     console.log(data);
     await axios.post("/bill?user_id="+username,data);
-    localStorage.removeItem("myData");
-    location.href = "/status_bill";
+    localStorage.removeItem(`cart_${user_id}`);
+    location.href = "/profile?profileId="+user_id;
 }
