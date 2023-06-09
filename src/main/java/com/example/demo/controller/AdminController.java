@@ -25,6 +25,7 @@ import com.example.demo.entity.Category;
 import com.example.demo.entity.Supplier;
 import com.example.demo.entity.Users;
 import com.example.demo.repository.AuthorRepository;
+import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.SupplierRepository;
 import com.example.demo.repository.UsersRepository;
@@ -53,7 +54,8 @@ public class AdminController {
 	AuthorService authorService;
 	@Autowired
 	BookService bookService;
-
+	@Autowired
+	BookRepository bookRep;
 	@Autowired
 	SupplierRepository SupplierRep;
 	@Autowired
@@ -174,9 +176,35 @@ public class AdminController {
 
 	@RequestMapping("/product")
 	public String product(Model model) {
-		List<Book> book = bookService.findAll();
- 		model.addAttribute("book",book );
+		model.addAttribute("Author", authorService.findAll());
+		model.addAttribute("Supplier", supplierServ.findAll());
+		model.addAttribute("Cateory", categoryService.findAll());
+ 		model.addAttribute("book",bookService.findAll());
 		return "page/book_admin";
+	}
+	
+	@RequestMapping("/ProductCreate")
+	public String ProductCreate(
+			@RequestParam("category") Optional<Integer> category,@RequestParam("supplier") Optional<Integer> supplier,@RequestParam("author") Optional<Integer> author,
+			 @RequestParam("name") Optional<String> name,
+											@RequestParam("price") Optional<Double> price,
+											@RequestParam("discount") Optional<Float> discount,
+											@RequestParam("published_year") Optional<Integer> published_year,
+											@RequestParam("number_page") Optional<Integer> number_page,
+											@RequestParam("describe") Optional<String> describe
+											)  {
+		bookRep.saveBook(category, supplier, author, name, price, discount, published_year, number_page, describe);
+////		model.addAttribute("bookk", new Book());
+//		System.out.println(name+"name");
+//		System.out.println(price+"gia");
+//		System.out.println(discount+"discount");
+//		System.out.println(published_year+"published_year");
+//		System.out.println(number_page+"number_page");
+//		System.out.println(describe+"describe");
+//		System.out.println(author+"a");
+//		System.out.println(supplier+"b");
+//		System.out.println(category+"c");
+		return "redirect:/product";
 	}
 
 	@RequestMapping("/account")

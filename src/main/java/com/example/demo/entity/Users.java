@@ -46,9 +46,9 @@ public class Users implements Serializable{
 	@NotNull(message = "Vui chọn vai trò")
 	@Column
 	Boolean role;
-
-	@OneToMany(mappedBy = "user",fetch=FetchType.LAZY)
-	@JsonIgnore
-	List<Bill> bills;
+//
+//	@OneToMany(mappedBy = "user",fetch=FetchType.LAZY)
+//	@JsonIgnore
+//	List<Bill> bills;
 
 }

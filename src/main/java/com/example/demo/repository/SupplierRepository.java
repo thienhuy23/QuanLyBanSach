@@ -23,4 +23,6 @@ public interface SupplierRepository extends JpaRepository<Supplier, Integer>{
 	
 	@Query("SELECT s FROM Supplier s WHERE s.id = ?1")
 	List<Supplier> findAllByID(Optional<Integer> id);
+	
+	 
 }

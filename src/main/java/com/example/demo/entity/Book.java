@@ -55,6 +55,11 @@ public class Book implements Serializable{
 	@JoinColumn(name = "supplier_id")
 	@JsonIgnore
 	Supplier supplier;
+	
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	@JsonIgnore
+	Category category;
 
 	@OneToMany(mappedBy = "book",fetch=FetchType.LAZY)
 	@JsonIgnore

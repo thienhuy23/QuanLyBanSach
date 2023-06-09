@@ -22,73 +22,62 @@
 				  </ul>
 				<div id="form" class="col-md-10 offset-md-1 pt-3 container tab-pane active">
 					<div  class="card rounded-0 border-0 ">
-						<form class="row g-3" action="" method="post">
-							<div class=" p-5 pt-3 pb-1">
-								<label for="inputAddress" class="form-label fw-bold">Tên tác giả: </label> 
-									<select 
+						<form class="row g-3" action="" method="post" >
+							<div class=" p-5 pt-2 pb-1">
+								<label for="inputAddress" class="form-label fw-bold" >Tên tác giả: </label> 
+									<select name="author" 
 									class="form-select border-secondary rounded-0 bg-light"
 									aria-label="Disabled select example">
-
-									<option >1</option>
+									<option selected>Chọn loại tác giả</option>
+									<option th:each="option:${Author}" th:value="${option.id}">[[${option.name}]]</option>
 								</select>
 							</div>
-							<div class=" p-5 pt-3 pb-1">
-								<label for="inputAddress" class="form-label fw-bold">Nhà
-									cung cấp: </label> <select
+							<div class=" p-5 pt-2 pb-1">
+								<label for="inputAddress" class="form-label fw-bold">Nhà cung cấp: </label> 
+								<select name="supplier"
 									class="form-select border-secondary rounded-0 bg-light"
 									aria-label="Disabled select example">
-									<option selected>Chọn nhà cung cấp</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
+									<option selected>Chọn loại nhà cung cấp</option>
+									<option th:each="option:${Supplier}" th:value="${option.id}" >[[${option.name}]]</option>
 								</select>
 							</div>
-							<div class=" p-5 pt-3 pb-1">
-								<label for="inputAddress" class="form-label fw-bold">Loại
-									sản phẩm: </label> <select
+							<div class=" p-5 pt-2 pb-1">
+								<label for="inputAddress" class="form-label fw-bold">Loại sản phẩm: </label>
+								 <select name="category"
 									class="form-select border-secondary rounded-0 bg-light"
 									aria-label="Disabled select example">
 									<option selected>Chọn loại sản phẩm</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
+									<option th:each="option:${Cateory}" th:value="${option.id}" >[[${option.name}]]</option>
+									 
 								</select>
 							</div>
-							<div class=" p-5 pt-3 pb-1">
-								<label for="inputAddress" class="form-label fw-bold">Tên
-									sách: </label> <input type="email" name="email"
-									class="form-control rounded-0 border-secondary"
-									id="inputAddress" />
-
+							<div class=" p-5 pt-2 pb-1">
+								<label for="inputAddress" class="form-label fw-bold">Tên sách: </label> 
+								<input type="text" name="name" class="form-control rounded-0 border-secondary"/> 
 							</div>
 							<div class="p-5 pt-0 pb-0">
-								<label for="inputAddress" class="form-label fw-bold">Giá:
-								</label> <input type="email" name="email"
-									class="form-control rounded-0 border-secondary"
-									id="inputAddress" />
+								<label for="inputAddress" class="form-label fw-bold">Giá:</label> 
+								<input type="text" name="price" class="form-control rounded-0 border-secondary"/>
 							</div>
 							<div class=" p-5 pt-0 pb-0">
-								<label for="inputAddress" class="form-label fw-bold">Giảm
-									giá: </label> <input type="email" name="email"
-									class="form-control rounded-0 border-secondary"
-									id="inputAddress" />
-
+								<label for="inputAddress" class="form-label fw-bold">Giảm giá: </label> 
+								<input type="text" name="discount" class="form-control rounded-0 border-secondary"/>
 							</div>
 							<div class=" p-5 pt-0 pb-0">
-								<label for="inputAddress" class="form-label fw-bold">Năm
-									xuất bản: </label> <input type="email" name="email"
-									class="form-control rounded-0 border-secondary"
-									id="inputAddress" />
-
+								<label for="inputAddress" class="form-label fw-bold">Năm xuất bản: </label>
+								<input type="text" name="published_year" class="form-control rounded-0 border-secondary" />
 							</div>
-							<div class="p-5 pt-3 pb-1">
+							<div class=" p-5 pt-0 pb-0">
+								<label for="inputAddress" class="form-label fw-bold">Số trang: </label>
+								<input type="text" name="number_page" class="form-control rounded-0 border-secondary" />
+							</div>
+							<div class="p-5 pt-2 pb-1">
 								<label for="comment" class="form-label fw-bold">Mô tả:</label>
-								<textarea class="form-control rounded-0 border-secondary"
-									rows="5" id="comment"></textarea>
+								<textarea class="form-control rounded-0 border-secondary" rows="5" id="comment" name="describe"></textarea>
 							</div>
 
 							<div class=" p-5 pt-1 pb-3">
-								<button type="submit"
+								<button formaction="/ProductCreate"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 									style="width: 100px;">Thêm</button>
 								<button type="submit"
@@ -116,19 +105,18 @@
 							<th>Giá</th>
 							<th>Giảm giá</th>
 							<th>Năm xuất bản</th>
-							<th>Mô tả</th>
-							<!-- <td>&nbsp;</td> -->
+							<td>&nbsp;</td>  
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="book:${book}">
 							<td>[[${book.id}]]</td>
-							<td>2</td>
-							<td>3</td>
+							<td>[[${book.author.id}]]</td>
+							<td>[[${book.supplier.id}]]</td>
+							<td>[[${book.category.id}]]</td>
 							<td>[[${book.name}]]</td>
 							<td>[[${book.price}]]</td>
 							<td>[[${book.discount}]]</td>
-							<td>[[${book.number_page}]]</td>
 							<td>[[${book.published_year}]]</td>
 							<td>
 								<a  class="mr-3 fs-5 text-dark text-decoration-none"

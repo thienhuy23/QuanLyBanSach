@@ -45,4 +45,8 @@ public class BookService {
 	public List<Book> findByListId(List<Integer> list){
 		return bookRepo.findByListId(list);
 	}
+	
+	public  Book save(Book book ){
+		return bookRepo.save(book);
+	}
 }
