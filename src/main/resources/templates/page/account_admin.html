@@ -5,13 +5,15 @@
 <div th:replace="~{commons/head ::  head}"></div>
 <body>
 	<div class="container-fluid">
-		<div th:replace="~{commons/nav_admin :: #nav_admin}"></div>
-		<div class="row">
-			<div class="col-md-2">
-				<div th:replace="~{commons/button_admin :: #button_admin}"></div>
-
-			</div>
-			<div class="col-md-10">
+		<div id="nav_admin">
+			<nav class="sb-topnav navbar navbar-expand ">
+				<!-- Navbar Brand-->
+				<div class="pt-3">
+					<a th:href="@{/}"><img
+						src="https://bookcart.themability.com/image/catalog/logo.png"
+						title="Your Store" alt="Your Store" class="img-fluid"></a>
+				</div>
+				<!-- Navbar Search-->
 				<form th:action="@{/user/search}" method="post"
 					class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
 					<div class="text-right  header-right me-5  mr-auto">
@@ -20,14 +22,25 @@
 							<input type="text" class="form-control rounded-0 is-outline-gray"
 								placeholder="Tìm kiếm..." aria-label="Search..." name="search"
 								aria-describedby="button-addon2">
+
 							<button
 								class="btn btn-outline-secondary rounded-0 border-0 is-outline-pink"
 								id="button-addon2">
 								<i class="bi bi-search text-light"></i>
 							</button>
 						</div>
+						<p class="text-danger ps-5">[[${SearchUsers}]]</p>
 					</div>
 				</form>
+			</nav>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<div th:replace="~{commons/button_admin :: #button_admin}"></div>
+
+			</div>
+			<div class="col-md-10">
+
 				<div class="col-md-10 offset-md-1 pt-3">
 					<div class="card rounded-0 border-0">
 						<div class=" pb-2 fs-4 p-4 pt-0 fw-bold">Danh sách người
@@ -116,7 +129,8 @@
 							<td>[[${user.email}]]</td>
 							<td>[[${user.phone}]]</td>
 							<td><a style="text-decoration: none;"
-								th:href="@{/user/edit(id=${user.id})}"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
+								th:href="@{/user/edit(id=${user.id})}"><i
+									class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
 							<th><a class="is-color-pink fs-4"
 								style="text-decoration: none;"
 								th:href="@{|/user/delete/${user.id}|}"><i

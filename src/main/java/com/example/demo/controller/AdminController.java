@@ -185,34 +185,34 @@ public class AdminController {
 		return "page/image_admin";
 	}
 
-	@PostMapping("/image")
-	public String handleImage(Model model, @RequestParam("url") String url,
-			@RequestParam(value = "id", required = false) String idString, @RequestParam("bookId") int bookId,
-			@RequestParam(value = "action", required = false) String action) {
+
+	@RequestMapping("/image/create")
+	public String addImage(@RequestParam("url") String url, @RequestParam("bookId") int bookId) {
+		Image img = new Image();
+		Optional<Book> book = bookService.findById(bookId);
+		img.setBook(book.get());
+		img.setUrl(url);
+		imgservice.save(img);
+		return "redirect:/image";
+	}
+	@RequestMapping("/image/update")
+	public  String editImage(@RequestParam("id") String idString, @RequestParam("url") String url, @RequestParam("bookId") int bookId) {
 		int id = 0; // Default value for id
 		if (idString != null && !idString.isEmpty()) {
 			id = Integer.parseInt(idString);
 		}
-		if (action != null && action.equals("add")) {
-
-			Image img = new Image();
-			Optional<Book> book = bookService.findById(bookId);
-			img.setBook(book.get());
-			img.setUrl(url);
-			imgservice.save(img);
-		} else if (action != null && action.equals("edit")) {
-			Optional<Image> image = imgservice.findById(id);
-			if (image.isPresent()) {
-				image.get().setUrl(url);
-				image.get().setBook(bookService.findById(bookId).get());
-				imgservice.save(image.get());
-			}
-		} else if (action.equals("delete")) {
-
-		}
+		Optional<Image> img = imgservice.findById(id);
+		Optional<Book> book = bookService.findById(bookId);
+		img.get().setBook(book.get());
+		img.get().setUrl(url);
+		imgservice.save(img.get());
 		return "redirect:/image";
 	}
-
+	@RequestMapping("/image/delete/{id}")
+	public String DeleteImageid(Model model, @PathVariable("id") int id) {
+		imgservice.deleteImageid(id);
+		return "redirect:/image";
+	}
 	@RequestMapping("/image/new")
 	public String newImage(Model model) {
 
@@ -238,6 +238,7 @@ public class AdminController {
 		return "page/book_admin";
 	}
 
+
 	@RequestMapping("/Product/Create")
 	public String ProductCreate(Model model, @ModelAttribute("bookk") Book book) {
 		model.addAttribute("book", bookService.save(book));
@@ -260,7 +261,7 @@ public class AdminController {
 
 	@RequestMapping("/account")
 	public String account(Model model) {
-		List<Users> user = usersService.findAll();
+		List<Users> user = userrepo.findAllByUsers();
 		model.addAttribute("users", user);
 		return "page/account_admin";
 
@@ -292,26 +293,23 @@ public class AdminController {
 		user.setEmail(email);
 		user.setPhone(phone);
 		user.setRole((role.equals("1") ? true : false));
-
 		usersService.save(user);
-		model.addAttribute("message", "Thêm mới thành công!");
 		return "redirect:/account";
 	}
 
 	@RequestMapping("/user/update")
 	public String updateUser(Model model, @ModelAttribute("users") Users user) {
-		System.out.println("user update:" + user);
 		usersService.update(user);
-		model.addAttribute("users", user);
-		model.addAttribute("message", "Cập nhật thành công!");
 		return "redirect:/account";
 	}
 
-	@RequestMapping(value = "/user/edit", method = RequestMethod.GET)
+	@RequestMapping("/user/edit")
 	public String editUser(Model model, @RequestParam("id") int id) {
 		Optional<Users> user = usersService.findById(id);
-		model.addAttribute("users", usersService.findAll());
 		model.addAttribute("user", user.orElse(new Users()));
+		List<Users> users = userrepo.findAllByUsers();
+		model.addAttribute("users", users);
+	
 		return "page/account_admin";
 	}
 
@@ -325,28 +323,36 @@ public class AdminController {
 
 	@RequestMapping("/user/new")
 	public String newUser(Model model) {
-
 		return "redirect:/account";
 	}
 
 	@RequestMapping("/user/search")
-	public String searchUsers(Model model, @RequestParam("search") Optional<String> search) {
-		List<Users> user = userrepo.findAllByNameLike(search);
-		model.addAttribute("users", user);
-		System.out.println(search);
-		System.out.println(user);
-		return "page/account_admin";
-
+	public String searchUsers(Model model, @RequestParam("search") String search) {
+		if (search.isEmpty()) {
+			model.addAttribute("SearchUsers", "Vui lòng nhập tên users cần tìm !");
+			List<Users> user = usersService.findAll();
+			model.addAttribute("users", user);
+			return "page/account_admin";
+		} else {
+			List<Users> user = userrepo.findAllByNameLike(search);
+			model.addAttribute("users", user);
+			return "page/account_admin";
+		}
 	}
 
 	@RequestMapping("/category/search")
-	public String searchCategorys(Model model, @RequestParam("search") Optional<String> search) {
-		List<Category> cate = categoryrepo.findAllByNameLike(search);
-		model.addAttribute("categorys", cate);
-		System.out.println(search);
-		System.out.println(cate);
-		return "page/category_admin";
+	public String searchCategorys(Model model, @RequestParam("search") String search) {
+		if (search.isEmpty()) {
+			model.addAttribute("SearchCate", "Vui lòng nhập tên thể loại cần tìm !");
+			List<Category> category = categoryService.findAll();
+			model.addAttribute("categorys", category);
+			return "page/category_admin";
+		} else {
+			List<Category> cate = categoryrepo.findAllByNameLike(search);
+			model.addAttribute("categorys", cate);
+			return "page/category_admin";
 
+		}
 	}
 
 	@RequestMapping("/category/create")
@@ -357,20 +363,6 @@ public class AdminController {
 
 	}
 
-//	@RequestMapping("/category/create")
-//	public String createCategory(@Valid @ModelAttribute("categorys") Category category, BindingResult result,
-//			Model model) {
-//
-//		if (result.hasErrors()) {
-//			model.addAttribute("categorys", categoryService.findAll());
-//			return "page/category_admin";
-//		} else {
-//			categoryService.createCategory(category);
-//			model.addAttribute("message", "Thêm mới thành công!");
-//			return "redirect:/category";
-//		}
-//
-//	}
 	@RequestMapping("/category/update")
 	public String updateCategory(Model model, @ModelAttribute("category") Category category) {
 		System.out.println("user update:" + category);
@@ -380,13 +372,6 @@ public class AdminController {
 		return "redirect:/category";
 	}
 
-	@RequestMapping("/category/edit/{id}")
-	public String editCategorys(Model model, @PathVariable("id") int id) {
-		Optional<Category> cate = categoryService.findById(id);
-		model.addAttribute("categorys", cate.get());
-		System.out.println(cate);
-		return "redirect:/category";
-	}
 
 	@RequestMapping("/category/edit")
 	public String editCategory(Model model, @RequestParam("id") int id) {

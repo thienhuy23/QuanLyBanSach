@@ -21,4 +21,7 @@ public class ImageService {
 	public Image save(Image img) {
 		return imgrepo.save(img);
 	}
+	public void deleteImageid(Integer id) {
+		imgrepo.deleteById(id);
+	}
 }
