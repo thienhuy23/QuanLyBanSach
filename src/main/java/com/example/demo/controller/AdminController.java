@@ -247,6 +247,32 @@ public class AdminController {
 		return "page/book_admin";
 	}
 
+	
+//	@RequestMapping("/ProductCreate")
+//	public String createProduct(@RequestParam("url") String url, @RequestParam("author") int authorid,
+//			@RequestParam("supplier") Optional<Integer> supplier,
+//			@RequestParam("name") String name , @RequestParam("price") Double price,
+//			@RequestParam("discount") Float discount,
+//			@RequestParam("published_year") Integer published_year,
+//			@RequestParam("number_page") Integer number_page,
+//			@RequestParam("describe") String describe
+//			)
+//	{
+//		Book book = new Book();
+//		Optional<Author> author = authorService.findById(authorid);
+//		book.setAuthor(author.get());	
+//		book.setName(name);
+//		book.setPrice(price);
+//		book.setDescribe(describe);
+//		book.setPublished_year(published_year);
+//		book.setNumber_page(number_page);
+//		book.setPublished_year(published_year);
+//		bookService.save(book);
+//		return "page/book_admin";
+//	}
+
+	
+	
 	@RequestMapping("/ProductCreate")
 	public String ProductCreate(@RequestParam("category") Optional<Integer> category,
 			@RequestParam("supplier") Optional<Integer> supplier, @RequestParam("author") Optional<Integer> author,
@@ -268,6 +294,7 @@ public class AdminController {
 //		System.out.println(category+"c");
 		return "redirect:/product";
 	}
+
 
 	@RequestMapping("/account")
 	public String account(Model model) {
