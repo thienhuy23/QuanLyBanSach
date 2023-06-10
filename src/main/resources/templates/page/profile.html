@@ -1,13 +1,8 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <!-- Bootstrap CSS v5.2.1 -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/css/index.css">
 
 <div th:replace="~{commons/head ::  head}"></div>
@@ -27,8 +22,7 @@
 					<div class="container">
 						<div class="row m-5">
 
-							<div
-								class=" mb-12 col-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 text-center ">
+							<div class=" mb-12 col-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 text-center ">
 								<h1>Thông tin cá nhân</h1>
 							</div>
 						</div>
@@ -43,45 +37,101 @@
 				</div>
 				<div class="col-9">
 					<div class="text-end mb-4">
-						<button type="button" class="btn btn-primary btn-sm btn-rounded"
-							data-toggle="modal" data-target=".exampleModal">Xem
+						<button type="button" class="btn btn-primary btn-sm btn-rounded" data-toggle="modal"
+							data-target=".exampleModal">Xem
 							thông tin cá nhân</button>
 					</div>
 					<h2 class="mb-4 mt-5">Danh sách mua hàng</h2>
-					<table class="table">			
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Tên người mua</th>
-								<th>Tên sách</th>
-								<th>Số lượng</th>
-								<th>Địa chỉ nhận</th>
-								<th>Ngày mua</th>							
-								<th>Giá tiền</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>01</td>
-								<td>[[${users.name}]]</td>
-								<td>Cây cam ngọt của tôi</td>
-								<td class="text-center">1</td>
-								<td>123 An Dương Vuong,Quận 5</td>
-								<td>21-02-2023</td>
-								<td>$84.60</td>
-							</tr>
-						</tbody>
-					</table>
+					<ul class="nav nav-tabs" role="tablist">
+						<form class="nav-item" th:action="@{${#ctx.springRequestContext.requestUri}}" method="get" th:each="st:${status}">
+							<input type="hidden" name="profileId" th:value="${param.profileId}">
+							<input type="hidden" name="status" th:value="${st.id}">
+							<button class="nav-link" type="submit" th:classappend="${st.id==param.status} ? 'active':''" data-bs-toggle="tab">[[${st.status}]]</button>
+						</form>
+					</ul>
+					<div class="tab-content">
+						<div id="home" class="container tab-pane active">
+							<div class="mt-3 pt-3">
+								<table class="table pt-2">
+									<thead>
+										<tr>
+											<th class="visually-hidden" scope="col">Hình</th>
+											<th class="visually-hidden" scope="col">Tên</th>
+											<th class="visually-hidden" scope="col">Số lượng</th>
+											<th class="visually-hidden" scope="col">Giá</th>
+										</tr>
+									</thead>
+									<tbody>
+										<div class="card" th:each="bill:${bills}">
+											<tr class="pt-3">
+												<td colspan="4"><strong>ID Đơn hàng: </strong>[[${bill.id}]]</td>
+											</tr>
+											<tr th:each="item:${bill.bdt}">
+												<td>
+													<div href="#" class="position-relative pt-1">
+														<span class="fs-4 text-dark ii"><img
+																th:src="@{${item.book.images[0].url}}"
+																style="width: 100px" class="rounded float-start"
+																alt="..."></span>
+													</div>
+												</td>
+												<td>[[${item.book.name}]]</td>
+												<td>[[${item.quantity}]]</td>
+												<td>[[${#strings.replace(#numbers.formatCurrency(item.book.price), '.0',
+													'')}]]</td>
+											</tr>
+											<tr>
+												<td colspan="3" class="text-end fw-bold">Thành tiền</td>
+												<td>[[${#strings.replace(#numbers.formatCurrency(bill.sum), '.0', '')}]]
+												</td>
+												<td>
+												</td>
+											</tr>
+										</div>
+										<tr>
+											<td colspan="2">Đơn hàng đang được xử lý</td>
+
+											<td>
+												<div class="text-end ">
+													<button class="btn border-dark text-dark " type="submit">Xem chi
+														tiết</button>
+												</div>
+											</td>
+											<td>
+												<div class="text-start ">
+													<button class="btn is-outline-pink text-light " type="submit">Liên
+														hệ của hàng</button>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+							</div>
+						</div>
+						<div id="menu1" class="container tab-pane fade">
+							<br>
+							<h3>Menu 1</h3>
+							<p>Ut enim ad minim veniam, quis nostrud exercitation
+								ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+						</div>
+						<div id="menu2" class="container tab-pane fade">
+							<br>
+							<h3>Menu 2</h3>
+							<p>Sed ut perspiciatis unde omnis iste natus error sit
+								voluptatem accusantium doloremque laudantium, totam rem
+								aperiam.</p>
+						</div>
+					</div>
 				</div>
 			</div>
 
 
 
-			<div class="modal fade exampleModal" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal fade exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
 				<!-- chinh -->
-				<div style="padding-left: 200px;"
-					class="modal-dialog modal-xl modal-dialog-centered" role="document">
+				<div style="padding-left: 200px;" class="modal-dialog modal-xl modal-dialog-centered" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
 
@@ -102,59 +152,52 @@
 							<form class="ms-5" th:action="@{/profile/update}" method="post" th:object="${users}"
 								onSubmit="if(!confirm('Bạn muốn cập nhật?')){return false;}">
 
-								<input th:field="*{id}" hidden type="text"
-									class="form-control ms-4" name="id">
+								<input th:field="*{id}" hidden type="text" class="form-control ms-4" name="id">
 								<div class="mb-3 mt-3">
-									<label for="name">Họ và Tên:</label> <input th:field="*{name}"
-										type="text" class="form-control w-75 ms-4" id="name"
-										placeholder="Enter Fullname" name="name">
-									<p class="text-danger" th:if="${#fields.hasErrors('name')}"
-										th:errors="*{name}" />
+									<label for="name">Họ và Tên:</label> <input th:field="*{name}" type="text"
+										class="form-control w-75 ms-4" id="name" placeholder="Enter Fullname"
+										name="name">
+									<p class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" />
 								</div>
 								<div class="mb-3 mt-3">
-									<label for="phone">Điện thoại:</label> <input
-										th:field="*{phone}" type="text" class="form-control w-75 ms-4"
-										id="phone" placeholder="Enter phone" name="phone">
-									<p class="text-danger" th:if="${#fields.hasErrors('phone')}"
-										th:errors="*{phone}" />
+									<label for="phone">Điện thoại:</label> <input th:field="*{phone}" type="text"
+										class="form-control w-75 ms-4" id="phone" placeholder="Enter phone"
+										name="phone">
+									<p class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" />
 								</div>
 								<div class="mb-3 mt-3">
-									<label for="email">Email:</label> <input th:field="*{email}"
-										type="email" class="form-control w-75 ms-4" id="email"
-										placeholder="Enter email" name="email">
-									<p class="text-danger" th:if="${#fields.hasErrors('email')}"
-										th:errors="*{email}" />
+									<label for="email">Email:</label> <input th:field="*{email}" type="email"
+										class="form-control w-75 ms-4" id="email" placeholder="Enter email"
+										name="email">
+									<p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" />
 								</div>
 								<h4>
 									<b>Mật khẩu của bạn</b>
 								</h4>
 								<hr>
 								<div class="mb-3">
-									<label for="pwd">Mật khẩu:</label> <input
-										th:value="*{password}" type="password"
-										class="form-control w-75 ms-4" id="pwd"
-										placeholder="Enter password" name="password">
+									<label for="pwd">Mật khẩu:</label> <input th:value="*{password}" type="password"
+										class="form-control w-75 ms-4" id="pwd" placeholder="Enter password"
+										name="password">
 									<p class="text-danger" th:if="${#fields.hasErrors('password')}"
-										th:errors="*{password}" />
+										th:errors="*{password}"></p>
 								</div>
 								<h4>
 									<b>Vai trò </b>
 								</h4>
 								<hr>
 								<div class="form-radio mb-3">
-									<label class="form-radio-label ms-4"> <input
-										class="form-radio "
-										th:checked="${users.role !=null}?${users.role}" type="radio"
-										name="role" value="1"> Admin <input class="form-radio"
-										th:checked="${users.role !=null}?${!users.role}" type="radio"
-										name="role" value="0"> User
+									<label class="form-radio-label ms-4"> <input class="form-radio "
+											th:checked="${users.role !=null}?${users.role}" type="radio" name="role"
+											value="1"> Admin <input class="form-radio"
+											th:checked="${users.role !=null}?${!users.role}" type="radio" name="role"
+											value="0"> User
 									</label>
 								</div>
 								<div class="modal-footer">
 									<button type="submit" class="btn btn-primary">Cập
 										nhật</button>
-									<button type="button" class="btn btn-danger"
-										data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 								</div>
 							</form>
 
@@ -163,7 +206,21 @@
 					</div>
 				</div>
 			</div>
-
+			<script>
+				$(document).ready(function () {
+					$("a[href*=status]").on("click", function () {
+						var param = $(this).attr("href");
+						// console.log(,);
+						$.ajax({
+							url: location.pathname+'?'+location.search.substring(1)+'&'+param,
+							success: function () {
+								location.href = location.pathname+'?'+location.search.substring(1)+'&'+param;
+							}
+						});
+						return false;
+					})
+				})
+			</script>
 
 
 
@@ -174,20 +231,16 @@
 		<div th:replace="~{commons/footer :: footer}"></div>
 	</footer>
 	<!-- Bootstrap JavaScript Libraries -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-		integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-		crossorigin="anonymous">
-		
-	</script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+		integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-		integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
-		crossorigin="anonymous">
-		
-	</script>
-<script src="/js/jquery.min.js"></script>
+		</script>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+		integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+
+		</script>
+	<script src="/js/jquery.min.js"></script>
 	<script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 

@@ -1,6 +1,7 @@
 <div th:fragments="navbar">
 	<div class="navbar d-block pt-0">
 		<div>
+			<input type="hidden" name="user_id" th:value="${session.user?.id}">
 			<div class="container-fluid pt-1 is-outline-pink">
 				<nav id="top">
 					<div class="container">

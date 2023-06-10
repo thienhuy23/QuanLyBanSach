@@ -32,7 +32,7 @@
 								<a th:href="@{/cart}"
 								name="add"
 									class="btn btn-outline-pink text-decoration-none fw-bold fs-5"
-									style="width: 280px;">Thêm vào giỏ hàng</a>
+									style="width: 280px;" th:onclick="'add('+${session.user?.id}+')'">Thêm vào giỏ hàng</a>
 								<button class="btn btn-pink fw-bold fs-5" style="width: 280px;">Mua ngay</button>
 							</div>
 						</div>

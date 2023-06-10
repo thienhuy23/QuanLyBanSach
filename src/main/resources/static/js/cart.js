@@ -1,4 +1,6 @@
-let repo = JSON.parse(localStorage.getItem("mydata"));
+const user_id = $('input[name=user_id]').val();
+
+let repo = JSON.parse(localStorage.getItem(`cart_${user_id}`));
 const data = JSON.stringify(repo.map(s => parseInt(s.id))).replace("[", "").replace("]", "");
 let result = [];
 axios.get("/cart/get?arr=" + data).then((result) => {
@@ -11,7 +13,7 @@ axios.get("/cart/get?arr=" + data).then((result) => {
 let tt = 0;
 const Delete = (id) => {
 	let arr = repo.filter(s => s.id != id);
-	localStorage.setItem("mydata", JSON.stringify(arr));
+	localStorage.setItem(`cart_${user_id}`, JSON.stringify(arr));
 	window.location.reload();
 }
 

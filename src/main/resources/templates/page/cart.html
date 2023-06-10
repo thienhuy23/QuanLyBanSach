@@ -6,6 +6,7 @@
 <body>
   <div th:replace="~{commons/navbar :: .navbar}"></div>
   <main>
+    <input type="hidden" name="user_id" th:value="${session.user?.id}">
       <div class="carousel-inner">
             <div class="carousel-item active">
                 <img th:src="@{/images/bg_img.png}" class="d-block" alt="...">

@@ -20,8 +20,10 @@ const clickPhoto = (url) => {
 	$("#photo").attr("src", url);
 }
 
-var addBook = $('a[name=add]');
-addBook.on('click', function (e) {
+function add(user_id) {
+	if(user_id ==null){
+		location.href="/login";
+	}
 	let arr = new Array();
 	var book1 = $('input[name=book]').val();
 	var book2 = window.location.search.split("=")[1];
@@ -30,7 +32,7 @@ addBook.on('click', function (e) {
 		quantity: book1
 	}
 	let check = 0;
-	let local = localStorage.getItem("mydata");
+	let local = localStorage.getItem(`cart_${user_id}`);
 	if (local != null) {
 		arr = JSON.parse(local);
 		arr.forEach(s => {
@@ -41,13 +43,13 @@ addBook.on('click', function (e) {
 		});
 	}
 	if (check > 0) {
-		localStorage.setItem("mydata", JSON.stringify(arr));
+		localStorage.setItem(`cart_${user_id}`, JSON.stringify(arr));
 	} else {
-		localStorage.setItem("mydata", JSON.stringify([...arr, mydata]));
+		localStorage.setItem(`cart_${user_id}`, JSON.stringify([...arr, mydata]));
 	}
 
 
-});
+}
 
 function openCity(evt, cityName) {
 	// Declare all variables

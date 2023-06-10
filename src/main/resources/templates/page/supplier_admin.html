@@ -45,12 +45,12 @@
 							<div class="ms-3"><span th:text="${message}" class="text-success"></span></div>
 							<div class=" p-5 pt-3 pb-1">
 								<label class="form-label fw-bold">Id:</label> 
-								<input th:field="*{id}"  class="form-control" />
+								<input th:value="${supplierr?.id}"  class="form-control" />
 								<p class="alert" th:if="${#fields.hasErrors('id')}" th:errors="*{id}" ></p>
 							</div>
 							<div class=" p-5 pt-3 pb-1">
 								<label class="form-label fw-bold">Nhà cung cấp: </label> 
-								<input type="text" th:field="*{name}"  class="form-control"  />
+								<input type="text" th:value="${supplierr?.name}"   class="form-control"  />
 								<p class="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></p>
 							</div> 
 							<div class=" p-5 pt-1 pb-3">
@@ -87,10 +87,11 @@
 									<td>&nbsp;</td>
 									<td>[[${supplier.name}]]</td>
 									<td>&nbsp;</td>
+									<td><a style="text-decoration: none;"
+								th:href="@{/admin/supplier/edit(id=${supplier.id})}"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
+							<td>
 									<td>
-										<a th:href="@{|/admin/EditSupplier/${supplier.id}|}" class="mr-3 fs-5 text-dark text-decoration-none"
-												  data-toggle="modal" data-target=".exampleModalUpdate">
-												<i class="fa-sharp fa-solid fa-pen-to-square"></i></a> 
+									
 										<a th:href="@{|/admin/DeleteSupplier/${supplier.id}|}"class="is-color-pink ms-2 fs-5"
 												  data-toggle="tooltip">
 												<i class="fa-solid fa-trash"></i></a>

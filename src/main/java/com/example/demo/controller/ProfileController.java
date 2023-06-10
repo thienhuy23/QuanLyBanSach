@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.swing.JOptionPane;
@@ -14,7 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Bill;
 import com.example.demo.entity.Users;
+import com.example.demo.service.BillService;
+import com.example.demo.service.StatusService;
 import com.example.demo.service.UsersService;
 
 import jakarta.validation.Valid;
@@ -24,11 +28,18 @@ import jakarta.validation.Valid;
 public class ProfileController {
 	@Autowired
 	UsersService usersService;
+	@Autowired
+	BillService billService;
+	@Autowired
+	StatusService statusService;
 
 	@GetMapping({ "/", "" })
-	public String getProfile(@RequestParam("profileId") int profileid, Model model) {
+	public String getProfile(@RequestParam("profileId") int profileid,@RequestParam("status") Optional<Integer> status, Model model) {
 		Optional<Users> users = usersService.findByIdProfile(profileid);
-
+		List<Bill> bills= billService.findAll();
+		model.addAttribute("status", statusService.findAll());
+		bills = bills.stream().filter(s->s.getStatus().getId()==status.orElse(1)).toList();
+		model.addAttribute("bills",bills);
 		if (!users.isPresent()) {
 			return "redirect:/error";
 		}
