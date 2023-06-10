@@ -15,14 +15,12 @@ import com.example.demo.entity.Supplier;
 @Repository
 public interface SupplierRepository extends JpaRepository<Supplier, Integer>{
 	
-	@Query("SELECT s FROM Supplier s WHERE s.name LIKE %?1% ORDER BY s.name ASC")
+	@Query("SELECT s FROM Supplier s WHERE s.name LIKE %?1%")
 	Page<Supplier> findAllByNameLikePage(Optional<String> name,PageRequest pageable);
 	
 	@Query("SELECT s FROM Supplier s WHERE s.name LIKE %?1%")
-	List<Supplier> findAllByNameLike(Optional<String> name,Sort sort);
+	List<Supplier> findAllByNameLike(Optional<String> name);
 	
-	@Query("SELECT s FROM Supplier s WHERE s.id = ?1")
-	List<Supplier> findAllByID(Optional<Integer> id);
 	
 	 
 }

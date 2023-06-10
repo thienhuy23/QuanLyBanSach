@@ -13,7 +13,7 @@ import com.example.demo.entity.Category;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Integer>{
 	@Query("SELECT u FROM Category u WHERE u.name LIKE %?1% ")
-	List<Category> findAllByNameLike(Optional<String> key);
+	List<Category> findAllByNameLike(String key);
 	
 
 }
