@@ -46,7 +46,7 @@
 						<form class="nav-item" th:action="@{${#ctx.springRequestContext.requestUri}}" method="get" th:each="st:${status}">
 							<input type="hidden" name="profileId" th:value="${param.profileId}">
 							<input type="hidden" name="status" th:value="${st.id}">
-							<button class="nav-link" type="submit" th:classappend="${st.id==param.status} ? 'active':''" data-bs-toggle="tab">[[${st.status}]]</button>
+							<button class="nav-link" type="submit" th:classappend="${st.id==statusId} ? 'active':''" data-bs-toggle="tab">[[${st.status}]]</button>
 						</form>
 					</ul>
 					<div class="tab-content">

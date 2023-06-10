@@ -15,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,6 +43,9 @@ public class Book implements Serializable{
 	@Column
 	String describe;
 	
+	@Transient
+	int quantity;
+
 	@OneToMany(mappedBy = "book",fetch=FetchType.LAZY)
 	// @JsonIgnore
 	List<Image> images;

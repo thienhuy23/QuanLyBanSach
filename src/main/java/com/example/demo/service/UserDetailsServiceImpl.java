@@ -30,7 +30,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		// TODO Auto-generated method stub
 		// SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		UsersDetail account = repo.findByEmail(username);
-		System.out.println(account.toString());
 		if (account == null) {
 			throw new UsernameNotFoundException(username);
 		}
