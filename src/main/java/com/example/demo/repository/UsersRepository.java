@@ -14,11 +14,13 @@ public interface UsersRepository extends JpaRepository<Users, Integer> {
 
 	Users findByEmail(String username);
 
+//	@Query("SELECT u FROM Users u WHERE u.role <> 'admin'")
+//	List<Users> findAllUsersExceptAdmin();
 	
 	@Query("SELECT  count(u) FROM Users u")
 	Long ListReportNbMembers();
 
 	@Query("SELECT u FROM Users u WHERE u.name LIKE %?1% ")
-	List<Users> findAllByNameLike(Optional<String> key);
-
+	List<Users> findAllByNameLike(String key);
+	
 }
