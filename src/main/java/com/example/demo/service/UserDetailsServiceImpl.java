@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -34,8 +36,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			throw new UsernameNotFoundException(username);
 		}
 		account.setPassword(passwordEncoder.encode(account.getPassword()));
-		return new org.springframework.security.core.userdetails.User(account.getEmail(), account.getPassword(), true,
-				true, true, true, Arrays.asList(new SimpleGrantedAuthority("USER")));
+		return new org.springframework.security.core.userdetails.User(account.getEmail(), account.getPassword(), getAuthority(account));
 	}
+	    private Set<SimpleGrantedAuthority> getAuthority(UsersDetail user) {
+        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+ 
+        // for (Role role : user.getRoles()) {
+            authorities.add(new SimpleGrantedAuthority((user.getRole()?"ADMIN":"USER")));
+        // }
+ 
+        return authorities;
+    }
 
 }
