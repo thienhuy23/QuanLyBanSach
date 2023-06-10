@@ -195,34 +195,34 @@ public class AdminController {
 		return "page/image_admin";
 	}
 
-	@PostMapping("/image")
-	public String handleImage(Model model, @RequestParam("url") String url,
-			@RequestParam(value = "id", required = false) String idString, @RequestParam("bookId") int bookId,
-			@RequestParam(value = "action", required = false) String action) {
+
+	@RequestMapping("/image/create")
+	public String addImage(@RequestParam("url") String url, @RequestParam("bookId") int bookId) {
+		Image img = new Image();
+		Optional<Book> book = bookService.findById(bookId);
+		img.setBook(book.get());
+		img.setUrl(url);
+		imgservice.save(img);
+		return "redirect:/image";
+	}
+	@RequestMapping("/image/update")
+	public  String editImage(@RequestParam("id") String idString, @RequestParam("url") String url, @RequestParam("bookId") int bookId) {
 		int id = 0; // Default value for id
 		if (idString != null && !idString.isEmpty()) {
 			id = Integer.parseInt(idString);
 		}
-		if (action != null && action.equals("add")) {
-
-			Image img = new Image();
-			Optional<Book> book = bookService.findById(bookId);
-			img.setBook(book.get());
-			img.setUrl(url);
-			imgservice.save(img);
-		} else if (action != null && action.equals("edit")) {
-			Optional<Image> image = imgservice.findById(id);
-			if (image.isPresent()) {
-				image.get().setUrl(url);
-				image.get().setBook(bookService.findById(bookId).get());
-				imgservice.save(image.get());
-			}
-		} else if (action.equals("delete")) {
-
-		}
+		Optional<Image> img = imgservice.findById(id);
+		Optional<Book> book = bookService.findById(bookId);
+		img.get().setBook(book.get());
+		img.get().setUrl(url);
+		imgservice.save(img.get());
 		return "redirect:/image";
 	}
-
+	@RequestMapping("/image/delete/{id}")
+	public String DeleteImageid(Model model, @PathVariable("id") int id) {
+		imgservice.deleteImageid(id);
+		return "redirect:/image";
+	}
 	@RequestMapping("/image/new")
 	public String newImage(Model model) {
 
@@ -271,7 +271,7 @@ public class AdminController {
 
 	@RequestMapping("/account")
 	public String account(Model model) {
-		List<Users> user = usersService.findAll();
+		List<Users> user = userrepo.findAllByUsers();
 		model.addAttribute("users", user);
 		return "page/account_admin";
 
@@ -316,8 +316,10 @@ public class AdminController {
 	@RequestMapping("/user/edit")
 	public String editUser(Model model, @RequestParam("id") int id) {
 		Optional<Users> user = usersService.findById(id);
-		model.addAttribute("users", usersService.findAll());
 		model.addAttribute("user", user.orElse(new Users()));
+		List<Users> users = userrepo.findAllByUsers();
+		model.addAttribute("users", users);
+	
 		return "page/account_admin";
 	}
 
