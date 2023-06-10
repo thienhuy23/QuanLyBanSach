@@ -17,7 +17,7 @@ import com.example.demo.entity.Supplier;
 public interface AuthorRepository extends JpaRepository<Author, Integer>{
 	
 	@Query("SELECT a FROM Author a WHERE a.name LIKE %?1%")
-	List<Author> findAllByNameLike(Optional<String> name, Sort sort);
+	List<Author> findAllByNameLike(Optional<String> name);
 	
 	@Query("SELECT s FROM Supplier s WHERE s.name LIKE %?1% ORDER BY s.name ASC")
 	Page<Author> findAllByNameLikePage(Optional<String> name,PageRequest pageable);

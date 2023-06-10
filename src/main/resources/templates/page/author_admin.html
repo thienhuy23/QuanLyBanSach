@@ -14,7 +14,7 @@
 					title="Your Store" alt="Your Store" class="img-fluid"></a>
 			</div>
 			<!-- Navbar Search-->
-			<form action="/admin/searchAuthor" method="post"
+			<form action="/author" method="post"
 				class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
 				<div class="text-right  header-right me-5  mr-auto">
 					<div class="input-group mb-3 mt-3 text-right "
@@ -45,12 +45,12 @@
 						<form class="row g-3" th:object="${authorr}"  method="post">
 							<div class=" p-5 pt-3 pb-1">
 								<label class="form-label fw-bold">Id: </label> 
-								<input type="text" th:value="${authorr?.id}" class="form-control "/>
+								<input type="text" th:value="${authorr?.id}" th:field="*{id}" class="form-control "/>
 								<p class="alert" th:if="${#fields.hasErrors('id')}" th:errors="*{id}" ></p>
 							</div>
 							<div class=" p-5 pt-3 pb-1">
 								<label class="form-label fw-bold">Tên tác giả: </label> 
-								<input type="text" th:value="${authorr?.name}" class="form-control "/>
+								<input type="text" th:value="${authorr?.name}" th:field="*{name}" class="form-control "/>
 								<p class="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></p>
 							</div>
 							<div class=" p-5 pt-1 pb-3">
@@ -63,7 +63,7 @@
 								<button formaction="/admin/CreateAuthor"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 									style="width: 100px;">Sửa</button>
-								<button formaction="/admin"
+								<button formaction="/author"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 									style="width: 100px;">Đặt lại</button>
 							</div>
@@ -78,6 +78,8 @@
 							<th>Tên tác giả:</th>
 							<th>&nbsp;</th>
 							<th>&nbsp;</th>
+							<th>&nbsp;</th>
+							<th>&nbsp;</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -85,13 +87,11 @@
 							<td><b>#[[${author.id}]]</b></td>
 							<td>[[${author.name}]]</td>
 							<td>&nbsp;</td>
-							<td><a style="text-decoration: none;"
-								th:href="@{/author/edit(id=${author.id})}"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
+							<td><a  
+								th:href="@{/author/edit(id=${author.id})}" class="is-color-pink ms-2 fs-5"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
 							<td>
 								
-								<a th:href="@{|/admin/DeleteAuthor/${author.id}|}"class="is-color-pink ms-2 fs-5"
-										  data-toggle="tooltip">
-										<i class="fa-solid fa-trash"></i></a>
+								<a th:href="@{|/admin/DeleteAuthor/${author.id}|}"class="is-color-pink ms-2 fs-5" data-toggle="tooltip"> <i class="fa-solid fa-trash"></i></a>
 							</td>
 						</tr>
 					</tbody>

@@ -86,11 +86,16 @@ public class AdminController {
 
 	// Supplier
 	@RequestMapping("/supplier")
-	public String supplier(Model model, @RequestParam("field") Optional<String> field) {
+	public String supplier(Model model, @RequestParam("name") Optional<String> name) {
 		model.addAttribute("supplierr", new Supplier());
-		Sort sort = Sort.by(field.orElse("name"));
-		model.addAttribute("supplier", SupplierRep.findAll(sort));
-		return "page/supplier_admin";
+		if (!name.isPresent()) {
+			model.addAttribute("supplier", SupplierRep.findAll());
+			return "page/supplier_admin";
+		} else {
+			model.addAttribute("supplier", SupplierRep.findAllByNameLike(name));
+			return "page/supplier_admin";
+		}
+
 	}
 
 	@RequestMapping("/admin/CreateSupplier")
@@ -119,23 +124,18 @@ public class AdminController {
 		return "page/supplier_admin";
 	}
 
-	@RequestMapping("/admin/searchSupplier")
-	public String search(Model model, @RequestParam("name") Optional<String> name,
-			@RequestParam("field") Optional<String> field) {
-		model.addAttribute("supplierr", new Supplier());
-		Sort sort = Sort.by(field.orElse("name"));
-		List<Supplier> supplier = SupplierRep.findAllByNameLike(name, sort);
-		model.addAttribute("supplier", supplier);
-		return "page/supplier_admin";
-	}
-
 	// Author
 	@RequestMapping("/author")
-	public String author(Model model, @RequestParam("field") Optional<String> field) {
+	public String author(Model model, @RequestParam("name") Optional<String> name) {
 		model.addAttribute("authorr", new Author());
-		Sort sort = Sort.by(field.orElse("name"));
-		model.addAttribute("author", AuthorRep.findAll(sort));
-		return "page/author_admin";
+		if (!name.isPresent()) {
+			model.addAttribute("author", AuthorRep.findAll());
+			return "page/author_admin";
+		} else {
+			List<Author> author = AuthorRep.findAllByNameLike(name);
+			model.addAttribute("author", author);
+			return "page/author_admin";
+		}
 	}
 
 	@RequestMapping("/admin/CreateAuthor")
@@ -167,16 +167,6 @@ public class AdminController {
 	public String EditAuthor(Model model, @PathVariable("id") Integer id) {
 		Optional<Author> author = authorService.findById(id);
 		model.addAttribute("author", author.get());
-		return "page/author_admin";
-	}
-
-	@RequestMapping("/admin/searchAuthor")
-	public String searchAuthor(Model model, @RequestParam("name") Optional<String> name,
-			@RequestParam("field") Optional<String> field) {
-		model.addAttribute("authorr", new Author());
-		Sort sort = Sort.by(field.orElse("name"));
-		List<Author> author = AuthorRep.findAllByNameLike(name, sort);
-		model.addAttribute("author", author);
 		return "page/author_admin";
 	}
 
@@ -228,6 +218,7 @@ public class AdminController {
 
 		return "redirect:/image";
 	}
+
 	@RequestMapping("/image/edit")
 	public String editImage(Model model, @RequestParam("id") int id) {
 		Optional<Image> img = imgservice.findById(id);
@@ -239,6 +230,7 @@ public class AdminController {
 
 	@RequestMapping("/product")
 	public String product(Model model) {
+		model.addAttribute("bookk", new Book());
 		model.addAttribute("Author", authorService.findAll());
 		model.addAttribute("Supplier", supplierServ.findAll());
 		model.addAttribute("Cateory", categoryService.findAll());
@@ -246,26 +238,24 @@ public class AdminController {
 		return "page/book_admin";
 	}
 
-	@RequestMapping("/ProductCreate")
-	public String ProductCreate(@RequestParam("category") Optional<Integer> category,
-			@RequestParam("supplier") Optional<Integer> supplier, @RequestParam("author") Optional<Integer> author,
-			@RequestParam("name") Optional<String> name, @RequestParam("price") Optional<Double> price,
-			@RequestParam("discount") Optional<Float> discount,
-			@RequestParam("published_year") Optional<Integer> published_year,
-			@RequestParam("number_page") Optional<Integer> number_page,
-			@RequestParam("describe") Optional<String> describe) {
-		bookRep.saveBook(category, supplier, author, name, price, discount, published_year, number_page, describe);
-////		model.addAttribute("bookk", new Book());
-//		System.out.println(name+"name");
-//		System.out.println(price+"gia");
-//		System.out.println(discount+"discount");
-//		System.out.println(published_year+"published_year");
-//		System.out.println(number_page+"number_page");
-//		System.out.println(describe+"describe");
-//		System.out.println(author+"a");
-//		System.out.println(supplier+"b");
-//		System.out.println(category+"c");
+	@RequestMapping("/Product/Create")
+	public String ProductCreate(Model model, @ModelAttribute("bookk") Book book) {
+		model.addAttribute("book", bookService.save(book));
 		return "redirect:/product";
+	}
+
+	@RequestMapping("/Product/Delete/{id}")
+	public String ProductDelete(@PathVariable("id") Integer id) {
+		bookRep.deleteById(id);
+		return "redirect:/product";
+	}
+
+	@RequestMapping(value = "/Product/edit", method = RequestMethod.GET)
+	public String editProduct(Model model, @RequestParam("id") int Id) {
+		model.addAttribute("bookk", bookService.findById(Id).orElse(new Book()));
+		System.out.println(bookService.findById(Id).orElse(new Book()));
+		return "page/book_admin";
+
 	}
 
 	@RequestMapping("/account")
