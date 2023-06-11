@@ -24,13 +24,13 @@
                                    id="inputId"/>
                         </div>
                         <div class=" p-5 pt-3 pb-1">
-                            <label for="inputAddress" class="form-label fw-bold">Chọn
-                                mã sản phẩm: </label>
+                            <label for="inputAddress" class="form-label fw-bold">Tên
+                                 sản phẩm: </label>
                             <select
                                     class="form-select border-secondary rounded-0 bg-light"
                                     aria-label="Disabled select example"
                                     name="bookId">
-                                <option selected class="text-secondary">Chọn mã sản
+                                <option selected class="text-secondary">Chọn tên sản
                                     phẩm
                                 </option>
                                 <option th:each="book : ${book}" th:value="${book.id}"
@@ -79,7 +79,7 @@
                     <!--							book id-->
                     <th>[[${img.book.name}]]</th>
                     <td><a style="text-decoration: none;"
-                           th:href="@{/image/edit(id=${img.id})}"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
+                           th:href="@{/admin/image/edit(id=${img.id})}"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
                     <th><a class="is-color-pink fs-4"
                            style="text-decoration: none;"
                            th:href="@{|/image/delete/${img.id}|}"><i

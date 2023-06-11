@@ -22,7 +22,6 @@ public class RegisterController {
 	@Autowired
 	RegisterService registerRService;
  
-	
 	@GetMapping(value={"/",""})
 	public String getRegister(Model model ) {
 		model.addAttribute("user", new Users());
@@ -33,6 +32,7 @@ public class RegisterController {
 		if (result.hasErrors()) {
 			return "page/register";
 		}else {
+			user.setRole(false);
 			registerRService.save(user);
 			model.addAttribute("message","Đăng ký thành công, Vui lòng đăng nhập");
 			return "page/register";

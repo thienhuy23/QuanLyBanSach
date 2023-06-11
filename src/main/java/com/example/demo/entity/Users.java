@@ -44,7 +44,7 @@ public class Users implements Serializable {
 	@NotEmpty(message = "{NotEmpty.users.phone}")
 	String phone;
 
-	@NotNull(message = "Vui chọn vai trò")
+	
 	@Column
 	Boolean role;
 

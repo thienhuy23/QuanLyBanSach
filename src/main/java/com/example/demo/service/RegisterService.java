@@ -10,7 +10,7 @@ import com.example.demo.repository.RegisterRepository;
 public class RegisterService {
 	@Autowired
 	RegisterRepository RegisterRepo;
-
+    
 	public Users save(Users entity) {
 		return RegisterRepo.save(entity);
 	}

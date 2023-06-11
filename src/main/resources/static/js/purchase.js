@@ -2,6 +2,7 @@ const user_id = $('input[name=user_id]').val();
 
 let repo = JSON.parse(localStorage.getItem(`cart_${user_id}`)==null?[]:localStorage.getItem(`cart_${user_id}`));
 const data = JSON.stringify(repo.map(s=>parseInt(s.id))).replace("[","").replace("]","");
+
 let result = [];
 const fillData = (data) =>{
     data.forEach((s,i) => {

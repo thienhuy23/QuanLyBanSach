@@ -12,23 +12,25 @@
 
 			</div>
 			<div class="col-md-10">
-				<form th:action="@{/admin/user/search}" method="post"
-					class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-					<div class="text-right  header-right me-5  mr-auto">
-						<div class="input-group mb-3 mt-3 text-right ms-5"
-							style="width: 350px;">
-							<input type="text" class="form-control rounded-0 is-outline-gray"
-								placeholder="Tìm kiếm..." aria-label="Search..." name="search"
-								aria-describedby="button-addon2">
-							<button
-								class="btn btn-outline-secondary rounded-0 border-0 is-outline-pink"
-								id="button-addon2">
-								<i class="bi bi-search text-light"></i>
-							</button>
-						</div>
-					</div>
-				</form>
 				<div class="col-md-10 offset-md-1 pt-3">
+					<form th:action="@{/admin/user/search}" method="post"
+						class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+						<div class="text-right  header-right me-5  mr-auto">
+							<div class="input-group mb-3 mt-3 text-right ms-5"
+								style="width: 350px;">
+								<input type="text"
+									class="form-control rounded-0 is-outline-gray"
+									placeholder="Tìm kiếm..." aria-label="Search..." name="search"
+									aria-describedby="button-addon2">
+								<button
+									class="btn btn-outline-secondary rounded-0 border-0 is-outline-pink"
+									id="button-addon2">
+									<i class="bi bi-search text-light"></i>
+								</button>
+							</div>
+							<p class="text-danger ps-5">[[${SearchUsers}]]</p>
+						</div>
+					</form>
 					<div class="card rounded-0 border-0">
 						<div class=" pb-2 fs-4 p-4 pt-0 fw-bold">Danh sách người
 							dùng</div>
@@ -55,14 +57,11 @@
 									khẩu: </label> <input th:value="${user?.password}" type="password"
 									name="password" class="form-control rounded-0 border-secondary"
 									id="inputPassword" />
-
-
 							</div>
 							<div class=" p-5 pt-3 pb-1">
 								<label for="inputAddress" class="form-label fw-bold">Email:
 								</label> <input type="email" th:value="${user?.email}" name="email"
 									class="form-control rounded-0 border-secondary" id="inputEmail" />
-
 							</div>
 							<div class=" p-5 pt-3 pb-1">
 								<label for="inputAddress" class="form-label fw-bold">Số
@@ -107,8 +106,8 @@
 									style="width: 100px;">Xóa</button>
 								<button type="submit"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
-									style="width: 100px;" formaction="/admin/user/update">Sửa</button>
-								<button type="submit" formaction="/admin"
+									style="width: 100px;" formaction="/admin/user/edit">Sửa</button>
+								<button type="submit" formaction="/admin/account"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 									HEAD style="width: 100px;">Đặt lại</button>
 								</button>
@@ -137,8 +136,8 @@
 							<td>[[${user.email}]]</td>
 							<td>[[${user.phone}]]</td>
 							<td><a style="text-decoration: none;"
-								th:href="@{/admin/user/edit(id=${user.id})}">Edit</a></td>
-
+								th:href="@{/admin/user/edit(id=${user.id})}"><i
+									class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
 							<th><a class="is-color-pink fs-4"
 								style="text-decoration: none;"
 								th:href="@{|/admin/user/delete/${user.id}|}"><i
@@ -148,5 +147,6 @@
 				</table>
 			</div>
 		</div>
+	</div>
 </body>
 </html>

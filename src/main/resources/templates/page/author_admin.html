@@ -1,36 +1,37 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 	xmlns="http://www.w3.org/1999/xhtml">
 <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"></link>
 <div th:replace="~{commons/head ::  head}"></div>
 <body>
 	<div class="container-fluid">
 		<div id="nav_admin">
-		<nav class="sb-topnav navbar navbar-expand ">
-			<!-- Navbar Brand-->
-			<div class="pt-3">
-				<a th:href="@{/}"><img
-					src="https://bookcart.themability.com/image/catalog/logo.png"
-					title="Your Store" alt="Your Store" class="img-fluid"></a>
-			</div>
-			<!-- Navbar Search-->
-			<form action="/admin/searchAuthor" method="post"
-				class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-				<div class="text-right  header-right me-5  mr-auto">
-					<div class="input-group mb-3 mt-3 text-right "
-						style="width: 350px;">
-						<input type="text" name="name" class="form-control rounded-0 is-outline-gray"
-							placeholder="Tìm kiếm..." aria-label="Search..."
-							aria-describedby="button-addon2">
-						<button
-							class="btn btn-outline-secondary rounded-0 border-0 is-outline-pink"
-							type="submit" id="button-addon2">
-							<i class="bi bi-search text-light"></i>
-						</button>
-					</div>
+			<nav class="sb-topnav navbar navbar-expand ">
+				<!-- Navbar Brand-->
+				<div class="pt-3">
+					<a th:href="@{/}"><img
+						src="https://bookcart.themability.com/image/catalog/logo.png"
+						title="Your Store" alt="Your Store" class="img-fluid"></img></a>
 				</div>
-			</form>
-		</nav>
+				<!-- Navbar Search-->
+				<form action="/author" method="post"
+					class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+					<div class="text-right  header-right me-5  mr-auto">
+						<div class="input-group mb-3 mt-3 text-right "
+							style="width: 350px;">
+							<input type="text" name="name"
+								class="form-control rounded-0 is-outline-gray"
+								placeholder="Tìm kiếm..." aria-label="Search..."
+								aria-describedby="button-addon2">
+							<button
+								class="btn btn-outline-secondary rounded-0 border-0 is-outline-pink"
+								type="submit" id="button-addon2">
+								<i class="bi bi-search text-light"></i>
+							</button>
+						</div>
+					</div>
+				</form>
+			</nav>
 		</div>
 		<div class="row">
 			<div class="col-md-2">
@@ -42,73 +43,75 @@
 					<div class="card rounded-0 border-0">
 						<div class=" pb-2 fs-4 p-4 pt-0 fw-bold">Danh sách tác giả:</div>
 						<span th:text="${message}" class="text-danger"></span>
-						<form class="row g-3" th:object="${authorr}"  method="post">
+						<form class="row g-3" th:object="${authorr}" method="post">
 							<div class=" p-5 pt-3 pb-1">
-								<label class="form-label fw-bold">Id: </label> 
-								<input type="text" th:value="${authorr?.id}" class="form-control "/>
-								<p class="alert" th:if="${#fields.hasErrors('id')}" th:errors="*{id}" ></p>
+								<label class="form-label fw-bold">Id: </label> <input
+									type="text" th:value="${authorr?.id}" th:field="*{id}"
+									class="form-control " />
+								<p class="alert" th:if="${#fields.hasErrors('id')}"
+									th:errors="*{id}"></p>
 							</div>
 							<div class=" p-5 pt-3 pb-1">
-								<label class="form-label fw-bold">Tên tác giả: </label> 
-								<input type="text" th:value="${authorr?.name}" class="form-control "/>
-								<p class="alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></p>
+								<label class="form-label fw-bold">Tên tác giả: </label> <input
+									type="text" th:value="${authorr?.name}" th:field="*{name}"
+									class="form-control " />
+								<p class="alert" th:if="${#fields.hasErrors('name')}"
+									th:errors="*{name}"></p>
 							</div>
 							<div class=" p-5 pt-1 pb-3">
-								<button formaction="/admin/CreateAuthor" 
+								<button formaction="/admin/CreateAuthor"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 									style="width: 100px;">Thêm</button>
-								<button formaction=""
+								<button formaction="/admin/DeleteAuthor"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 									style="width: 100px;">Xóa</button>
 								<button formaction="/admin/CreateAuthor"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 									style="width: 100px;">Sửa</button>
-								<button formaction="/admin"
+								<a href="/admin/author"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
-									style="width: 100px;">Đặt lại</button>
+									style="width: 100px;">Đặt lại</a>
 							</div>
 						</form>
 					</div>
 				</div>
 				<div class="table-responsive form-control mt-3">
 					<table class="table table-centered table-nowrap">
-					<thead class="is-outline-gray">
-						<tr>
-							<th>ID:</th>
-							<th>Tên tác giả:</th>
-							<th>&nbsp;</th>
-							<th>&nbsp;</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="author:${author}">
-							<td><b>#[[${author.id}]]</b></td>
-							<td>[[${author.name}]]</td>
-							<td>&nbsp;</td>
-							<td><a style="text-decoration: none;"
-								th:href="@{/admin/author/edit(id=${author.id})}"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
-							<td>
-								
-								<a th:href="@{|/admin/DeleteAuthor/${author.id}|}"class="is-color-pink ms-2 fs-5"
-										  data-toggle="tooltip">
-										<i class="fa-solid fa-trash"></i></a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+						<thead class="is-outline-gray">
+							<tr>
+								<th>ID:</th>
+								<th>Tên tác giả:</th>
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="author:${author}">
+								<td><b>#[[${author.id}]]</b></td>
+								<td>[[${author.name}]]</td>
+								<td>&nbsp;</td>
+								<td><a th:href="@{'/admin/author/'+${author.id}}"
+									class="is-color-pink ms-2 fs-5"><i
+										class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
+								<td><a th:href="@{|/admin/DeleteAuthor/${author.id}|}"
+									class="is-color-pink ms-2 fs-5" data-toggle="tooltip"> <i
+										class="fa-solid fa-trash"></i></a></td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 				<nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center pagination-sm">
-                        <li  th:if="${coursePage.totalPages > 0}" class="page-link"
-                              th:each="pageNumber : ${pageNumbers}">
-                            <a th:href="@{/(size=${coursePage.size}, page=${pageNumber})}"
-                               th:text=${pageNumber}
-                               th:class="${pageNumber==coursePage.number + 1} ? active"
-                               class="page-link"
-                            ></a>
-                        </li>
-                    </ul>
-                </nav>
+					<ul class="pagination justify-content-center pagination-sm">
+						<li th:if="${coursePage.totalPages > 0}" class="page-link"
+							th:each="pageNumber : ${pageNumbers}"><a
+							th:href="@{/(size=${coursePage.size}, page=${pageNumber})}"
+							th:text=${pageNumber}
+							th:class="${pageNumber==coursePage.number + 1} ? active"
+							class="page-link"></a></li>
+					</ul>
+				</nav>
 			</div>
 		</div>
 	</div>
