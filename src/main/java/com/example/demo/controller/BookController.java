@@ -19,14 +19,19 @@ public class BookController {
 	BookService bookService;
 	
 	@GetMapping({"/",""})
-	public String getBook(@RequestParam("bookId") int bookId,Model model) {
-		Optional<Book> book = bookService.findById(bookId);
-		if(!book.isPresent()) {
-			return "redirect:/error";
+	public String getBook(@RequestParam("bookId") Optional<Integer> bookId,Model model) {
+		if(!bookId.isPresent()) {
+			return "redirect:/error.html";
 		}
+		Optional<Book> book = bookService.findById(bookId.get());
+
 		model.addAttribute("book", book.get());
+<<<<<<< HEAD
 		// bookService.findListExpect(bookId).stream().map(s->s.getImages().size()).forEach(System.out::println);
 		model.addAttribute("listBook",bookService.findListExpect(bookId));
+=======
+		model.addAttribute("listBook",bookService.findListExpect(bookId.get()));
+>>>>>>> origin/master
 		return "page/book";
 	}
 	@GetMapping("/error")

@@ -1,5 +1,7 @@
 package com.example.demo.dto;
 
+import com.example.demo.entity.Bill;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,13 +12,10 @@ import lombok.NoArgsConstructor;
 public class MailInfo {
 	String from;
 	String to;
-	String[] cc;
-	String[] bcc;
 	String subject;
-	String body;
-	String[] attachments;
+	Bill body;
 
-	public MailInfo(String to, String subject, String body) {
+	public MailInfo(String to, String subject, Bill body) {
 		this.from = "FPT Polytechnic <poly@fpt.edu.vn>";
 		this.to = to;
 		this.subject = subject;

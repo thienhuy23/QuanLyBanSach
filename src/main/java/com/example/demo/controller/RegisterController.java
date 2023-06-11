@@ -27,15 +27,21 @@ public class RegisterController {
 		model.addAttribute("user", new Users());
 		return "page/register";
 	}
-	@PostMapping("/insert")
+	@PostMapping(value={"/",""})
 	public String postRegister(@Valid @ModelAttribute("user") Users user ,BindingResult result ,Model model ) {
+		user.setRole(false);
+		System.out.println(user.toString());
 		if (result.hasErrors()) {
 			return "page/register";
 		}else {
+<<<<<<< HEAD
 			user.setRole(false);
 			registerRService.save(user);
+=======
+			System.out.println(registerRService.save(user).toString());
+>>>>>>> origin/master
 			model.addAttribute("message","Đăng ký thành công, Vui lòng đăng nhập");
-			return "page/register";
+			return "redirect:/login";
 		}
 		
 	}

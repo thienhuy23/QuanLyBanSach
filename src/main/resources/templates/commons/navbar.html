@@ -73,7 +73,7 @@
 											class="bi bi-person-circle "></i></span> </a>
 									<ul
 										class="dropdown-menu currency-dropdown dropdown-menu-right mt-2">
-										<li><a th:href="@{'/profile?profileId='+${session.user?.id}}" class="dropdown-item" >Tài khoản của tôi</a></li>
+										<li><a th:href="@{'/profile?profileId='+${session.user?.id}}" class="dropdown-item" th:if="${session?.user != null}" >Tài khoản của tôi</a></li>
 										<li><a href="/logout" class="dropdown-item" th:if="${session?.user != null}" >Đăng xuất</a></li>
 										<li><a href="/register" class="dropdown-item" th:if="${session?.user == null}">Đăng ký</a></li>
 										<li><a href="/login" class="dropdown-item" th:if="${session?.user == null}">Đăng nhập</a></li>

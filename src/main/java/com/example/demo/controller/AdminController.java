@@ -13,6 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -71,6 +73,7 @@ public class AdminController {
 	AuthorRepository AuthorRep;
 	@Autowired
 	ImageService imgservice;
+<<<<<<< HEAD
 
 	@RequestMapping("/product")
 	public String product(Model model) {
@@ -103,6 +106,10 @@ public class AdminController {
 	}
 
 	@RequestMapping("")
+=======
+	@PreAuthorize("hasRole('ADMIN')")
+	@RequestMapping("/admin")
+>>>>>>> origin/master
 	public String home(Model model, HttpSession session, Principal principal) {
 		model.addAttribute("count", userrepo.ListReportNbMembers());
 		if (principal != null) {

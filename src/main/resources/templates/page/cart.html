@@ -6,7 +6,6 @@
 <body>
   <div th:replace="~{commons/navbar :: .navbar}"></div>
   <main>
-    <input type="hidden" name="user_id" th:value="${session.user?.id}">
       <div class="carousel-inner">
             <div class="carousel-item active">
                 <img th:src="@{/images/bg_img.png}" class="d-block" alt="...">
@@ -30,6 +29,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>STT</th>
                                 <th>Hình ảnh</th>
                                 <th>Tên sản phẩm</th>
@@ -48,9 +48,10 @@
                             </tr>
                         </tfoot>
                     </table>
-                    <div class="d-flex flex-row-reverse">
-                        <a class="btn is-outline-pink text-white" th:href="@{/bill}" >Thanh toán</a>
-                    </div>
+                    <form action="/bill" id="frmTT" method="post" class="d-flex flex-row-reverse">
+                        <input type="hidden" name="user_id" th:value="${session.user?.id}">
+                        <button type="submit" class="btn is-outline-pink text-white" >Thanh toán</button>
+                    </form>
                 </div>
             </div> 
         </div>

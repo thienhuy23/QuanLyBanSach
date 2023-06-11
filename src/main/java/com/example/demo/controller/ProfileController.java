@@ -36,9 +36,11 @@ public class ProfileController {
 	@GetMapping({ "/", "" })
 	public String getProfile(@RequestParam("profileId") int profileid,@RequestParam("status") Optional<Integer> status, Model model) {
 		Optional<Users> users = usersService.findByIdProfile(profileid);
-		List<Bill> bills= billService.findAll();
+		List<Bill> bills= billService.findAllByUserId(profileid);
 		model.addAttribute("status", statusService.findAll());
-		bills = bills.stream().filter(s->s.getStatus().getId()==status.orElse(1)).toList();
+		int statudId = status.orElse(1);
+		model.addAttribute("statusId", statudId);
+		bills = bills.stream().filter(s->s.getStatus().getId()==statudId).toList();
 		model.addAttribute("bills",bills);
 		if (!users.isPresent()) {
 			return "redirect:/error";
