@@ -14,7 +14,7 @@
 						title="Your Store" alt="Your Store" class="img-fluid"></a>
 				</div>
 				<!-- Navbar Search-->
-				<form action="/supplier" method="post"
+				<form action="/admin/supplier" method="post"
 					class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
 					<div class="text-right  header-right me-5  mr-auto">
 						<div class="input-group mb-3 mt-3 text-right "
@@ -65,9 +65,9 @@
 								<button formaction="/admin/CreateSupplier"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 									style="width: 100px;">Thêm</button>
-								<button formaction="/admin/DeleteSupplier"
+								<!-- <button formaction="/admin/DeleteSupplier"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
-									style="width: 100px;">Xóa</button>
+									style="width: 100px;">Xóa</button> -->
 								<button formaction="/admin/CreateSupplier"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 									style="width: 100px;">Sửa</button>
@@ -87,8 +87,6 @@
 								<th>Tên nhà cung cấp:</th>
 								<th>&nbsp;</th>
 								<th>&nbsp;</th>
-								<th>&nbsp;</th>
-								<th>&nbsp;</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -100,9 +98,9 @@
 								<td><a th:href="@{'/admin/supplier/'+${supplier.id}}"
 									class="is-color-pink ms-2 fs-5"><i
 										class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
-								<td><a th:href="@{|/admin/DeleteSupplier/${supplier.id}|}"
+								<!-- <td><a th:href="@{|/admin/DeleteSupplier/${supplier.id}|}"
 									class="is-color-pink ms-2 fs-5" data-toggle="tooltip"><i
-										class="fa-solid fa-trash"></i></a></td>
+										class="fa-solid fa-trash"></i></a></td> -->
 							</tr>
 						</tbody>
 					</table>

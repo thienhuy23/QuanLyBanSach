@@ -17,23 +17,20 @@ import com.example.demo.service.BookService;
 public class BookController {
 	@Autowired
 	BookService bookService;
-	
-	@GetMapping({"/",""})
-	public String getBook(@RequestParam("bookId") Optional<Integer> bookId,Model model) {
-		if(!bookId.isPresent()) {
+
+	@GetMapping({ "/", "" })
+	public String getBook(@RequestParam("bookId") Optional<Integer> bookId, Model model) {
+		if (!bookId.isPresent()) {
 			return "redirect:/error.html";
 		}
 		Optional<Book> book = bookService.findById(bookId.get());
 
 		model.addAttribute("book", book.get());
-<<<<<<< HEAD
-		// bookService.findListExpect(bookId).stream().map(s->s.getImages().size()).forEach(System.out::println);
-		model.addAttribute("listBook",bookService.findListExpect(bookId));
-=======
-		model.addAttribute("listBook",bookService.findListExpect(bookId.get()));
->>>>>>> origin/master
+
+		model.addAttribute("listBook", bookService.findListExpect(bookId.get()));
 		return "page/book";
 	}
+
 	@GetMapping("/error")
 	public String error() {
 		return "page/error";

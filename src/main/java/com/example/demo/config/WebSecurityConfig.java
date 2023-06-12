@@ -36,18 +36,10 @@ public class WebSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.csrf().disable()
-				.authorizeRequests()
-<<<<<<< HEAD
-				.requestMatchers( "/cart","/admin/**")
-				.authenticated()
-				.anyRequest()
-				.permitAll()
-=======
+		http.csrf().disable().authorizeRequests()
 				.requestMatchers( "/admin/**").hasAuthority("ADMIN")
 				.requestMatchers("/cart","/bill").hasAuthority("USER")
 				.anyRequest().authenticated()
->>>>>>> origin/master
 				.and()
 				.authenticationProvider(authenticationProvider())
 				// .httpBasic();

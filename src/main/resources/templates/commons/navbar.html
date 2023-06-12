@@ -43,18 +43,20 @@
 				<div class="container pt-4">
 					<div class="row header-inner align-items-center">
 						<div class="text-left col-lg-4 col-xl-4 col-xxl-4 header-left">
+
 							<div class="input-group mb-3 mt-3 " style="width: 300px;">
 								<input type="text"
 									class="form-control rounded-0 is-outline-gray"
-									placeholder="Tìm kiếm..." aria-label="Tìm kiếm..."
+									placeholder="Tìm kiếm..." name="name" aria-label="Tìm kiếm..."
 									aria-describedby="button-addon2">
-								<button
+								<button formaction="/search"
 									class="btn btn-outline-secondary rounded-0 border-0 is-outline-pink"
-									type="button" id="button-addon2">
+									id="button-addon2">
 									<i class="bi bi-search text-light"></i>
 								</button>
 							</div>
 						</div>
+
 						<div
 							class="text-center header-center text-lg-center col-lg-4 col-sm-4 mb-6 col-6 col-xl-4 col-xxl-4">
 							<a th:href="@{/}"><img
@@ -73,18 +75,23 @@
 											class="bi bi-person-circle "></i></span> </a>
 									<ul
 										class="dropdown-menu currency-dropdown dropdown-menu-right mt-2">
-										<li><a th:href="@{'/profile?profileId='+${session.user?.id}}" class="dropdown-item" th:if="${session?.user != null}" >Tài khoản của tôi</a></li>
-										<li><a href="/logout" class="dropdown-item" th:if="${session?.user != null}" >Đăng xuất</a></li>
-										<li><a href="/register" class="dropdown-item" th:if="${session?.user == null}">Đăng ký</a></li>
-										<li><a href="/login" class="dropdown-item" th:if="${session?.user == null}">Đăng nhập</a></li>
+										<li><a
+											th:href="@{'/profile?profileId='+${session.user?.id}}"
+											class="dropdown-item" th:if="${session?.user != null}">Tài
+												khoản của tôi</a></li>
+										<li><a href="/logout" class="dropdown-item"
+											th:if="${session?.user != null}">Đăng xuất</a></li>
+										<li><a href="/register" class="dropdown-item"
+											th:if="${session?.user == null}">Đăng ký</a></li>
+										<li><a href="/login" class="dropdown-item"
+											th:if="${session?.user == null}">Đăng nhập</a></li>
 									</ul>
 								</div>
 								<div class="icon">
 									<a href="cart" class="position-relative"> <span
 										class="fs-4 text-dark ii"><i class="bi bi-cart3"></i></span> <span
 										class="position-absolute top-2 start-100 translate-middle badge rounded-pill bg-danger"
-										id="cartN">
-											 0</span>
+										id="cartN"> 0</span>
 								</div>
 								<div class="icon">
 									<a href="#" class="position-relative"> <span

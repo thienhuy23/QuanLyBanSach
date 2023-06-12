@@ -20,9 +20,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.example.demo.entity.Author;
 import com.example.demo.entity.Bill;
+import com.example.demo.entity.Book;
 import com.example.demo.entity.Status;
 import com.example.demo.entity.Users;
+import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.StatusRepository;
 import com.example.demo.service.BillService;
 import com.example.demo.service.BookService;
@@ -42,13 +45,13 @@ public class HomeController {
 	CategoryService categoryService;
 	@Autowired
 	UsersService usersService;
+	@Autowired
+	BookRepository bookRepo;
+
 	@PreAuthorize("hasRole('USER')")
 	@GetMapping(value = { "", "/", "/home" })
 	public String home(@RequestParam("index") Optional<Integer> index,
-			Model model,
-			HttpSession session,
-			Principal principal,
-			HttpServletRequest request) {
+			Model model, HttpSession session, Principal principal, HttpServletRequest request) {
 		if (principal != null) {
 			session.setAttribute("user", usersService.findByEmail(principal.getName()));
 		}
@@ -57,6 +60,7 @@ public class HomeController {
 		if (StringUtils.isNotBlank(targetUrl)) {
 			return "redirect:" + targetUrl;
 		}
+
 		int i = index.orElse(0);
 		model.addAttribute("index", i);
 		model.addAttribute("books", bookService.getPagination(i, 8));
@@ -64,7 +68,16 @@ public class HomeController {
 		model.addAttribute("count", Math.round(bookService.getCount() / 8));
 		System.out.println(Math.ceil(bookService.getCount() / 8));
 		return "page/home";
+
 	}
+	
+//	@RequestMapping("/search")
+//	public String search(Model model, @RequestParam("name") Optional<String> name) {
+////		List<Book> book = bookRepo.findAllByNameLike(name);
+//		model.addAttribute("books", bookRepo.findAllByNameLike(name));
+//		System.out.println( bookRepo.findAllByNameLike(name));
+//		return "page/home";
+//	}
 
 	@GetMapping("/error.html")
 	public String error() {

@@ -73,8 +73,12 @@ public class AdminController {
 	AuthorRepository AuthorRep;
 	@Autowired
 	ImageService imgservice;
-<<<<<<< HEAD
 
+	@RequestMapping("")
+	public String admin(Model model) {
+		model.addAttribute("bookk", new Book());
+		return "page/statistical_admin";
+	}
 	@RequestMapping("/product")
 	public String product(Model model) {
 		model.addAttribute("bookk", new Book());
@@ -97,19 +101,32 @@ public class AdminController {
 		return "redirect:/admin/product";
 	}
 
-	@RequestMapping(value = "/Product/edit", method = RequestMethod.GET)
+	@RequestMapping("/Product/edit")
 	public String editProduct(Model model, @RequestParam("id") int Id) {
-		model.addAttribute("bookk", bookService.findById(Id).orElse(new Book()));
-		System.out.println(bookService.findById(Id).orElse(new Book()));
+		Optional<Book> book = bookService.findById(Id);
+		model.addAttribute("bookk", book.orElse(new Book()));
+		List<Book> books = bookService.findAll();
+		model.addAttribute("book", books);
+//		model.addAttribute("bookk", bookService.findById(Id).orElse(new Book()));
+//		System.out.println(bookService.findById(Id).orElse(new Book()));
 		return "redirect:/admin/product";
-
 	}
+	
+//	@RequestMapping("/user/edit")
+//	public String editUser(Model model, @RequestParam("id") int id) {
+//		List<String> list = new ArrayList<>();
+//		Optional<Users> user = usersService.findById(id);
+//		model.addAttribute("user", user.orElse(new Users()));
+//		List<Users> users = userrepo.findAllByUsers();
+//		model.addAttribute("users", users);
+//
+//		return "page/account_admin";
+//	}
 
-	@RequestMapping("")
-=======
+
+	
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping("/admin")
->>>>>>> origin/master
 	public String home(Model model, HttpSession session, Principal principal) {
 		model.addAttribute("count", userrepo.ListReportNbMembers());
 		if (principal != null) {
@@ -131,7 +148,6 @@ public class AdminController {
 			model.addAttribute("supplier", SupplierRep.findAllByNameLike(name));
 			return "page/supplier_admin";
 		}
-
 	}
 
 	// Author

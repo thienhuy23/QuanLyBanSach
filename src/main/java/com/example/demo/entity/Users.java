@@ -38,10 +38,6 @@ public class Users implements Serializable {
 	@NotEmpty(message = "{NotEmpty.users.phone}")
 	String phone;
 
-<<<<<<< HEAD
-	
-=======
->>>>>>> origin/master
 	@Column
 	Boolean role;
 

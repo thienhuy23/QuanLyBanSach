@@ -61,17 +61,12 @@ public class BillController {
 		return "page/bill";
 	}
 
-<<<<<<< HEAD
 	@ResponseBody
-	@PostMapping("/bill")
-	public List<?> savePurchase(@RequestParam("user_id") int id, @RequestBody Bill bill) throws MessagingException {
-		Users user = usersService.findById(id).get();
-=======
+
 	@PostMapping("/bill/tt")
 	public String savePurchase(HttpSession session, @RequestParam("place") String place) throws MessagingException {
 		Bill bill = (Bill)session.getAttribute("bill");
 		bill.setReceive_place(place);
->>>>>>> origin/master
 		Status status = repo.findById(1).get();
 		bill.setStatus(status);
 		bill.getBdt().stream().forEach(s -> {

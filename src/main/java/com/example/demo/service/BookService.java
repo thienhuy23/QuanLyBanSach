@@ -34,10 +34,14 @@ public class BookService {
 						.filter(s->s.getId()!=id)
 						.collect(Collectors.toList());
 	}
+	
+	
 	@Transactional
 	public Page<Book> getPagination(int offset, int limit){
 		return bookRepo.findAll(PageRequest.of(offset, limit));
 	}
+	
+	
 	public long getCount(){
 		return bookRepo.count();
 	}
@@ -46,7 +50,10 @@ public class BookService {
 		return bookRepo.findByListId(list);
 	}
 	
+	
+	
 	public  Book save(Book book ){
 		return bookRepo.save(book);
 	}
+	
 }

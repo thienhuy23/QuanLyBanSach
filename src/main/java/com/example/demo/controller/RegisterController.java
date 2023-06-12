@@ -34,12 +34,9 @@ public class RegisterController {
 		if (result.hasErrors()) {
 			return "page/register";
 		}else {
-<<<<<<< HEAD
 			user.setRole(false);
 			registerRService.save(user);
-=======
 			System.out.println(registerRService.save(user).toString());
->>>>>>> origin/master
 			model.addAttribute("message","Đăng ký thành công, Vui lòng đăng nhập");
 			return "redirect:/login";
 		}
