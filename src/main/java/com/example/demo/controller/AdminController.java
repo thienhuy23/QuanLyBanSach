@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
@@ -126,12 +127,16 @@ public class AdminController {
 
 	// Author
 	@RequestMapping("/author")
-	public String author(Model model, @RequestParam("name") Optional<String> name) {
+	public String author(Model model, @RequestParam("name") Optional<String> name
+									,@RequestParam("pageNumber") Optional<Integer> pageNumber) {
 		model.addAttribute("authorr", new Author());
 		if (!name.isPresent()) {
-			model.addAttribute("author", AuthorRep.findAll());
+			Pageable pageable = PageRequest.of(pageNumber.orElse(0), 4);
+			Page<Author> author = AuthorRep.findAll(pageable);
+			model.addAttribute("author", author);
 			return "page/author_admin";
 		} else {
+			
 			List<Author> author = AuthorRep.findAllByNameLike(name);
 			model.addAttribute("author", author);
 			return "page/author_admin";

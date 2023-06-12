@@ -70,7 +70,7 @@
 						</form>
 					</div>
 				</div>
-				<div class="table-responsive form-control mt-3">
+				<div class="table-responsive form-control mt-3 mb-4">
 					<table class="table table-centered table-nowrap">
 					<thead class="is-outline-gray">
 						<tr>
@@ -79,36 +79,36 @@
 							<th>&nbsp;</th>
 							<th>&nbsp;</th>
 							<th>&nbsp;</th>
-							<th>&nbsp;</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="author:${author}">
-							<td><b>#[[${author.id}]]</b></td>
-							<td>[[${author.name}]]</td>
+						<tr th:each="page:${author.content}">
+							<td><b>#[[${page.id}]]</b></td>
+							<td>[[${page.name}]]</td>
 							<td>&nbsp;</td>
 							<td><a  
-								th:href="@{/author/edit(id=${author.id})}" class="is-color-pink ms-2 fs-5"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
+								th:href="@{/author/edit(id=${page.id})}" class="is-color-pink ms-2 fs-5"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
 							<td>
 								
-								<a th:href="@{|/admin/DeleteAuthor/${author.id}|}"class="is-color-pink ms-2 fs-5" data-toggle="tooltip"> <i class="fa-solid fa-trash"></i></a>
+								<a th:href="@{|/admin/DeleteAuthor/${page.id}|}"class="is-color-pink ms-2 fs-5" data-toggle="tooltip"> <i class="fa-solid fa-trash"></i></a>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				</div>
-				<nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center pagination-sm">
-                        <li  th:if="${coursePage.totalPages > 0}" class="page-link"
-                              th:each="pageNumber : ${pageNumbers}">
-                            <a th:href="@{/(size=${coursePage.size}, page=${pageNumber})}"
-                               th:text=${pageNumber}
-                               th:class="${pageNumber==coursePage.number + 1} ? active"
-                               class="page-link"
-                            ></a>
-                        </li>
-                    </ul>
-                </nav>
+				<nav aria-label="Page navigation example mt-5">
+				  <ul class="pagination">
+					<li class="page-item " ><a class="page-link is-outline-pink text-light"  th:href="@{/author(pageNumber=0)}">First</a></li>
+				    <li class="page-item ">
+				      <a class="page-link is-outline-pink text-light" th:href="@{/author(pageNumber=${author.number-1})}">Previous</a>
+				    </li>
+				    <li class="page-item">
+				      <a class="page-link is-outline-pink text-light" th:href="@{/author(pageNumber=${author.number+1})}">Next</a>
+				    </li>
+				    <li class="page-item "><a class="page-link is-outline-pink text-light" th:href="@{/author(pageNumber=${author.totalPages-1})}">Last</a></li>
+				    
+				  </ul>
+				</nav>
 			</div>
 		</div>
 	</div>

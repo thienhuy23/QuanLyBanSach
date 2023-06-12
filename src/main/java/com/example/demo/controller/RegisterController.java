@@ -30,6 +30,7 @@ public class RegisterController {
 	}
 	@PostMapping("/insert")
 	public String postRegister(@Valid @ModelAttribute("user") Users user ,BindingResult result ,Model model ) {
+		System.out.println(user.toString());
 		if (result.hasErrors()) {
 			return "page/register";
 		}else {

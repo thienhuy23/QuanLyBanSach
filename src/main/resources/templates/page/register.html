@@ -31,8 +31,7 @@
 					<div th:replace="~{commons/card ::  #cart}"></div>
 				</div>
 				<div class="col-9 ">
-					<form class="ms-5 " th:action="@{register/insert}"
-						th:object="${user}" method="post">
+					<form class="ms-5 " action="register/insert" th:object="${user}" method="post">
 						<h6 class="mb-3 mt-5">Nếu bạn đã có tài khoản với chúng tôi,
 							vui lòng đăng nhập tại trang đăng nhập.</h6>
 						<p class="alert pt-0 text-success ">
@@ -70,7 +69,7 @@
 							<p class="alert pb-1 ms-4"
 								th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
 						</div>
-
+				
 						<div class=" p-5 pt-1 pb-3">
 							<button type="submit"
 								class="btn button border-0 fs-5 rounded-0 text-light is-outline-pink"
@@ -86,11 +85,6 @@
 	<footer>
 		<div th:replace="~{commons/footer :: footer}"></div>
 	</footer>
-	<script>
-		function myFunction() {
-			alert(location.hostname);
-		}
-	</script>
 	<!-- Bootstrap JavaScript Libraries -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
