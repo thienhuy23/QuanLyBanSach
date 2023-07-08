@@ -29,11 +29,6 @@ public class RegisterController {
 	}
 	@PostMapping(value={"/",""})
 	public String postRegister(@Valid @ModelAttribute("user") Users user ,BindingResult result ,Model model ) {
-<<<<<<< HEAD
-=======
-		user.setRole(false);
->>>>>>> c31a5eb99da67d69e360bc58ffeb875c8c9477e8
-		System.out.println(user.toString());
 		if (result.hasErrors()) {
 			return "page/register";
 		}else {
