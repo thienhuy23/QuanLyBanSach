@@ -1,13 +1,18 @@
 package com.example.demo.service;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import com.example.demo.dto.MailInfo;
+import com.example.demo.entity.Bill;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -15,6 +20,9 @@ import jakarta.mail.internet.MimeMessage;
 public class MailerService {
     @Autowired
 	JavaMailSender sender;
+
+	@Autowired
+   private TemplateEngine templateEngine;
 
 	public void send(MailInfo mail) throws MessagingException {
 		// Tạo message
@@ -24,29 +32,20 @@ public class MailerService {
 		helper.setFrom(mail.getFrom());
 		helper.setTo(mail.getTo());
 		helper.setSubject(mail.getSubject());
-		helper.setText(mail.getBody(), true);
-		helper.setReplyTo(mail.getFrom());
-		String[] cc = mail.getCc();
-		if (cc != null && cc.length > 0) {
-			helper.setCc(cc);
-		}
-		String[] bcc = mail.getBcc();
-		if (bcc != null && bcc.length > 0) {
-			helper.setBcc(bcc);
-		}
-		String[] attachments = mail.getAttachments();
-		if (attachments != null && attachments.length > 0) {
-			for (String path : attachments) {
-				File file = new File(path);
-				helper.addAttachment(file.getName(), file);
-			}
-		}
+		Map<String,Object> map = new HashMap<>();
+		map.put("name", mail.getBody().getUser().getName());
+		map.put("bdt", mail.getBody().getBdt());
+		map.put("id",mail.getBody().getId());
+		Context context = new Context();
+		context.setVariables(map);
+		String htmlBody = templateEngine.process("/util/OrderTemplateEmail", context);
+		helper.setText(htmlBody, true);
 		// Gửi message đến SMTP server
 		sender.send(message);
 
 	}
 
-	public void send(String to, String subject, String body) throws MessagingException {
+	public void send(String to, String subject, Bill body) throws MessagingException {
 		this.send(new MailInfo(to, subject, body));
 	}
 }

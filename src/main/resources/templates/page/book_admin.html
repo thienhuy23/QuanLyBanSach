@@ -11,75 +11,86 @@
 				<div th:replace="~{commons/button_admin :: #button_admin}"></div>
 			</div>
 			<div class="col-md-10 tab-content">
-				<div class="mb-3 pb-2 fs-4 p-4 pt-0 fw-bold">Danh sách sản phẩm</div>
+				<div class="mb-3 pb-2 fs-4 p-4 pt-0 fw-bold">Danh sách sản
+					phẩm</div>
 				<ul class="nav nav-tabs" role="tablist">
-					    <li class="nav-item">
-					      <a class="nav-link active" data-bs-toggle="tab" href="#form"><b>Form sản phẩm</b></a>
-					    </li>
-					    <li class="nav-item">
-					      <a class="nav-link" data-bs-toggle="tab" href="#table"><b>Danh sách</b></a>
-					    </li>
-				  </ul>
-				<div id="form" class="col-md-10 offset-md-1 pt-3 container tab-pane active">
-					<div  class="card rounded-0 border-0 ">
-						<form class="row g-3" action="" method="post" th:object="${bookk}" >
+					<li class="nav-item"><a class="nav-link active"
+						data-bs-toggle="tab" href="#form"><b>Form sản phẩm</b></a></li>
+					<li class="nav-item"><a class="nav-link" data-bs-toggle="tab"
+						href="#table"><b>Danh sách</b></a></li>
+				</ul>
+				<div id="form"
+					class="col-md-10 offset-md-1 pt-3 container tab-pane active">
+					<div class="card rounded-0 border-0 ">
+						<form class="row g-3" action="" method="post" th:object="${bookk}">
 							<div class=" p-5 pt-2 pb-1">
-								<label for="inputAddress" class="form-label fw-bold" >Tên tác giả: </label> 
-									<select 
+								<label for="inputAddress" class="form-label fw-bold">Tên
+									tác giả: </label> <select
 									class="form-select border-secondary rounded-0 bg-light"
-									aria-label="Disabled select example" th:field="*{author}" >
-									<option th:each="option:${Author}" th:value="${option.id}"  >[[${option.name}]]</option>
+									aria-label="Disabled select example" th:field="*{author}">
+									<option th:each="option:${Author}" th:value="${option.id}">[[${option.name}]]</option>
 								</select>
 							</div>
 							<div class=" p-5 pt-2 pb-1">
-								<label for="inputAddress" class="form-label fw-bold">Nhà cung cấp: </label> 
-								<select 
+								<label for="inputAddress" class="form-label fw-bold">Nhà
+									cung cấp: </label> <select
 									class="form-select border-secondary rounded-0 bg-light"
 									aria-label="Disabled select example" th:field="*{supplier}">
-									<option th:each="option:${Supplier}" th:value="${option.id}" >[[${option.name}]]</option>
+									<option th:each="option:${Supplier}" th:value="${option.id}">[[${option.name}]]</option>
 								</select>
 							</div>
 							<div class=" p-5 pt-2 pb-1">
-								<label for="inputAddress" class="form-label fw-bold">Loại sản phẩm: </label>
-								 <select 
+								<label for="inputAddress" class="form-label fw-bold">Loại
+									sản phẩm: </label> <select
 									class="form-select border-secondary rounded-0 bg-light"
 									aria-label="Disabled select example" th:field="*{category}">
-									<option th:each="option:${Cateory}" th:value="${option.id}" >[[${option.name}]]</option>
-									 
+									<option th:each="option:${Cateory}" th:value="${option.id}">[[${option.name}]]</option>
+
 								</select>
 							</div>
 							<div class=" p-5 pt-2 pb-1">
-								<label for="inputAddress" class="form-label fw-bold">Tên sách: </label> 
-								<input type="text" th:field="*{name}" th:value="${bookk?.id}" class="form-control rounded-0 border-secondary"/> 
+								<label for="inputAddress" class="form-label fw-bold">Tên
+									sách: </label> <input type="text" th:field="*{name}"
+									th:value="${bookk?.id}"
+									class="form-control rounded-0 border-secondary"/>
 							</div>
 							<div class="p-5 pt-0 pb-0">
-								<label for="inputAddress" class="form-label fw-bold">Giá:</label> 
-								<input type="text" th:field="*{price}" th:value="${bookk?.name}" class="form-control rounded-0 border-secondary"/>
+								<label for="inputAddress" class="form-label fw-bold">Giá:</label>
+								<input type="text" th:field="*{price}" th:value="${bookk?.name}"
+									class="form-control rounded-0 border-secondary" />
 							</div>
 							<div class=" p-5 pt-0 pb-0">
-								<label for="inputAddress" class="form-label fw-bold">Giảm giá: </label> 
-								<input type="text" th:field="*{discount}" th:value="${bookk?.discount}" class="form-control rounded-0 border-secondary"/>
+								<label for="inputAddress" class="form-label fw-bold">Giảm
+									giá: </label> <input type="text" th:field="*{discount}"
+									th:value="${bookk?.discount}"
+									class="form-control rounded-0 border-secondary" />
 							</div>
 							<div class=" p-5 pt-0 pb-0">
-								<label for="inputAddress" class="form-label fw-bold">Năm xuất bản: </label>
-								<input type="text" th:field="*{published_year}" th:value="${bookk?.published_year}"  class="form-control rounded-0 border-secondary" />
+								<label for="inputAddress" class="form-label fw-bold">Năm
+									xuất bản: </label> <input type="text" th:field="*{published_year}"
+									th:value="${bookk?.published_year}"
+									class="form-control rounded-0 border-secondary"/>
 							</div>
 							<div class=" p-5 pt-0 pb-0">
-								<label for="inputAddress" class="form-label fw-bold">Số trang: </label>
-								<input type="text" th:field="*{number_page}" th:value="${bookk?.number_page}" class="form-control rounded-0 border-secondary" />
+								<label for="inputAddress" class="form-label fw-bold">Số
+									trang: </label> <input type="text" th:field="*{number_page}"
+									th:value="${bookk?.number_page}"
+									class="form-control rounded-0 border-secondary"/>
 							</div>
 							<div class="p-5 pt-2 pb-1">
 								<label for="comment" class="form-label fw-bold">Mô tả:</label>
-								<textarea class="form-control rounded-0 border-secondary" rows="5" id="comment"  th:field="*{describe}" th:value="${bookk?.describe}" ></textarea>
+								<textarea class="form-control rounded-0 border-secondary"
+									rows="5" id="comment" th:field="*{describe}"
+									th:value="${bookk?.describe}"></textarea>
 							</div>
 
 							<div class=" p-5 pt-1 pb-3">
-								<button formaction="/Product/Create"
+								<button formaction="/admin/Product/Create"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 									style="width: 100px;">Thêm</button>
-								<button formaction="/Product/Delete"
+								<!-- <button formaction="/Product/Delete"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
-									style="width: 100px;">Xóa</button>
+									style="width: 100px;">Xóa</button> -->
 								<button formaction="/Product/Create"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
 									style="width: 100px;">Sửa</button>
@@ -90,41 +101,43 @@
 						</form>
 					</div>
 				</div>
-				<div id="table" class="col-md-10 offset-md-1 pt-3 mt-3 container tab-pane fade table-responsive form-control">
+				<div id="table"
+					class="col-md-10 offset-md-1 pt-3 mt-3 container tab-pane fade table-responsive form-control">
 					<table class="table table-centered table-nowrap mt-2">
-					<thead class="thead-dark font-weight-bold text-dark">
-						<tr class="is-outline-gray">
-							<th>ID</th>
-							<th>Tác giả</th>
-							<th>Nhà cung cấp</th>
-							<th>Loại</th>
-							<th>Tên</th>
-							<th>Giá</th>
-							<th>Giảm giá</th>
-							<th>Năm xuất bản</th>
-							<td>&nbsp;</td>  
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="book:${book}">
-							<td>[[${book.id}]]</td>
-							<td>[[${book.author.id}]]</td>
-							<td>[[${book.supplier.id}]]</td>
-							<td>[[${book.category.id}]]</td>
-							<td>[[${book.name}]]</td>
-							<td>[[${book.price}]]</td>
-							<td>[[${book.discount}]]</td>
-							<td>[[${book.published_year}]]</td>
-							<td><a th:href="@{/Product/edit(id=${book.id})}" class="is-color-pink ms-2 fs-5"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
-							<td>
-							<td> <a th:href="@{|/Product/Delete/${book.id}|}"class="is-color-pink ms-2 fs-5" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div> 	
+						<thead class="thead-dark font-weight-bold text-dark">
+							<tr class="is-outline-gray">
+								<th>ID</th>
+								<th>Tác giả</th>
+								<th>Nhà cung cấp</th>
+								<th>Loại</th>
+								<th>Tên</th>
+								<th>Giá</th>
+								<th>Giảm giá</th>
+								<th>Năm xuất bản</th>
+								<td>&nbsp;</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="book:${book}">
+								<td>[[${book.id}]]</td>
+								<td>[[${book.author.id}]]</td>
+								<td>[[${book.supplier.id}]]</td>
+								<td>[[${book.category.id}]]</td>
+								<td>[[${book.name}]]</td>
+								<td th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')} + '₫'"></td>
+								<td th:text="${#numbers.formatDecimal(book.discount, 0, 'COMMA', 2, 'POINT')} + '₫'"></td>
+								<td>[[${book.published_year}]]</td>
+								<td><a th:href="@{/admin/Product/edit(id=${book.id})}"
+									class="is-color-pink ms-2 fs-5"><i
+										class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
+								<!-- <td><a th:href="@{|/admin/Product/Delete/${book.id}|}"
+									class="is-color-pink ms-2 fs-5" data-toggle="tooltip"><i
+										class="fa-solid fa-trash"></i></a></td> -->
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
-	</div>	
-	</div>
 </body>
 </html>

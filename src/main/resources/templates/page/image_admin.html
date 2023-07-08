@@ -24,13 +24,13 @@
                                    id="inputId"/>
                         </div>
                         <div class=" p-5 pt-3 pb-1">
-                            <label for="inputAddress" class="form-label fw-bold">Chọn
-                                mã sản phẩm: </label>
+                            <label for="inputAddress" class="form-label fw-bold">Tên
+                                 sản phẩm: </label>
                             <select
                                     class="form-select border-secondary rounded-0 bg-light"
                                     aria-label="Disabled select example"
                                     name="bookId">
-                                <option selected class="text-secondary">Chọn mã sản
+                                <option selected class="text-secondary">Chọn tên sản
                                     phẩm
                                 </option>
                                 <option th:each="book : ${book}" th:value="${book.id}"
@@ -47,16 +47,16 @@
                         <div class=" p-5 pt-1 pb-3">
                             <button type="submit"
                                     class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
-                                    style="width: 100px;"  formaction="/image/create">Thêm
+                                    style="width: 100px;"  formaction="/admin/image/create">Thêm
                             </button>
                             <button type="submit"
                                     class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
                                     style="width: 100px;"
-                           formaction="/image/update">Sửa
+                           formaction="/admin/image/update">Sửa
                             </button>
                             <button type="submit"
                                     class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
-                                    style="width: 100px;" formaction="/image/new">Đặt lại
+                                    style="width: 100px;" formaction="/admin/image/new">Đặt lại
                             </button>
                         </div>
                     </form>
@@ -68,7 +68,7 @@
                     <td>ID:</td>
                     <td>URL</td>
                     <td>Tên sách</td>
-                    <!-- <td>&nbsp;</td> -->
+                     <td>&nbsp;</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -79,11 +79,11 @@
                     <!--							book id-->
                     <th>[[${img.book.name}]]</th>
                     <td><a style="text-decoration: none;"
-                           th:href="@{/image/edit(id=${img.id})}"><i class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
-                    <th><a class="is-color-pink fs-4"
+                           th:href="@{/admin/image/edit(id=${img.id})}"><i class="is-color-pink fa-sharp fa-solid fa-pen-to-square"></i></a></td>
+                    <!-- <th><a class="is-color-pink fs-4"
                            style="text-decoration: none;"
                            th:href="@{|/image/delete/${img.id}|}"><i
-                            class="bi bi-trash"></i></a></th>
+                            class="bi bi-trash"></i></a></th> -->
                 </tr>
                 </tbody>
             </table>

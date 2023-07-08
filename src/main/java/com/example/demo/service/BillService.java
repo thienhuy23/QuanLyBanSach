@@ -19,4 +19,7 @@ public class BillService {
     public List<Bill> findAll(){
         return repo.findAll();
     }
+    public List<Bill> findAllByUserId(int id){
+        return repo.findAllByUserId(id);
+    }
 }

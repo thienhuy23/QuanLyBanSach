@@ -5,7 +5,14 @@ const data = JSON.stringify(repo.map(s => parseInt(s.id))).replace("[", "").repl
 let result = [];
 axios.get("/cart/get?arr=" + data).then((result) => {
 	fillData(result.data);
-	console.log(result.data);
+    $('#frmTT').submit(function (e) { 
+        $("input[type=checkbox]:checked").each(function () {
+            let id = $(this).attr('id').split("-")[1];
+            let quantity = $(this).attr('id').split("-")[2];
+            $('#frmTT').prepend(`<input type="hidden" name="cart" value="${id}_${quantity}"/>`)
+        });
+        // e.preventDefault();
+    });
 }).catch((err) => {
 	console.log(err);
 });;
@@ -22,6 +29,7 @@ const fillData = (data) => {
 	data.forEach((s, i) => {
 		$("#body").append(`
         <tr>
+        <td><input type="checkbox" name="state" id="chk-${s.id}-${repo[i].quantity}"/></td>
         <td>${s.id}</td>
         <td style="width:200px">
             <img class="w-50 d-block mx-auto" src="${s.images[0].url}">

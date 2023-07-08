@@ -14,7 +14,7 @@
 						title="Your Store" alt="Your Store" class="img-fluid"></a>
 				</div>
 				<!-- Navbar Search-->
-				<form th:action="@{/category/search}" method="post"
+				<form th:action="@{/admin/category/search}" method="post"
 					class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
 					<div class="text-right  header-right me-5  mr-auto">
 						<div class="input-group mb-3 mt-3 text-right ms-5"
@@ -64,16 +64,16 @@
 							<div class=" p-5 pt-1 pb-3">
 								<button type="submit"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
-									style="width: 100px;" formaction="/category/create">Thêm</button>
+									style="width: 100px;" formaction="/admin/category/create">Thêm</button>
+								<!-- <button type="submit"
+									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
+									style="width: 100px;">Xóa</button> -->
 								<button type="submit"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
-									style="width: 100px;">Xóa</button>
+									style="width: 100px;" formaction="/admin/category/update">Sửa</button>
 								<button type="submit"
 									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
-									style="width: 100px;" formaction="/category/update">Sửa</button>
-								<button type="submit"
-									class="btn border-0 fs-6 rounded-0 text-light is-outline-pink"
-									style="width: 100px;" formaction="/category/new">Đặt
+									style="width: 100px;" formaction="/admin/category/new">Đặt
 									lại</button>
 							</div>
 						</form>
@@ -93,12 +93,12 @@
 							<th>[[${cate.id}]]</th>
 							<th>[[${cate.name}]]</th>
 							<td><a style="text-decoration: none;"
-								th:href="@{/category/edit(id=${cate.id})}"><i
-									class="fa-sharp fa-solid fa-pen-to-square"></i></a></td>
-							<th><a class="is-color-pink fs-4"
+								th:href="@{/admin/category/edit(id=${cate.id})}"><i
+									class="fa-sharp is-color-pink fa-solid fa-pen-to-square"></i></a></td>
+							<!-- <th><a class="is-color-pink fs-4" 
 								style="text-decoration: none;"
-								th:href="@{|/category/delete/${cate.id}|}"><i
-									class="bi bi-trash"></i></a></th>
+								th:href="@{|admin/category/delete/${cate.id}|}"><i
+									class="bi bi-trash"></i></a></th> -->
 
 						</tr>
 					</tbody>

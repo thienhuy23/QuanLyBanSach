@@ -5,11 +5,10 @@
 <div th:replace="~{commons/head ::  head}"></div>
 <body>
 	<div class="container">
-		<input type="hidden" name="user_id" th:value="${session.user?.id}">
 		<div class="row">
-			<div class="col-md-7 col-sm-12 p-5"
+			<input type="hidden" name="user_id" th:value="${session.user?.id}">
+			<form id="frmBill" action="/bill/tt" method="post"class="col-md-7 col-sm-12 p-5"
 				style="border-right: 2px solid rgba(0, 0, 0, 0.2);">
-
 				<div class="pt-3 pb-3">
 					<a th:href="@{/}"><img
 						src="https://bookcart.themability.com/image/catalog/logo.png"
@@ -45,7 +44,7 @@
 				</div>
 				
 				<div class="form-floating mb-3">
-					<input type="text" name="receive_place" class="form-control" id=""
+					<input type="text" name="place" class="form-control" id=""
 						placeholder="name@example.com"> <label
 						class="text-secondary">Địa chỉ</label>
 				</div>
@@ -69,14 +68,13 @@
 						class="bi bi-chevron-double-left"></i>Giỏ hàng</a>
 					<div class="text-end col-6">
 						<button class="btn is-outline-pink text-light "
-							style="width: 135px;" type="button"
-							th:onclick="'pay('+${session.user?.id}+')'">Đặt hàng</button>
+							style="width: 135px;" type="submit">Đặt hàng</button>
 
 					</div>
 
 				</div>
 
-			</div>
+			</form>
 			<div class="col-md-5 col-sm-12 p-5">
 				<div class="pt-5">
 					<table class="table-product ">
@@ -88,7 +86,21 @@
 							</tr>
 						</thead>
 						<tbody id="body">
-
+							<tr th:each="item:${bill.bdt}">
+								<td>
+									<div class="icon">
+										<div class="position-relative pt-1">
+											<span class="fs-4 text-dark ii"><img
+												th:src="${item.book.images[0].url}"
+												style="width: 100px" class="rounded float-start" alt="..."></span>
+											<span class="position-absolute top-5 start-200 translate-middle badge rounded-pill bg-secondary quantity">
+												[[${item.book.quantity}]]</span>
+										</div>
+									</div>
+								</td>
+								<td style="padding-left: -10px;" class="">[[${item.book.name}]]</td>
+								<td class="ms-4" style="padding-left: 8em;">[[${item.book.price}]]</td>
+							</tr>
 						</tbody>
 
 					</table>

@@ -19,6 +19,7 @@
 
 <!-- Angular JS  -->
 
+<!-- <script type="text/javascript" th:src="@{/js/book.js}"></script> -->
 
 <link rel="stylesheet" href="/css/index.css">
 <!-- <link rel="stylesheet" href="/css/home.css"> -->
@@ -90,7 +91,7 @@
 									<a th:href="@{'/book?bookId='+${book.id}}"
 										class="card-text text-decoration-none fw-bold text-dark">[[${book.name}]]</a>
 								</div>
-								<div>
+								<div class="ms-2">
 									<i class="bi bi-star text-warning"></i> <i
 										class="bi bi-star text-warning"></i> <i
 										class="bi bi-star text-warning"></i> <i
@@ -100,11 +101,15 @@
 								<div
 									class="card-footer border-top-0 d-flex justify-content-between px-2"
 									style="background-color: transparent;">
-									<span class="card-text fw-bold">[[${#strings.replace(#numbers.formatCurrency(book.price),
-										'.00', '')}]] </span>
-									<del class="text-Secondary">[[${#strings.replace(#numbers.formatCurrency(book.discount),
-										'.00', '')}]]</del>
+									<!-- <span class="card-text fw-bold">[[${#strings.replace(#numbers.formatCurrency(book.price),'.00', '')}]] </span>  -->
 
+									<div class="card-text fw-bold"
+										th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 2, 'POINT')} + '₫'"></div>
+
+									<del class="text-Secondary">
+										<span
+											th:text="${#numbers.formatDecimal(book.discount, 0, 'COMMA', 2, 'POINT')} + '₫'"></span>
+									</del>
 								</div>
 							</div>
 						</div>
@@ -173,6 +178,8 @@
 				next = next.nextElementSibling
 			}
 		})
+		
+		
 	</script>
 
 	<!-- Bootstrap JavaScript Libraries -->

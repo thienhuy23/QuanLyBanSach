@@ -22,21 +22,26 @@ public class RegisterController {
 	@Autowired
 	RegisterService registerRService;
  
-	
 	@GetMapping(value={"/",""})
 	public String getRegister(Model model ) {
 		model.addAttribute("user", new Users());
 		return "page/register";
 	}
-	@PostMapping("/insert")
+	@PostMapping(value={"/",""})
 	public String postRegister(@Valid @ModelAttribute("user") Users user ,BindingResult result ,Model model ) {
+<<<<<<< HEAD
+=======
+		user.setRole(false);
+>>>>>>> c31a5eb99da67d69e360bc58ffeb875c8c9477e8
 		System.out.println(user.toString());
 		if (result.hasErrors()) {
 			return "page/register";
 		}else {
+			user.setRole(false);
 			registerRService.save(user);
+			System.out.println(registerRService.save(user).toString());
 			model.addAttribute("message","Đăng ký thành công, Vui lòng đăng nhập");
-			return "page/register";
+			return "redirect:/login";
 		}
 		
 	}

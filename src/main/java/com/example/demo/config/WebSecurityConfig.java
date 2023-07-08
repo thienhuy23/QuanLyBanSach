@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 
 import com.example.demo.service.UserDetailsServiceImpl;
 
@@ -35,22 +36,21 @@ public class WebSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.csrf().disable()
-				.authorizeRequests()
-				.requestMatchers( "/cart","/admin")
-				.authenticated()
-				.anyRequest()
-				.permitAll()
+		http.csrf().disable().authorizeRequests()
+				.requestMatchers( "/admin/**").hasAuthority("ADMIN")
+				.requestMatchers("/cart","/bill").hasAuthority("USER")
+				.anyRequest().authenticated()
 				.and()
 				.authenticationProvider(authenticationProvider())
 				// .httpBasic();
 				.formLogin() //cho phép người dùng xác thực bằng login 
+				.successHandler(savedRequestAwareAuthenticationSuccessHandler())
 				.loginPage("/login")
 				.usernameParameter("username")
 				.passwordParameter("password")
 				// .loginProcessingUrl("/perform_login")
 				// .successForwardUrl("/")
-				.defaultSuccessUrl("/home", true)
+				.defaultSuccessUrl("/")
 				.permitAll()
 				.and()
 				.logout()
@@ -71,5 +71,10 @@ public class WebSecurityConfig {
 		dao.setPasswordEncoder(passwordEncodeer());
 		return dao;
 	}
-
+   @Bean
+    public SavedRequestAwareAuthenticationSuccessHandler savedRequestAwareAuthenticationSuccessHandler() {
+        SavedRequestAwareAuthenticationSuccessHandler auth = new SavedRequestAwareAuthenticationSuccessHandler();
+        auth.setTargetUrlParameter("targetUrl");
+        return auth;
+    }
 }
